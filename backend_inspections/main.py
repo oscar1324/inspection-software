@@ -1,4 +1,6 @@
 from db_connection import connect_to_db
+from fastapi import FastAPI
+
 
 
 # The function returns all information of the table inspection
@@ -111,19 +113,65 @@ def execute_delete_by_id(conn):
         cursor.close()
         conn.close()
     
-## TODO to develop the update function
+## TODO to develop the update function (podra cambiar todos los datos, y se envian todos, si estan igual no se toca)
 
-    
+# The function return all information of table inspection and send all data to the Frontend   
 
-if conn:
-    #execute_select_of_all()
+
+
+#execute_select_of_all()
     #execute_find_by_wind_farm(conn, "PE São Cristóvão ")
     #execute_find_by_date(conn, "2025-05-21 ")
     #execute_find_all_order_by_desc(conn)
 
     #execute_find_total_net_income(conn)
     #execute_insert_daily_inspection(conn)
-    execute_delete_by_id(conn)
+    #execute_delete_by_id(conn)
+
+app = FastAPI() 
+
+# ENDPOINT: GET/inspections
+@app.get("/inspections")
+def get_all_inspection():
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    query = "SELECT * FROM inspections ORDER BY date ASC"
+    
+    cursor.execute(query)
+    rows = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
+    results = []
+    for indice in rows:
+        
+        results.append({
+            "id": indice[0],
+            "type_inspection": indice[1],
+            "wind_farm": indice[2],
+            "location": indice[3],
+            "province": indice[4],
+            "country": indice[5],
+            "date": indice[6],
+            "availability": indice[7],
+            "over_nigth": indice[8],
+            "number_wind_turbines_generators": indice[9],
+            "wind_turbine_generator_accounted": indice[10],
+            "piloted_by_me": indice[11],
+            "team_mate": indice[12],
+            "payment_wind_turbine_generators": float(indice[13]),
+            "gross_total_income": float(indice[14]),
+            "net_total_income": float(indice[15]),
+        })
+
+
+    return results
+
+
+    
+
+
     
 
 
