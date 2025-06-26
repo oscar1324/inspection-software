@@ -1,0 +1,21 @@
+# pydantic allows the automatic validation and serialize the datas
+from pydantic import BaseModel 
+from datetime import date
+
+class Inspection(BaseModel):
+    id: int
+    type_inspection: str
+    wind_farm: str
+    location: str
+    province: str
+    country: str
+    date: date
+    availability: int
+    over_night: int
+    number_wind_turbines_generators: int
+    wind_turbine_generator_accounted: int
+    piloted_by_me: int
+    team_mate: str
+    payment_wind_turbine_generators: float
+    gross_total_income: float
+    net_total_income: float

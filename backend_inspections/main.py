@@ -1,5 +1,7 @@
-from db_connection import connect_to_db
+from app.db_connection import connect_to_db
 from fastapi import FastAPI
+from app.http_request import execute_insert_daily_inspection, get_all_inspection
+from app.models.modelInspectionDTO import Inspection
 
 
 
@@ -76,24 +78,6 @@ def execute_find_total_net_income(conn):
     
 
 
-# The function insert a daily information, in the future this funtion will recieve more parametres
-## TODO to develop: To add a validation -> if in this date, there exits a record: 'There is a record on this date'
-def execute_insert_daily_inspection(conn):
-
-    cursor = conn.cursor()
-    query= "INSERT INTO inspections (type_inspection, wind_farm,location, province,country, date, availability, over_nigth, number_wind_turbines_generators, wind_turbine_generator_accounted, piloted_by_me, team_mate, payment_wind_turbine_generators, gross_total_income, net_total_income) values ('Inspección eólica', 'PE Prueba ','Prueba','Prueba','Prueba','2000-01-01',0,0,0,0,0,'Alejandro',0.00,0.00,0.00)"
-
-
-    try:
-        cursor.execute(query)
-        conn.commit()
-        print("Query has just been registered in the database")
-        
-    except Exception as e:
-        print(f"Query can´t be register in the database: Error -> {e}")
-    finally:
-        cursor.close()
-        conn.close()
 
 # The function deletes the record with the id selected
 def execute_delete_by_id(conn):
@@ -128,46 +112,15 @@ def execute_delete_by_id(conn):
     #execute_insert_daily_inspection(conn)
     #execute_delete_by_id(conn)
 
-app = FastAPI() 
-
-# ENDPOINT: GET/inspections
+app = FastAPI()
 @app.get("/inspections")
-def get_all_inspection():
-    conn = connect_to_db()
-    cursor = conn.cursor()
-    query = "SELECT * FROM inspections ORDER BY date ASC"
-    
-    cursor.execute(query)
-    rows = cursor.fetchall()
+def read_inspections():
+    return get_all_inspection()
 
-    cursor.close()
-    conn.close()
-
-    results = []
-    for indice in rows:
-        
-        results.append({
-            "id": indice[0],
-            "type_inspection": indice[1],
-            "wind_farm": indice[2],
-            "location": indice[3],
-            "province": indice[4],
-            "country": indice[5],
-            "date": indice[6],
-            "availability": indice[7],
-            "over_nigth": indice[8],
-            "number_wind_turbines_generators": indice[9],
-            "wind_turbine_generator_accounted": indice[10],
-            "piloted_by_me": indice[11],
-            "team_mate": indice[12],
-            "payment_wind_turbine_generators": float(indice[13]),
-            "gross_total_income": float(indice[14]),
-            "net_total_income": float(indice[15]),
-        })
-
-
-    return results
-
+@app.post("/add_inspections")
+def create_new_register(data: Inspection):
+    execute_insert_daily_inspection(data)
+    return {"message": "Registro insertado correctamente"}
 
     
 
