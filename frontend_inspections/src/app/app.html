@@ -1,0 +1,34 @@
+
+<main class="main">
+  <div class="content">
+    <div class="contanier">
+      <div class="personalData">
+        <h1> Campaña de inspecciones eólicas 2025
+        </h1>
+        <p> En esta sección se mostrarán los datos personales del piloto de drones y su fotografía.</p>
+      </div>
+      <div class="kpis"> 
+        <p>
+          En esta sección se mostrarán los diferentes KPIs de los datos de las inspecciones 
+        y una tabla en donde se podrá seleccionar los parques eólicos y acceder a la información especifíca.
+        </p>
+        <button class="botonPrueba" (click)="loadInspection()" [disabled]="loading" class="load-button">
+          {{ loading ? 'Cargando datos...' : 'Cargar todas las Inspecciones'}}
+        </button>
+        
+        <div *ngIf="loading" class="loading-indicator"> Cargando datos...</div>
+        <div *ngIf="error" class="error-message">
+          <p>Error:</p>
+          <p>{{error}}</p>
+        </div>
+
+        
+          
+      </div>
+
+    </div>
+  </div> 
+</main>
+
+
+<router-outlet />

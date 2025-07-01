@@ -1,0 +1,35 @@
+.contanier {
+    max-width: 90%;
+    margin: 10px auto;
+    padding: 2%;
+    background-color: #F9F9F9;
+
+    display: grid;
+    grid-auto-flow: row ;
+    grid-template-rows: 1fr; 
+    gap: 5%;
+
+}
+
+.personalData {
+    
+    margin: 0;
+    padding: 1% ;
+    justify-self: stretch;
+}
+
+.kpis {
+    
+    margin: 0%;
+    padding: 1%;
+}
+
+h1 {
+    text-align: center;
+    color: #333333;
+    
+}
+
+p{
+    color: #A0A0A0;
+}
