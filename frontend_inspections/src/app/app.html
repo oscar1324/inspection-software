@@ -16,14 +16,35 @@
           {{ loading ? 'Cargando datos...' : 'Cargar todas las Inspecciones'}}
         </button>
         
-        <div *ngIf="loading" class="loading-indicator"> Cargando datos...</div>
+        
         <div *ngIf="error" class="error-message">
           <p>Error:</p>
           <p>{{error}}</p>
         </div>
 
-        
           
+      </div>
+      <div class="tablaInspecciones">
+        <table>
+          <thead>
+            <th> ID</th>
+            <th> Parque eólico</th>
+            <th> Provincia</th>
+            <th> País</th>
+            <th> Fecha</th>
+
+          </thead>
+          <tbody>
+            <tr *ngFor="let indice of inspections">
+              <!-- *ngIf="indice.wind_farm !== null && indice.wind_farm !== undefined"-->
+              <th> {{indice.id}}</th>
+              <th > {{indice.wind_farm}}</th>
+              <th > {{indice.province}}</th>
+              <th > {{indice.country}}</th>
+              <th > {{indice.date}}</th>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
     </div>

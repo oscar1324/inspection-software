@@ -2,6 +2,7 @@ from app.db_connection import connect_to_db
 from fastapi import FastAPI
 from app.http_request import execute_insert_daily_inspection, get_all_inspection
 from app.models.modelInspectionDTO import Inspection
+from fastapi.middleware.cors import CORSMiddleware
 
 
 
@@ -113,6 +114,21 @@ def execute_delete_by_id(conn):
     #execute_delete_by_id(conn)
 
 app = FastAPI()
+
+# Define the allowed origins
+origins = [
+    "http://localhost:4200",
+    "http://127.0.0.1:4200",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/inspections")
 def read_inspections():
     return get_all_inspection()
