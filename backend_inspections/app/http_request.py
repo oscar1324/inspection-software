@@ -26,20 +26,17 @@ def get_all_inspection():
         results.append({
             "id": indice[0],
             "type_inspection": indice[1],
-            "wind_farm": indice[2],
-            "location": indice[3],
-            "province": indice[4],
-            "country": indice[5],
-            "date": indice[6],
-            "availability": indice[7],
-            "over_night": indice[8],
-            "number_wind_turbines_generators": indice[9],
-            "wind_turbine_generator_accounted": indice[10],
-            "piloted_by_me": indice[11],
-            "team_mate": indice[12],
-            "payment_wind_turbine_generators": float(indice[13]),
-            "gross_total_income": float(indice[14]),
-            "net_total_income": float(indice[15]),
+            "date": indice[2],
+            "availability": indice[3],
+            "over_night": indice[4],
+            "number_wind_turbines_generators": indice[5],
+            "wind_turbine_generator_accounted": indice[6],
+            "piloted_by_me": indice[7],
+            "team_mate": indice[8],
+            "payment_wind_turbine_generators": float(indice[9]),
+            "gross_total_income": float(indice[10]),
+            "net_total_income": float(indice[11]),
+            "wind_farm_id": indice[13]
         })
 
 
@@ -55,18 +52,14 @@ def execute_insert_daily_inspection(inspections: Inspection):
 
     query = """
             INSERT INTO inspections (
-                type_inspection, wind_farm, location, province, country, date,
+                type_inspection, date,
                 availability, over_night, number_wind_turbines_generators,
                 wind_turbine_generator_accounted, piloted_by_me, team_mate,
-                payment_wind_turbine_generators, gross_total_income, net_total_income
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                payment_wind_turbine_generators, gross_total_income, net_total_income, wind_farm_id
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
     values = (
         inspections.type_inspection,
-        inspections.wind_farm,
-        inspections.location,
-        inspections.province,
-        inspections.country,
         inspections.date,
         inspections.availability,
         inspections.over_night,
@@ -77,6 +70,7 @@ def execute_insert_daily_inspection(inspections: Inspection):
         inspections.payment_wind_turbine_generators,
         inspections.gross_total_income,
         inspections.net_total_income, 
+        inspections.wind_farm_id
     )
 
     try:

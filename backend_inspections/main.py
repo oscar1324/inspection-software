@@ -112,6 +112,7 @@ def execute_delete_by_id(conn):
     #execute_find_total_net_income(conn)
     #execute_insert_daily_inspection(conn)
     #execute_delete_by_id(conn)
+    
 
 app = FastAPI()
 

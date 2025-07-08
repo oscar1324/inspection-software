@@ -5,10 +5,6 @@ from datetime import date
 class Inspection(BaseModel):
     id: int
     type_inspection: str
-    wind_farm: str
-    location: str
-    province: str
-    country: str
     date: date
     availability: int
     over_night: int
@@ -19,3 +15,4 @@ class Inspection(BaseModel):
     payment_wind_turbine_generators: float
     gross_total_income: float
     net_total_income: float
+    wind_farm_id: int
