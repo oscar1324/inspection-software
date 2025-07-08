@@ -1,7 +1,8 @@
 from app.db_connection import connect_to_db
 from fastapi import FastAPI
-from app.http_request import execute_insert_daily_inspection, get_all_inspection
+from app.http_request import execute_insert_daily_inspection, get_all_inspection, execute_insert_windFarm
 from app.models.modelInspectionDTO import Inspection
+from app.models.modelWindFarmDTO import WindFarm
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -138,6 +139,11 @@ def read_inspections():
 def create_new_register(data: Inspection):
     execute_insert_daily_inspection(data)
     return {"message": "Registro insertado correctamente"}
+
+@app.post("/add_windFarm")
+def create_new_windFarm(data: WindFarm):
+    execute_insert_windFarm(data)
+    return {"message": "Nuevo parque eólico creado"}
 
     
 

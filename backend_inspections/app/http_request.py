@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.db_connection import connect_to_db
 from app.models.modelInspectionDTO import Inspection
+from app.models.modelWindFarmDTO import WindFarm
 
 # Objects
 app = FastAPI()
@@ -79,7 +80,35 @@ def execute_insert_daily_inspection(inspections: Inspection):
         print("Query has just been registered in the database")
         
     except Exception as e:
-        print(f"Query can´t be register in the database: Error -> {e}")
+        print(f"New Register daily Inspection Query can´t be register in the database: Error -> {e}")
     finally:
         cursor.close()
         conn.close()
+
+# This function create a new wind farm in the data base
+def execute_insert_windFarm(windFarm: WindFarm):
+    conn = connect_to_db()
+    cursor= conn.cursor()
+
+    query = "INSERT INTO wind_farm (name, location, province, country, client, total_aagg, type_blade) values (%s, %s, %s, %s, %s, %s, %s);"
+    values = (
+        windFarm.name,
+        windFarm.location,
+        windFarm.province,
+        windFarm.country,
+        windFarm.client,
+        windFarm.total_aagg,
+        windFarm.type_blade
+    )
+    
+    try:
+        cursor.execute(query, values)
+        conn.commit()
+        print("Query has just been registered in the database")
+     
+    except Exception as e:
+        print(f"Register WindFarm Query can´t be register in the database: Error -> {e}")
+    finally:
+        cursor.close()
+        conn.close()
+    
