@@ -6,10 +6,12 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { InspectionsService } from './services/InspectionsService';
 import { Inspection } from './models/inspection.model';
+import { MatCard } from "@angular/material/card";
+import { MatCardHeader, MatCardTitle, MatCardSubtitle } from "@angular/material/card";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterOutlet,CommonModule, CurrencyPipe, MatButtonModule],
+  imports: [RouterOutlet, RouterOutlet, CommonModule, CurrencyPipe, MatButtonModule, MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

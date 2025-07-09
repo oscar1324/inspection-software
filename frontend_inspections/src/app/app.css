@@ -1,8 +1,12 @@
+body {
+    
+}
+
 .contanier {
-    max-width: 90%;
-    margin: 10px auto;
+    max-width: 100%;
+    
     padding: 2%;
-    background-color: #F9F9F9;
+    background-color: #171924 ;
 
     display: grid;
     grid-auto-flow: row ;
@@ -26,10 +30,20 @@
 
 h1 {
     text-align: center;
-    color: #333333;
+    color: #F5F5F5 ;
     
 }
 
 p{
-    color: #A0A0A0;
+    color: #F5F5F5 ;
+}
+
+th{
+    color: #F5F5F5 ;
+    
+}
+
+tr{
+    color: #F5F5F5 ;
+    
 }

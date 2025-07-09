@@ -6,6 +6,16 @@
         <h1> Campaña de inspecciones eólicas 2025
         </h1>
         <p> En esta sección se mostrarán los datos personales del piloto de drones y su fotografía.</p>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title> Piloto de drone</mat-card-title>
+            <mat-card-subtitle> Detalles del piloto</mat-card-subtitle>
+          </mat-card-header>
+
+          <img mat-card-image src="assets/images/fotoPerfilPiloto.jpg" width="80px" height="80px"/>
+
+
+        </mat-card>
       </div>
       <div class="kpis"> 
         <p>
@@ -16,6 +26,7 @@
           {{ loading ? 'Cargando datos...' : 'Cargar todas las Inspecciones'}}
         </button>
         
+
         
         <div *ngIf="error" class="error-message">
           <p>Error:</p>
@@ -25,27 +36,23 @@
           
       </div>
       <div class="tablaInspecciones">
+        <p>* Recordatorio: Esta tabla solo es un ejemplo</p>
         <table>
           <thead>
             <th> ID</th>
             <th> Parque eólico</th>
-            <th> Provincia</th>
-            <th> País</th>
-            <th> Fecha</th>
 
           </thead>
           <tbody>
             <tr *ngFor="let indice of inspections">
               <!-- *ngIf="indice.wind_farm !== null && indice.wind_farm !== undefined"-->
               <th> {{indice.id}}</th>
-              <th > {{indice.wind_farm}}</th>
-              <th > {{indice.province}}</th>
-              <th > {{indice.country}}</th>
-              <th > {{indice.date}}</th>
+              <th> {{indice.gross_total_income}}</th>
             </tr>
           </tbody>
         </table>
       </div>
+      
 
     </div>
   </div> 
