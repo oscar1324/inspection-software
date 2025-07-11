@@ -1,7 +1,9 @@
 body {
     
 }
-
+.titulo{
+    color: #1A1B1F ;
+}
 .contanier {
     max-width: 100%;
     
@@ -15,11 +17,67 @@ body {
 
 }
 
+.pilot-card-header-content {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.image-profile{
+    width: 350px;
+    height: 350px;
+    border-radius: 5%;
+}
+
+.pilot-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    padding-left:25px ;
+    width: 25%;
+    
+   
+    
+}
+
+.pilot-profile {
+    width: 45%;
+    
+    margin-bottom: 1%;
+    margin-left: 50px;
+}
+
+.kpi-total-pilotado {
+    margin-left: 10px;
+    width: 30%;
+    background-color: rgb(43, 43, 7);
+    margin-bottom: 1%;
+}
+
 .personalData {
     
     margin: 0;
     padding: 1% ;
     justify-self: stretch;
+}
+
+/** Estilos de los datos personales del piloto de drones **/
+.caja-datos-tecnicos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profile-izq {
+    
+    
+    align-items: baseline;
+}
+.profile-der {
+    
+    
+    
 }
 
 .kpis {
@@ -30,13 +88,15 @@ body {
 
 h1 {
     text-align: center;
-    color: #F5F5F5 ;
+    color: #1A1B1F ;
     
 }
 
 p{
-    color: #F5F5F5 ;
+    color: #1A1B1F ;
 }
+
+
 
 th{
     color: #F5F5F5 ;
