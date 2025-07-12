@@ -6,6 +6,10 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * La responsabilidad principal es gestionar todos los datos relacionados con las inspecciones.
+ */
 export class InspectionsService {
 
   // Store the same url, which exits in your backend

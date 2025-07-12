@@ -1,6 +1,6 @@
 from app.db_connection import connect_to_db
 from fastapi import FastAPI
-from app.http_request import execute_insert_daily_inspection, get_all_inspection, execute_insert_windFarm
+from app.http_request import execute_insert_daily_inspection, get_all_inspection, execute_insert_windFarm, getTotalCountWTGPiloted, getTotalCountWTG, getAllWindFarm
 from app.models.modelInspectionDTO import Inspection
 from app.models.modelWindFarmDTO import WindFarm
 from fastapi.middleware.cors import CORSMiddleware
@@ -101,9 +101,24 @@ def execute_delete_by_id(conn):
     
 ## TODO to develop the update function (podra cambiar todos los datos, y se envian todos, si estan igual no se toca)
 
-# The function return all information of table inspection and send all data to the Frontend   
+# The function deletes the record with the id selected
+def execute_delete_by_id_windfarm(conn):
+    cursor = conn.cursor()
+    idDelete = input('¿Qué registro de la tabla windFarm quieres borrar con ID...?')
+    
 
-
+    try:
+        
+        query = "DELETE FROM wind_farm where id = %s"
+        cursor.execute(query, (idDelete,))
+        conn.commit()
+        print(f"The register with id {idDelete} has just been deleted")
+    except Exception as e:
+        print(f"The register cannot be deleted -> {e}")
+    finally:
+        cursor.close()
+        conn.close()
+    
 
 #execute_select_of_all()
     #execute_find_by_wind_farm(conn, "PE São Cristóvão ")
@@ -113,7 +128,9 @@ def execute_delete_by_id(conn):
     #execute_find_total_net_income(conn)
     #execute_insert_daily_inspection(conn)
     #execute_delete_by_id(conn)
-    
+#getTotalCountWTGPiloted()
+#getTotalCountWTG()
+#execute_delete_by_id_windfarm(conn)   
 
 app = FastAPI()
 
@@ -144,6 +161,37 @@ def create_new_register(data: Inspection):
 def create_new_windFarm(data: WindFarm):
     execute_insert_windFarm(data)
     return {"message": "Nuevo parque eólico creado"}
+
+@app.get("/getTotalCount_WTG_piloted")
+def getTotalWTGPilotedByMe():
+
+    try:
+        totalCountWTGPiloted= getTotalCountWTGPiloted()
+        return {
+            "totalCount_wtg_piloted_by_me" : totalCountWTGPiloted
+        }
+    except Exception as e: 
+        print(f"Error in the endPoint -> /getTotalCount_WTG_piloted  ---> {e}")
+        return {"message": "Error in the endPointError in the endPoint -> /getTotalCount_WTG_piloted"}
+
+   
+
+@app.get("/getTotalCount_WTG_Inspections")
+def getTotalWTGInspectionss():
+
+    try:
+        totalCountWTGInspection= getTotalCountWTG()
+        return {
+            "totalCount_wtg_inspections": totalCountWTGInspection
+        }
+    except Exception as e:
+        print(f"Error in the endPoint -> /getTotalCount_WTG_Inspections  ---> {e}")
+        return {"message": "Error in the endPointError in the endPoint -> /getTotalCount_WTG_Inspections"}
+    
+@app.get("/getAll_WindFarms")
+def get_all_windFarm():
+    return getAllWindFarm()
+    
 
     
 

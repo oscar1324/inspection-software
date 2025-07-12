@@ -111,4 +111,102 @@ def execute_insert_windFarm(windFarm: WindFarm):
     finally:
         cursor.close()
         conn.close()
+
+# This function sum all Wind Farms Turbines piloted By de drone pilot
+def getTotalCountWTGPiloted():
+    total_piloted_by_me = 0
+    print(f"EJECUCIÓN METODO ")
+    conn = connect_to_db()
+    cursor = conn.cursor()
+
+    query = "SELECT * FROM public.inspections"
+
+    try:
+        cursor.execute(query)
+        rows = cursor.fetchall()
+
+        results = []
+        for indice in rows:
+            results.append(indice[7])
+        
+        total_piloted_by_me = sum(results)
+
+        return total_piloted_by_me
+        print(f"Suma total de aerogeneradores pilotados -> {total_piloted_by_me}")
+    except Exception as e:
+        print(f"It´s impossible get the total count WTG piloted data about the data base... Error -> {e}")
+        return  print(f"Error en el método")
+    finally:
+        cursor.close()
+        conn.close()
+
+    
+# This function sum all Wind Farms Turbines Inspection
+def getTotalCountWTG():
+    
+    conn = connect_to_db()
+    cursor = conn.cursor()
+
+    Query = "SELECT number_wind_turbines_generators FROM public.inspections"
+
+    try:
+        cursor.execute(Query)
+        rows = cursor.fetchall()
+
+        results = []
+
+        for indice in rows:
+            results.append(indice[0])
+
+        totalWTGInspections = sum(results)
+        print(f"Suma total de aerogeneradores pilotados -> {totalWTGInspections}")
+
+        return totalWTGInspections
+    
+    except Exception as e:
+         print(f"It´s impossible get the total count WTG data about the data base... Error -> {e}")
+         return  print(f"Error en el método")
+    finally:
+        cursor.close()
+        conn.close()
+
+# ----------------------------------------------------------------------------------------------------------------
+
+# This function get all data about windfarm table
+def getAllWindFarm():
+    conn = connect_to_db()
+    cursor = conn.cursor()
+
+    query = "SELECT * FROM public.wind_farm"
+
+    try:
+        cursor.execute(query)
+        rows = cursor.fetchall()
+
+        results = []
+        for indice in rows:
+            results.append({
+                "id": indice[0],
+                "name": indice[1],
+                "location": indice[2],
+                "province": indice[3],
+                "country": indice[4],
+                "client": indice[5],
+                "total_aagg": indice[6],
+                "type_blade": indice[7],
+            })
+        
+        return results
+    
+    except Exception as e:
+        print(f"Error during the ejecution getAllWindFarm -> {e}")
+        return {
+            "message" : "Error durante endPoint  ---> /getAll_WindFarms"
+        }
+    finally:
+        cursor.close()
+        conn.close()
+
+    
+
     

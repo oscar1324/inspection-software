@@ -31,6 +31,11 @@ export class Inspection {
 
     }
 
+
+    /**
+     * This function sum all wind farm turbines piloted by Oscar
+     * @returns Total count of the wind farms turbines piloted by Oscar
+     */
     getPilotedByMeTotal(): number {
         return this.piloted_by_me;
     }
