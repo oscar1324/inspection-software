@@ -17,6 +17,8 @@ body {
 
 }
 
+
+
 .pilot-card-header-content {
     display: flex;
     flex-direction: row;
@@ -44,7 +46,7 @@ body {
 .pilot-profile {
     width: 45%;
     
-    margin-bottom: 1%;
+    margin-bottom: 3%;
     margin-left: 50px;
 }
 
@@ -78,6 +80,22 @@ body {
     
     
     
+}
+
+.caja-detalle{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.caja-detalle h4{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.caja-detalle p {
+    margin-top: 0px;
+    margin-bottom: 10px;
 }
 
 .kpis {
