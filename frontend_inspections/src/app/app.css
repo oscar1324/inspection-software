@@ -29,6 +29,8 @@ body {
     width: 350px;
     height: 350px;
     border-radius: 5%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
 }
 
 .pilot-image-container {
@@ -53,8 +55,10 @@ body {
 .kpi-total-pilotado {
     margin-left: 10px;
     width: 30%;
-    background-color: rgb(43, 43, 7);
-    margin-bottom: 1%;
+    margin-bottom: 2%;
+    margin-top: 1%;
+    margin-right: 10px;
+
 }
 
 .personalData {
@@ -125,3 +129,4 @@ tr{
     color: #F5F5F5 ;
     
 }
+

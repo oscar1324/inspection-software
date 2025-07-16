@@ -3,9 +3,13 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
 import { routes } from './app.routes';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { MatCardModule } from '@angular/material/card';
 
 export const appConfig: ApplicationConfig = {
+
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),

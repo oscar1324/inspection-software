@@ -77,14 +77,14 @@
               </div>
             </div>
             <div class="kpi-total-pilotado">
-              <p>
-                Generar gráfico, crear una card dentro de la misma card.
-              </p>
-              <p>Mostrar gráfico semi circular.</p>
+              <app-kpi-porcentaje-card
+               [title]="'Aaerogeneradores inspeccionados'"
+               [valueActual]="70"
+               [max]="90"
+               [unit]="'%'"
+              ></app-kpi-porcentaje-card>
             </div>
           </mat-card-header>
-
-          
 
 
         </mat-card>

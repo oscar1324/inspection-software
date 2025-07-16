@@ -1,0 +1,19 @@
+<mat-card class="kpi-card">
+    <mat-card-header>
+        <mat-card-title>{{title}}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="kpi-contenido">
+        <canvas baseChart  
+            [data]="doughnutData" 
+            [options]="doughnutOptions"
+            [type]="doughnutType"
+            >
+
+        </canvas>
+        <div class="kpi-value">
+            <p>{{valueActual}}{{unit}}  </p>
+            <!-- <p>{{valueActual}}{{unit}} / {{max}}{{unit}} </p> -->
+        </div>
+    </mat-card-content>
+</mat-card>

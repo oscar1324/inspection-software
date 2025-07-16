@@ -9,10 +9,11 @@ import { Inspection } from './models/inspection.model';
 import { MatCard } from "@angular/material/card";
 import { MatCardHeader, MatCardTitle, MatCardSubtitle } from "@angular/material/card";
 import { MatCardContent } from "@angular/material/card";
+import { KpiPorcentajeCard } from './kpi-porcentaje-card/kpi-porcentaje-card';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterOutlet, CommonModule, MatButtonModule, MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent],
+  imports: [RouterOutlet, RouterOutlet, CommonModule, MatButtonModule, MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, KpiPorcentajeCard],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
