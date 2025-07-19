@@ -1,6 +1,6 @@
 <mat-card class="kpi-card">
     <mat-card-header>
-        <mat-card-title>{{title}}</mat-card-title>
+        <mat-card-title class="titulo">{{title}}</mat-card-title>
     </mat-card-header>
 
     <mat-card-content class="kpi-contenido">
@@ -12,8 +12,10 @@
 
         </canvas>
         <div class="kpi-value">
-            <p>{{valueActual}}{{unit}}  </p>
+            <p class="porcentage">{{porcentaje | number:'1.0-0'}}{{unit}}  </p>
+            <p class="numericos"> {{num1}} de {{num2}}</p>
             <!-- <p>{{valueActual}}{{unit}} / {{max}}{{unit}} </p> -->
         </div>
+
     </mat-card-content>
 </mat-card>

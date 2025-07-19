@@ -130,9 +130,9 @@ def getTotalCountWTGPiloted():
             results.append(indice[7])
         
         total_piloted_by_me = sum(results)
-
-        return total_piloted_by_me
         print(f"Suma total de aerogeneradores pilotados -> {total_piloted_by_me}")
+        return total_piloted_by_me
+       
     except Exception as e:
         print(f"It´s impossible get the total count WTG piloted data about the data base... Error -> {e}")
         return  print(f"Error en el método")
@@ -143,7 +143,7 @@ def getTotalCountWTGPiloted():
     
 # This function sum all Wind Farms Turbines Inspection
 def getTotalCountWTG():
-    
+    print(f"Ejecucion getTotalCountWTG")
     conn = connect_to_db()
     cursor = conn.cursor()
 
@@ -159,7 +159,7 @@ def getTotalCountWTG():
             results.append(indice[0])
 
         totalWTGInspections = sum(results)
-        print(f"Suma total de aerogeneradores pilotados -> {totalWTGInspections}")
+        print(f"Suma total de aerogeneradores inspeccionados durante campaña 2025 -> {totalWTGInspections}")
 
         return totalWTGInspections
     

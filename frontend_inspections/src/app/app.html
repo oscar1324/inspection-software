@@ -2,10 +2,11 @@
 <main class="main">
   <div class="content">
     <div class="contanier">
-      <div class="personalData">
-        <h1 style="color: white;"> 
+      <h1> 
           Campaña de inspecciones eólicas 2025
         </h1>
+      <div class="personalData">
+        
         <mat-card class="card">
           <mat-card-header class="pilot-card-header-content">
             <div class="pilot-image-container">
@@ -15,35 +16,38 @@
             </div>
             <div class="pilot-profile">
                <h2>Piloto de drone</h2>
-               <h3>Óscar Izquierdo Sanchón</h3>
               <div class="caja-datos-tecnicos">
                   
                 <div class="profile-izq">
                   <div class="caja-detalle">
-                    <h4>Edad:</h4>
-                    <p>26 </p>
+                    <h5>Nombre:</h5>
+                    <p class="dato-detalle">Óscar </p>
                   </div>
 
                   <div class="caja-detalle">
-                    <h4>Fecha de nacimiento:</h4>
-                    <p>10/05/1999</p>
+                    <h5>Apellidos:</h5>
+                    <p class="dato-detalle">Izquierdo Sanchón </p>
+                  </div>
+                  <div class="caja-detalle">
+                    <h5>Edad:</h5>
+                    <p class="dato-detalle">26 </p>
+                  </div>
+                                 
+
+                  <div class="caja-detalle">
+                    <h5>Empresa:</h5>
+                    <p class="dato-detalle"> Arborea Intellbird S.L</p>
                   </div>
 
                   <div class="caja-detalle">
-                    <h4>Empresa:</h4>
-                    <p> Arborea Intellbird S.L</p>
+                    <h5>Provincia:</h5>
+                    <p class="dato-detalle"> Salamanca</p>
                   </div>
-
-                  <div class="caja-detalle">
-                    <h4>Provincia:</h4>
-                    <p> Salamanca</p>
-                  </div>
-
                   
 
                   <div class="caja-detalle">
-                    <h4>Fecha de incorporación:</h4>
-                    <p> 12/09/2022</p>
+                    <h5>Fecha de incorporación:</h5>
+                    <p class="dato-detalle"> 12/09/2022</p>
                   </div>
 
                 </div>
@@ -51,59 +55,52 @@
                 <div class="profile-der">
                   
                   <div class="caja-detalle">
-                    <h4>Especialización:</h4>
-                    <p> Revisiones industriales</p>
+                    <h5>Especialización:</h5>
+                    <p class="dato-detalle"> Revisiones industriales</p>
                   </div>
                   <div class="caja-detalle">
-                    <h4>Licencia:</h4>
-                    <p> A1/A3</p>
-                  </div>
-
-                  <div class="caja-detalle">
-                    <h4>Categoria:</h4>
-                    <p> Abierta</p>
+                    <h5>Licencia:</h5>
+                    <p class="dato-detalle"> A1/A3</p>
                   </div>
 
                   <div class="caja-detalle">
-                    <h4>Número de registro:</h4>
-                    <p> ESPygw248p5hf6zp</p>
+                    <h5>Categoria:</h5>
+                    <p class="dato-detalle"> Abierta</p>
                   </div>
 
+
                   <div class="caja-detalle">
-                    <h4>Aeronaves:</h4>
-                    <p> TFG-08 y TFG-09</p>
+                    <h5>Aeronaves pilotadas:</h5>
+                    <ul class="lista-item">
+                      <li class="item">TFG-08</li>
+                      <li class="item">TFG-09</li>
+                      <li class="item">DJI 1 Mavic</li>
+                      <li class="item">DJI 2 Enterprise</li>
+                      <li class="item">DJI 3 Mini Pro</li>
+                    </ul>
                   </div>
                 </div>
               </div>
+              
             </div>
-            <div class="kpi-total-pilotado">
-              <app-kpi-porcentaje-card
-               [title]="'Aaerogeneradores inspeccionados'"
-               [valueActual]="70"
-               [max]="90"
-               [unit]="'%'"
-              ></app-kpi-porcentaje-card>
-            </div>
+            
           </mat-card-header>
-
-
         </mat-card>
+        <div class="kpi-total-pilotado">
+          <app-kpi-porcentaje-card
+            [title]="'Aerogeneradores inspeccionados'"
+            [valueActual]="totalCountWTGPiloted"
+            [max]="totalCountWTGInspections"
+            [unit]="'%'"
+            [num1]= "totalCountWTGPiloted"
+            [num2]="totalCountWTGInspections"
+            ></app-kpi-porcentaje-card>
+        </div>
+        
+        
       </div>
       <div class="kpis"> 
-        <p>
-          En esta sección se mostrarán los diferentes KPIs de los datos de las inspecciones 
-        y una tabla en donde se podrá seleccionar los parques eólicos y acceder a la información especifíca.
-        </p>
-        <button class="botonPrueba" (click)="loadInspection()" [disabled]="loading" class="load-button">
-          {{ loading ? 'Cargando datos...' : 'Cargar todas las Inspecciones'}}
-        </button>
-        
-
-        
-        <div *ngIf="error" class="error-message">
-          <p>Error:</p>
-          <p>{{error}}</p>
-        </div>
+            <p>Desarrollar Card que contenga la lista de parques eolicos, separados por una linea fina, al pasar por enicma el raton efecto hover y ordenados por fecha creacion</p>
 
           
       </div>

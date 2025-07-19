@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Inspection } from '../models/inspection.model';
+import { TotalCountWTGPiloted} from '../models/total-wtg-pilotados.model';
+import { TotalCountWTGInspections } from '../models/total-wtg-inspeccionados.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -20,5 +22,13 @@ export class InspectionsService {
   // Create the method
   getAllInspections(): Observable<Inspection []> {
     return this.http.get<Inspection[]>(`${this.apiUrl}/inspections`)
+  }
+
+  getTotalWTGPiloted(): Observable<TotalCountWTGPiloted> {
+    return this.http.get<TotalCountWTGPiloted>(`${this.apiUrl}/getTotalCount_WTG_piloted`)
+  }
+
+  getTotalWTGInspections(): Observable<TotalCountWTGInspections> {
+    return this.http.get<TotalCountWTGInspections>(`${this.apiUrl}/getTotalCount_WTG_Inspections`)
   }
 }

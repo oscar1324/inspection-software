@@ -174,7 +174,6 @@ def getTotalWTGPilotedByMe():
         print(f"Error in the endPoint -> /getTotalCount_WTG_piloted  ---> {e}")
         return {"message": "Error in the endPointError in the endPoint -> /getTotalCount_WTG_piloted"}
 
-   
 
 @app.get("/getTotalCount_WTG_Inspections")
 def getTotalWTGInspectionss():

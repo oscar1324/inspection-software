@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
-import { NgChartsModule } from 'ng2-charts';
 
 
 
@@ -15,7 +14,8 @@ import { NgChartsModule } from 'ng2-charts';
   imports: [
     CommonModule, 
     MatCardModule,
-    NgChartsModule
+    BaseChartDirective
+    
     ],
 })
 export class KpiPorcentajeCard  implements OnInit, OnChanges{
@@ -24,8 +24,12 @@ export class KpiPorcentajeCard  implements OnInit, OnChanges{
   @Input() valueActual: number = 0;
   @Input() max:number = 0;
   @Input() unit: string = '%';
-  @Input() etiqueta1: string = "Inspeccionados"
-  @Input() etiqueta2: string = 'Total';
+  @Input() num1: number = 0;
+  @Input() num2: number = 0;
+
+  porcentaje: number = 0;
+  porcentajeRedondeado: number = 0;
+  porcentajeRestante: number = 0;
   
   
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
@@ -45,8 +49,8 @@ export class KpiPorcentajeCard  implements OnInit, OnChanges{
     labels: [],
     datasets: [{
       data: [],
-      backgroundColor: ['#159bbdff', '#6b6d6eff'], //#17B37B - #3C4045
-      hoverBackgroundColor: ['#17B37B','#6b6d6eff'],
+      backgroundColor: ['#21b5daff', '#6b6d6eff'], //#17B37B - #3C4045
+      hoverBackgroundColor: ['#21b5daff','#6b6d6eff'],
       borderWidth: 0,
       rotation: -90,
       circumference: 180
@@ -64,21 +68,30 @@ export class KpiPorcentajeCard  implements OnInit, OnChanges{
 
   // Se redibuja el gráfico cada vez que un valor cambia 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes['valueActual'] || changes['max']){
-
+    if (changes['valueActual'] || changes['max'] || changes['num1'] || changes['num2']) {
+      this.updateChartData();
     }
       
   }
 
   private updateChartData(): void {
+    
 
     // 1. Crear los porcentajes
-    const porcentaje = (this.valueActual / this.max) * 100;
-    const porcentajeRestante = 100 - porcentaje;
+    if(this.max > 0){
+      this.porcentaje = (this.valueActual / this.max) * 100;
+      this.porcentajeRestante = 100 - this.porcentaje;
+
+      this.porcentajeRedondeado = Math.round(this.porcentaje);
+    } else {
+      this.porcentaje = 0;
+      this.porcentajeRestante = 100;
+    }
+    
 
     // 2. Asignar porcentajes al gráfico
-    this.doughnutData.labels = [this.etiqueta1, this.etiqueta2];
-    this.doughnutData.datasets[0].data = [porcentaje, porcentajeRestante];
+    this.doughnutData.labels = [];
+    this.doughnutData.datasets[0].data = [this.porcentaje, this.porcentajeRestante];
 
     // 3. Redibujar gráfico si ya esta renderizado
     if(this.chart){
