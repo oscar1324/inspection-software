@@ -1,0 +1,26 @@
+.table-card{
+    
+    background-color: #3C4045 ;
+    color: #FFFFFF;
+    
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
+    
+}
+
+.titulo{
+    font-weight: 500;
+}
+
+.table-card mat-card-title {
+    font-size: 17px;
+    
+    margin-bottom: 0px;
+    text-align: center;
+    width: 100%;
+    
+}

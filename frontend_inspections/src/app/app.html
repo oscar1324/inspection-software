@@ -4,7 +4,8 @@
     <div class="contanier">
       <h1> 
           Campaña de inspecciones eólicas 2025
-        </h1>
+      </h1>
+
       <div class="personalData">
         
         <mat-card class="card">
@@ -96,12 +97,25 @@
             [num2]="totalCountWTGInspections"
             ></app-kpi-porcentaje-card>
         </div>
-        
-        
       </div>
-      <div class="kpis"> 
-            <p>Desarrollar Card que contenga la lista de parques eolicos, separados por una linea fina, al pasar por enicma el raton efecto hover y ordenados por fecha creacion</p>
+      <div class="kpis-level1"> 
+        <div class="kpis-level1-partes">
+          <app-table-card 
+          [title]="'Parques eólicos'"
+          [almacenDatosArray]="inspections"></app-table-card>
+        </div>
 
+        <div class="kpis-level1-partes">
+          <app-table-card
+            [title]="'Ranking top ganancias por día'">
+          </app-table-card>
+        </div>
+
+        <div class="kpis-level1-partes">
+          <app-table-card
+          [title]="'Top aerogeneradores inspeccionados por día'">
+          </app-table-card>
+        </div>
           
       </div>
       <div class="tablaInspecciones">

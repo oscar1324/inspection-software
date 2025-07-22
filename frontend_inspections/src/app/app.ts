@@ -11,13 +11,14 @@ import { MatCard } from "@angular/material/card";
 import { MatCardHeader, MatCardTitle, MatCardSubtitle } from "@angular/material/card";
 import { MatCardContent } from "@angular/material/card";
 import { KpiPorcentajeCard } from './kpi-porcentaje-card/kpi-porcentaje-card';
+import { TableCard } from './table-card/table-card';
 
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables); // <--- ¡AÑADE ESTAS DOS LÍNEAS!
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterOutlet, CommonModule, MatButtonModule, MatCard, MatCardHeader, KpiPorcentajeCard],
+  imports: [RouterOutlet, RouterOutlet, CommonModule, MatButtonModule, MatCard, MatCardHeader, KpiPorcentajeCard, TableCard],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -33,6 +34,7 @@ export class App implements OnInit {
 
 
   ngOnInit(): void {
+      this.loadInspection();
       this.loadTotalCountWTGPiloted();
       this.loadTotalCountWTGInspections();
   }
@@ -41,7 +43,7 @@ export class App implements OnInit {
   loadInspection(): void {
     this.loading = true;
     this.error= null;
-
+    
     this.inspectionService.getAllInspections().subscribe({
       next: (data: Inspection[]) => {
         this.inspections = data;

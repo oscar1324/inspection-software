@@ -31,4 +31,6 @@ export class InspectionsService {
   getTotalWTGInspections(): Observable<TotalCountWTGInspections> {
     return this.http.get<TotalCountWTGInspections>(`${this.apiUrl}/getTotalCount_WTG_Inspections`)
   }
+
+  // Petición para obtener toda la lista de parques eolicos
 }
