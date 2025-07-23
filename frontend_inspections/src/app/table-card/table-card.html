@@ -1,22 +1,25 @@
 
 <mat-card class="table-card">
-    <mat-card-header>
-        <mat-card-title class="titulo"> {{title}}</mat-card-title>
+    <mat-card-header class="cajaTitulo">
+        <mat-card-title class="titulo-table"> {{title}}</mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
         <table>
             <thead>
-                
-                
+
             </thead>
 
-            <tbody>
-                <tr *ngFor="let item of almacenDatosArray">
-                    <th>{{item.type_inspection}}</th>
-                </tr>
-
-                
+            <tbody class="body-table">
+                <tr class="tr-table" (click)="viewDetailWindFarm()" *ngFor="let item of almacenDatosWindFarm; let i = index">
+                    <td class="col-num">{{i + 1}}</td>
+                    <td class="col-name">{{item.name}}</td>
+                    <td class="col-porcentage">
+                        <button  (click)="viewDetailWindFarm()">
+                            <mat-icon class="lupa-icon" > search</mat-icon>
+                        </button>
+                    </td>
+                </tr>  
             </tbody>
         </table>
     </mat-card-content>

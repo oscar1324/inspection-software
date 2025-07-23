@@ -1,26 +1,102 @@
 .table-card{
-    
     background-color: #3C4045 ;
     color: #FFFFFF;
     
-    padding: 16px;
     display: flex;
     flex-direction: column;
+    align-items: start;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   
     
     
 }
 
-.titulo{
-    font-weight: 500;
+.cajaTitulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 89%;
+    height: 100%;
+    padding-bottom: 3%;
 }
+
+.titulo-table {
+    
+    text-align: center;
+    font-weight: 500;
+    width: 100%;
+  
+}
+
+
 
 .table-card mat-card-title {
     font-size: 17px;
-    
     margin-bottom: 0px;
-    text-align: center;
     width: 100%;
     
 }
+
+/** Estilos de la tabla*/
+table {
+    
+    width: 150%;
+}
+
+td {
+    font-size: 15px;
+}
+
+tr{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    
+}
+
+.tr-table{
+    
+    transition: background-color 0.2s ease; 
+    
+}
+
+.tr-table:hover {
+  background-color: #4a4d52; /* Color de fondo al pasar el ratón por encima */
+}
+
+td {
+    cursor: pointer;
+    border-bottom: 1px solid  #505050;
+    padding: 3px;
+    
+}
+
+button {
+    background-color: transparent;
+    border: 0px;
+    color: #FFFFFF;
+}
+
+.body-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    
+}
+.col-num {
+    width: 10%;
+}
+
+.col-name {
+    width: 80%;
+}
+.col-porcentage {
+    width: 10%;
+}
+
+
+
+

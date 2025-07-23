@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Inspection } from '../models/inspection.model';
 import { TotalCountWTGPiloted} from '../models/total-wtg-pilotados.model';
 import { TotalCountWTGInspections } from '../models/total-wtg-inspeccionados.model';
+import { WindFarm } from '../models/windfarm.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -33,4 +34,7 @@ export class InspectionsService {
   }
 
   // Petición para obtener toda la lista de parques eolicos
+  getAllWindFarm(): Observable<WindFarm[]> {
+    return this.http.get<WindFarm[]>(`${this.apiUrl}/getAll_WindFarms`)
+  }
 }

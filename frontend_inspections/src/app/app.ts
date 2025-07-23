@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { InspectionsService } from './services/InspectionsService';
 import { Inspection } from './models/inspection.model';
+import { WindFarm } from './models/windfarm.model';
 import { TotalCountWTGPiloted } from './models/total-wtg-pilotados.model'
 import { MatCard } from "@angular/material/card";
 import { MatCardHeader, MatCardTitle, MatCardSubtitle } from "@angular/material/card";
@@ -25,6 +26,7 @@ Chart.register(...registerables); // <--- ¡AÑADE ESTAS DOS LÍNEAS!
 export class App implements OnInit {
   protected title = 'Dashboard de Inspecciones Eólicas campaña 2025';
   inspections: Inspection[] = [];
+  windFarms: WindFarm[] = [];
   totalCountWTGPiloted: number = 0;
   totalCountWTGInspections: number = 0;
   loading:boolean = false;
@@ -37,6 +39,7 @@ export class App implements OnInit {
       this.loadInspection();
       this.loadTotalCountWTGPiloted();
       this.loadTotalCountWTGInspections();
+      this.loadWindFarm();
   }
   
 
@@ -56,7 +59,7 @@ export class App implements OnInit {
         console.error('Se ha producido un error: ' , err);
       },
       complete: () => {
-        console.log('Petición de inspecciones completada.');
+        console.warn('Petición de inspecciones completada.');
       }
     })
   }
@@ -75,7 +78,7 @@ export class App implements OnInit {
         console.error('Se ha producido un error: ' , err);
       },
       complete: () => {
-        console.log('Petición de cantidad total de aerogeneradores inspeccionados completado.');
+        console.warn('Petición de cantidad total de aerogeneradores inspeccionados completado.');
       }
     })
   }
@@ -92,10 +95,25 @@ export class App implements OnInit {
         console.error('Se ha producido un error: ' , err);
       },
       complete: () => {
-        console.log('Petición de cantidad total de aerogeneradores inspeccionados durante campaña 2025');
+        console.warn('Petición de cantidad total de aerogeneradores inspeccionados durante campaña 2025');
       }
     })
   }
 
-  // TODO EJECUTAR ESTOS MÉTODOS AL INICIO DE LA PAGINA NGONINIT
+  loadWindFarm(): void {
+    console.log("SE EJECUTAAAAAAAAAAAAAAAAAAA");
+    this.inspectionService.getAllWindFarm().subscribe({
+      
+      next: (data: WindFarm[]) => {
+        this.windFarms = data;
+      },
+      error: (err) => {
+        this.error = 'Error al cargar todos los parques eólicos: ' + (err.mess || err.status1)
+        console.error('Se ha producido un error: ' , err);
+      },
+      complete: () => {
+        console.warn('Petición de listar todos los parques eólicos completada');
+      }
+    })
+  }
 }

@@ -2,12 +2,15 @@ import { Component,Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@a
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { Inspection } from '../models/inspection.model';
+import { WindFarm } from '../models/windfarm.model';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-table-card',
   imports: [
     CommonModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
     
   ],
   templateUrl: './table-card.html',
@@ -16,11 +19,17 @@ import { Inspection } from '../models/inspection.model';
 export class TableCard {
 
   // Almacenar el array de datos que le pasemos
-  @Input() almacenDatosArray: Inspection[] = [];
+  @Input() almacenDatosWindFarm: WindFarm[] = [];
+  @Input() almacenDatosInspecciones: Inspection[] = [];
   @Input() title: String = "Titulo";
   
   ngOnInit(): void {
-    console.error('Datos pasados a table-card ', this.almacenDatosArray);
+    
+  }
+
+
+  viewDetailWindFarm(): void {
+    console.log("Redirecciona a otra vista");
   }
   
 
