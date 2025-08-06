@@ -37,4 +37,6 @@ export class InspectionsService {
   getAllWindFarm(): Observable<WindFarm[]> {
     return this.http.get<WindFarm[]>(`${this.apiUrl}/getAll_WindFarms`)
   }
+
+  
 }

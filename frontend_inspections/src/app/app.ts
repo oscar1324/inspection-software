@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule, CurrencyPipe } from '@angular/common'; 
+import { FormsModule } from '@angular/forms'; 
 import { MatButtonModule } from '@angular/material/button';
 
 
@@ -15,7 +16,7 @@ import { KpiPorcentajeCard } from './kpi-porcentaje-card/kpi-porcentaje-card';
 import { TableCard } from './table-card/table-card';
 
 import { Chart, registerables } from 'chart.js';
-Chart.register(...registerables); // <--- ¡AÑADE ESTAS DOS LÍNEAS!
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-root',

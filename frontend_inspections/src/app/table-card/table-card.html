@@ -1,7 +1,17 @@
 
 <mat-card class="table-card">
     <mat-card-header class="cajaTitulo">
-        <mat-card-title class="titulo-table"> {{title}}</mat-card-title>
+        <div class="box-titulo-boton">
+            <div class="box-titulo-boton-izq">
+                <mat-card-title class="titulo-table"> {{title}}</mat-card-title>
+            </div>
+            <div class="box-titulo-boton-der">
+                <button *ngIf="mostrar == true" class="button-plus" mat-fab color="primary" (click)="openDialog()"> 
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+        
     </mat-card-header>
 
     <mat-card-content>

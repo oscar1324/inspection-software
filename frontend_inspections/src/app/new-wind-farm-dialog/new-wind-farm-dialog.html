@@ -1,0 +1,63 @@
+<div class="box-general">
+    <div  class="encabezado">
+        <h3>Crear nuevo Parque Eólico</h3>
+    </div>
+    <div class="cuerpo">
+
+        <div class="packs1">
+            <mat-form-field class="input1" appearance="outline">
+                <mat-label>PE ejemplo</mat-label>
+                <input matInput [(ngModel)]="name"  name="nombre">
+            </mat-form-field>
+        </div>
+
+        <div class="packs2">
+            <mat-form-field class="prueba" appearance="outline">
+                <mat-label>Localización</mat-label>
+                <input matInput [(ngModel)]="location">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Provincia</mat-label>
+                <input matInput [(ngModel)]="province">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>País</mat-label>
+                <mat-select   [(ngModel)]="country" name="opciones">
+                    <mat-option *ngFor="let indice of opcionesCountry" [value]="indice.valor">
+                        {{indice.nombre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="packs3">
+            <mat-form-field appearance="outline">
+                <mat-label>Cliente</mat-label>
+                <mat-select [(ngModel)]="client">
+                    <mat-option *ngFor="let indice of opcionesClient" [value]="indice.valor">
+                        {{indice.nombre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Nº total de aerogeneradores</mat-label>
+                <input matInput type="number" [(ngModel)]="total_aagg">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Tipo de pala</mat-label>
+                <input matInput [(ngModel)]="type_blade">
+            </mat-form-field>
+        </div>
+
+
+    </div>
+    <div class="footer">
+        <button mat-button (click)="sendHttp()"> Enviar</button>
+        <button mat-button (click)="closeDialog()"> Cancelar</button>
+
+    </div>
+</div>

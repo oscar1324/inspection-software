@@ -102,7 +102,8 @@
         <div class="kpis-level1-partes">
           <app-table-card 
           [title]="'Parques eólicos'"
-          [almacenDatosWindFarm]="windFarms"></app-table-card>
+          [almacenDatosWindFarm]="windFarms"
+          [mostrar]="true"></app-table-card>
         </div>
 
         <div class="kpis-level1-partes">
@@ -118,23 +119,7 @@
         </div>
           
       </div>
-      <div class="tablaInspecciones">
-        <p>* Recordatorio: Esta tabla solo es un ejemplo</p>
-        <table>
-          <thead>
-            <th> ID</th>
-            <th> Parque eólico</th>
-
-          </thead>
-          <tbody>
-            <tr *ngFor="let indice of inspections">
-              <!-- *ngIf="indice.wind_farm !== null && indice.wind_farm !== undefined"-->
-              <th> {{indice.id}}</th>
-              <th> {{indice.gross_total_income}}</th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <div class="tablaInspecciones"></div>
       
 
     </div>
