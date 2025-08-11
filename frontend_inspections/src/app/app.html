@@ -103,20 +103,20 @@
           <app-table-card 
           [title]="'Parques eólicos'"
           [almacenDatosWindFarm]="windFarms"
-          [mostrar]="true"></app-table-card>
+          [mostrar]="true"
+          [opcion]="1"></app-table-card>
         </div>
 
-        <div class="kpis-level1-partes">
+        <div class="kpis-level1-partes2">
           <app-table-card
-            [title]="'Ranking top ganancias por día'">
+            [title]="'Ranking top ganancias por día'"
+            [almacenDatosInspecciones]="inspections"
+            [almacenDatosWindFarm]="windFarms"
+            [opcion]="2">
           </app-table-card>
         </div>
 
-        <div class="kpis-level1-partes">
-          <app-table-card
-          [title]="'Top aerogeneradores inspeccionados por día'">
-          </app-table-card>
-        </div>
+        
           
       </div>
       <div class="tablaInspecciones"></div>

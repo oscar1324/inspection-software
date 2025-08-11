@@ -11,6 +11,7 @@ import { NewWindFarmDialog } from '../new-wind-farm-dialog/new-wind-farm-dialog'
 import { MatDialogModule } from '@angular/material/dialog';
 
 
+
 @Component({
   selector: 'app-table-card',
   imports: [
@@ -24,7 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   templateUrl: './table-card.html',
   styleUrl: './table-card.css'
 })
-export class TableCard {
+export class TableCard implements OnInit, OnChanges{
 
   // Almacenar el array de datos que le pasemos
   @Input() almacenDatosWindFarm: WindFarm[] = [];
@@ -32,12 +33,50 @@ export class TableCard {
   @Input() title: String = "Titulo";
 
   @Input() mostrar: boolean = false;
+  @Input() opcion: number = 0;
+
+  windFarmMap: { [id:number]: string} = {};
 
   constructor(public dialog: MatDialog){}
   
   ngOnInit(): void {
+
+    this.crearMapa();
+
     
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+
+    if(changes['almacenDatosWindFarm'] ) {
+      console.log('El array de almacenDatosWindFarm ha cambiado:', changes['almacenDatosWindFarm'].currentValue);
+      this.crearMapa();
+
+    }
+
+    if(changes['almacenDatosInspecciones'] ) {
+      console.log('El array de almacenDatosInspecciones ha cambiado:', changes['almacenDatosInspecciones'].currentValue);
+        
+    }
+  }
+
+  crearMapa(): void {
+    console.error("AQUI SE EJECUTA");
+    this.windFarmMap =  {};
+      if(this.almacenDatosInspecciones && this.almacenDatosWindFarm.length > 0){
+        this.almacenDatosWindFarm.forEach(parque => {
+        this.windFarmMap[parque.id] = parque.name;
+        
+      })
+
+    }
+      
+  }
+
+  getWindFarm(id:number): string {
+    return this.windFarmMap[id] || 'sin nombre';
+  }
+
 
   openDialog(): void {
     this.dialog.open(NewWindFarmDialog, {
@@ -45,6 +84,7 @@ export class TableCard {
       panelClass: 'dialogo-personalizado'
     })
   }
+
 
 
   viewDetailWindFarm(): void {

@@ -1,5 +1,5 @@
 export class WindFarm {
-
+    id: number;
     name: string;
     location: string;
     province: string;
@@ -9,6 +9,7 @@ export class WindFarm {
     type_blade: string;
 
     constructor(data:any) {
+        this.id = data.id;
         this.name = data.name;
         this.location = data.location;
         this.province = data.province;

@@ -51,6 +51,22 @@ export class App implements OnInit {
     this.inspectionService.getAllInspections().subscribe({
       next: (data: Inspection[]) => {
         this.inspections = data;
+
+        this.inspections.sort((a,b) => {
+          const comparacionAero = b.number_wind_turbines_generators - a.number_wind_turbines_generators;
+          
+          if(comparacionAero !== 0){
+            return comparacionAero;
+          }
+
+          const fecha1 = new Date(a.date);
+          const fecha2 = new Date(b.date);
+
+          return fecha2.getTime() - fecha1.getTime();
+
+          
+        });
+
         this.loading = false;
         console.log('Datos de inspecciones recibidos: ', this.inspections);
       },
@@ -60,7 +76,7 @@ export class App implements OnInit {
         console.error('Se ha producido un error: ' , err);
       },
       complete: () => {
-        console.warn('Petición de inspecciones completada.');
+        console.warn(' -> Petición de inspecciones completada.');
       }
     })
   }
@@ -113,7 +129,7 @@ export class App implements OnInit {
         console.error('Se ha producido un error: ' , err);
       },
       complete: () => {
-        console.warn('Petición de listar todos los parques eólicos completada');
+        console.warn(' -> Petición de listar todos los parques eólicos completada');
       }
     })
   }

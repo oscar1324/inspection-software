@@ -15,21 +15,49 @@
     </mat-card-header>
 
     <mat-card-content>
-        <table>
-            <thead>
-
+        <table *ngIf="opcion == 1">
+            <thead class="thead-table">
+                <tr class="tr-encabezado">
+                   <td style="color: #3C4045 ;">ww</td>
+                </tr>
             </thead>
 
             <tbody class="body-table">
                 <tr class="tr-table" (click)="viewDetailWindFarm()" *ngFor="let item of almacenDatosWindFarm; let i = index">
                     <td class="col-num">{{i + 1}}</td>
-                    <td class="col-name">{{item.name}}</td>
+                    <td class="col-name-pe">{{item.name}}</td>
                     <td class="col-porcentage">
                         <button  (click)="viewDetailWindFarm()">
                             <mat-icon class="lupa-icon" > search</mat-icon>
                         </button>
                     </td>
                 </tr>  
+            </tbody>
+        </table>
+
+        <table *ngIf="opcion == 2">
+            <thead class="thead-table">
+                <tr class="tr-encabezado">
+                    <th class="td-ranking">AAGG</th>
+                    <th class="td-ranking">Extra</th>
+                    <th class="td-ranking">Total</th>
+                    <th class="td-ranking">Fecha</th>
+                    <th class="td-ranking">Parque Eólico</th>
+                </tr>
+                
+                
+            </thead>
+
+            <tbody class="body-table">
+                
+                <tr class="tr-table2" *ngFor="let item of almacenDatosInspecciones | slice:0:7; let i = index"  >
+                    <td class="col-num">{{i+1}}</td>
+                    <td class="col-name">{{item.number_wind_turbines_generators}}</td>
+                    <td class="col-name">{{item.net_total_income | number:'1.0-0'}} €</td>
+                    <td class="col-name">{{item.net_total_income + 65 | number:'1.0-0'}} €</td>
+                    <td class="col-name">{{item.date}}</td>
+                    <td class="col-name">{{getWindFarm(item.wind_farm_id)}}</td>
+                </tr>
             </tbody>
         </table>
     </mat-card-content>

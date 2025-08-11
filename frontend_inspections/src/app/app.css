@@ -115,7 +115,6 @@ body {
 /** Estilos de kpis-level1*/
 .kpis-level1 {
     display: flex;
-    
     width: 98%;
     height: 100%;
     padding: 0%;
@@ -125,9 +124,16 @@ body {
 }
 
 .kpis-level1-partes{
-    width: 100%;
-    height: 25%;
+    width: 25%;
+    height: 100%;
     margin: 3px;
+
+}
+.kpis-level1-partes2{
+    width: 79%;
+    height: 100%;
+    margin: 3px;
+    margin-left: 2%;
 
 }
 
