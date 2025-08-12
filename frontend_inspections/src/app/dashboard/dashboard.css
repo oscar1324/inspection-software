@@ -1,0 +1,171 @@
+
+.titulo{
+    color: #1A1B1F ;
+}
+.contanier {
+    max-width: 100%;
+    padding: 2%;
+    background-color: #171924 ;
+    display: grid;
+    grid-auto-flow: row ;
+    grid-template-rows: 1fr; 
+
+
+}
+
+.card{
+    width: 75%;
+    background-color: #3C4045;
+}
+
+.pilot-card-header-content {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.image-profile{
+    width: 300px;
+    height: 300px;
+    border-radius: 5%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+.pilot-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pilot-profile {
+    width: 45%;
+    margin-bottom: 2px;
+    margin-left: 50px;
+    color: #F5F5F5 ;
+    
+}
+
+.kpi-total-pilotado {
+    margin-left: 10px;
+    width: 30%;
+    height: 100%;
+    margin-left: 2%;
+
+}
+
+.personalData {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 1% ;
+    justify-self: stretch;
+    
+}
+
+/** Estilos de los datos personales del piloto de drones **/
+.caja-datos-tecnicos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.profile-izq {
+    align-items: baseline;
+}
+.profile-der {
+    margin-right: 35px;
+}
+
+.caja-detalle{
+    display: flex;
+    flex-direction: column;
+}
+
+.caja-detalle h5{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: 5000;
+    color: rgb(122, 122, 122);
+}
+
+.caja-detalle p {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+/** Estilos de la lista de drones pilotados**/
+.lista-item{
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    margin-left: 0;
+    list-style: 0;
+
+}
+
+.item{
+    
+    font-size: 15px;
+}
+
+/** Estilos de kpis-level1*/
+.kpis-level1 {
+    display: flex;
+    width: 98%;
+    height: 100%;
+    padding: 0%;
+    margin: 1%;
+    display: flex;
+    flex-direction: row;
+}
+
+.kpis-level1-partes{
+    width: 25%;
+    height: 100%;
+    margin: 3px;
+
+}
+.kpis-level1-partes2{
+    width: 79%;
+    height: 100%;
+    margin: 3px;
+    margin-left: 2%;
+
+}
+
+.kpis-level1-partes:not(:first-child) {
+  margin-left: 2%; /* Aplica margin-left a todos los .elemento-hijo que NO sean el primer hijo */
+}
+
+
+h1 {
+    text-align: center;
+    color: #F5F5F5 ;
+}
+
+h2 {
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+p{
+    color: #F5F5F5 ;
+    font-size: 15px;
+}
+
+
+
+
+
+th{
+    color: #F5F5F5 ;
+    
+}
+
+tr{
+    color: #F5F5F5 ;
+    
+}
+
