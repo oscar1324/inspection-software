@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NewWindFarmDialog } from '../dialogs/new-wind-farm-dialog/new-wind-farm-dialog';
 import { DeleteWindFarmDialog } from '../dialogs/delete-wind-farm-dialog/delete-wind-farm-dialog';
 import { MatDialogModule } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 
 
@@ -38,7 +39,10 @@ export class TableCard implements OnInit, OnChanges{
 
   windFarmMap: { [id:number]: string} = {};
 
-  constructor(public dialog: MatDialog){}
+  constructor(
+    public dialog: MatDialog,
+    private router: Router // Inyectamos el router
+  ){}
   
   ngOnInit(): void {
 
@@ -59,6 +63,10 @@ export class TableCard implements OnInit, OnChanges{
       console.log('El array de almacenDatosInspecciones ha cambiado:', changes['almacenDatosInspecciones'].currentValue);
         
     }
+  }
+
+  nextNavigation(): void {
+    this.router.navigate(['/ficha-tecnica-windfarm', 16]);
   }
 
   crearMapa(): void {
@@ -100,6 +108,7 @@ export class TableCard implements OnInit, OnChanges{
 
   viewDetailWindFarm(): void {
     console.log("Redirecciona a otra vista");
+    this.nextNavigation();
   }
   
 

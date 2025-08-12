@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { CommonModule, CurrencyPipe } from '@angular/common'; 
 import { FormsModule } from '@angular/forms'; 
 import { MatButtonModule } from '@angular/material/button';
-
+import { Router } from '@angular/router';
 
 import { InspectionsService } from './services/InspectionsService';
 import { Inspection } from './models/inspection.model';
@@ -15,12 +15,13 @@ import { MatCardContent } from "@angular/material/card";
 import { KpiPorcentajeCard } from './kpi-porcentaje-card/kpi-porcentaje-card';
 import { TableCard } from './table-card/table-card';
 
+
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterOutlet, CommonModule, MatButtonModule, MatCard, MatCardHeader, KpiPorcentajeCard, TableCard],
+  imports: [RouterOutlet, RouterOutlet, CommonModule, MatButtonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -33,7 +34,11 @@ export class App implements OnInit {
   loading:boolean = false;
   error: string | null = null;
 
-  constructor(private inspectionService: InspectionsService, private cdr: ChangeDetectorRef){}
+  constructor(
+    private inspectionService: InspectionsService, 
+    private cdr: ChangeDetectorRef,
+    private router: Router
+    ){}
 
 
   ngOnInit(): void {
