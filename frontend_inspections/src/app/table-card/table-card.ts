@@ -7,7 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog'; 
 import { MatButton } from '@angular/material/button';
 import { MatButtonModule } from '@angular/material/button';
-import { NewWindFarmDialog } from '../new-wind-farm-dialog/new-wind-farm-dialog';
+import { NewWindFarmDialog } from '../dialogs/new-wind-farm-dialog/new-wind-farm-dialog';
+import { DeleteWindFarmDialog } from '../dialogs/delete-wind-farm-dialog/delete-wind-farm-dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 
 
@@ -83,6 +84,16 @@ export class TableCard implements OnInit, OnChanges{
       width: '700px',
       panelClass: 'dialogo-personalizado'
     })
+  }
+
+  openDialogToDelete(id: number ,name: any):void {
+    this.dialog.open(DeleteWindFarmDialog, {
+      width: '700px',
+      data: {
+        id: id,
+        nameWindFarm: name
+      }
+    });
   }
 
 

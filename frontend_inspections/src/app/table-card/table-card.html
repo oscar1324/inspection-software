@@ -27,8 +27,8 @@
                     <td class="col-num">{{i + 1}}</td>
                     <td class="col-name-pe">{{item.name}}</td>
                     <td class="col-porcentage">
-                        <button  (click)="viewDetailWindFarm()">
-                            <mat-icon class="lupa-icon" > search</mat-icon>
+                        <button class="button-delete" mat-fab color="primary" (click)="openDialogToDelete(item.id, item.name)"> 
+                            <mat-icon>delete</mat-icon>
                         </button>
                     </td>
                 </tr>  

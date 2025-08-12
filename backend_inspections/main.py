@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from app.http_request import execute_insert_daily_inspection, get_all_inspection, execute_insert_windFarm, getTotalCountWTGPiloted, getTotalCountWTG, getAllWindFarm
 from app.models.modelInspectionDTO import Inspection
 from app.models.modelWindFarmDTO import WindFarm
+from app.models.modelWindFarmIDDTO import WindFarmID
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -102,19 +103,21 @@ def execute_delete_by_id(conn):
 ## TODO to develop the update function (podra cambiar todos los datos, y se envian todos, si estan igual no se toca)
 
 # The function deletes the record with the id selected
-def execute_delete_by_id_windfarm(conn):
+def execute_delete_by_id_windfarm(windFarmID: WindFarmID):
+    conn = connect_to_db()
     cursor = conn.cursor()
-    idDelete = input('¿Qué registro de la tabla windFarm quieres borrar con ID...?')
-    
+
 
     try:
         
         query = "DELETE FROM wind_farm where id = %s"
-        cursor.execute(query, (idDelete,))
+
+
+        cursor.execute(query, (windFarmID.id,))
         conn.commit()
-        print(f"The register with id {idDelete} has just been deleted")
+        print(f"The register with id {windFarmID.id} has just been deleted")
     except Exception as e:
-        print(f"The register cannot be deleted -> {e}")
+        print(f"The register cannot be deleted WindFarm -> {e}")
     finally:
         cursor.close()
         conn.close()
@@ -138,6 +141,7 @@ app = FastAPI()
 origins = [
     "http://localhost:4200",
     "http://127.0.0.1:4200",
+    "http://localhost:8000",
 ]
 
 app.add_middleware(
@@ -190,6 +194,10 @@ def getTotalWTGInspectionss():
 @app.get("/getAll_WindFarms")
 def get_all_windFarm():
     return getAllWindFarm()
+
+@app.post("/deleteBy_id")
+def deleteWindFarmID(data: WindFarmID):
+    return execute_delete_by_id_windfarm(data)
     
 
     

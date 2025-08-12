@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms'; // <-- ¡Necesario para [(ngModel)
 import { CommonModule } from '@angular/common';
 import { MatOption } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
-import { WindFarmService } from '../services/WindFarmService';
+import { WindFarmService } from '../../services/WindFarmService';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
@@ -94,22 +94,33 @@ export class NewWindFarmDialog {
       next: (response) => {
         console.log('PARQUE EÓLICO CREADO CON ÉXITO:', response);
         this.dialogRef.close(true);
-        this._snackBar.open('Parque eólico creado con éxito', 'Cerrar', {
-          duration: 6000,
-          horizontalPosition: 'center',
-          verticalPosition: 'bottom'
-        });
         
+        this._snackBar.open('Parque eólico creado con éxito', 'Cerrar', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
+        this.refrescar();
         
       },
       error: (error) => {
         console.log('Hubo un error: ', error);
         this._snackBar.open('Error al crear el parque eólico', 'Cerrar', {
-          duration: 3000
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
         });
         this.dialogRef.close(false);
       }
     })
     ;
+  }
+
+  refrescar(): void {
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
+    
   }
 }

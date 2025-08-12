@@ -92,6 +92,7 @@ def execute_insert_windFarm(windFarm: WindFarm):
 
     query = "INSERT INTO wind_farm (name, location, province, country, client, total_aagg, type_blade) values (%s, %s, %s, %s, %s, %s, %s);"
     values = (
+ 
         windFarm.name,
         windFarm.location,
         windFarm.province,

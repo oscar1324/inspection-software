@@ -20,4 +20,9 @@ export class WindFarmService {
     createNewWindFarm(formData: any): Observable<any> {
         return this.http.post(`${this.url}/add_windFarm`, formData);
     }
+
+
+    deleteWindFarmID(formData: any): Observable<any> {
+        return this.http.post(`${this.url}/deleteBy_id`, formData);
+    }
 }
