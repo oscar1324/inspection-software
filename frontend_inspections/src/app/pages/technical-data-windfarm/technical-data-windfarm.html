@@ -1,1 +1,82 @@
-<p>technical-data-windfarm works!</p>
+
+<main class="main">
+  <div class="content">
+    <div class="contanier">
+      <h1 class="titulo-principal"> 
+          Ficha técnica 
+      </h1>
+
+      <div class="tecnicalData">
+        
+        <mat-card class="card">
+          <mat-card-header class="windfarm-card-header-content">
+            <div class="windfarm-image-container">
+              
+              <img class="image-profile" mat-card-image src="assets/images/pe-alto-monçao.jpg"/>
+
+            </div>
+            <div class="windfarm-profile">
+               <h2>{{name}} </h2>
+              <div class="caja-datos-tecnicos">
+                  
+                <div class="profile-izq">
+
+
+                  <div class="caja-detalle">
+                    <h5>Zona/Departamento:</h5>
+                    <p class="dato-detalle">{{location}}  </p>
+                  </div>
+                  <div class="caja-detalle">
+                    <h5>Provincia:</h5>
+                    <p class="dato-detalle">{{province}} </p>
+                  </div>
+                                 
+
+                  <div class="caja-detalle">
+                    <h5>País:</h5>
+                    <p class="dato-detalle">{{country}}  </p>
+                  </div>
+
+                  <div class="caja-detalle">
+                    <h5>Cliente:</h5>
+                    <p class="dato-detalle">{{client}}  </p>
+                  </div>
+                  
+
+                  <div class="caja-detalle">
+                    <h5>Tipo de pala:</h5>
+                    <p class="dato-detalle">{{type_blade}}  </p>
+                  </div>
+
+                </div>
+     
+              </div>
+
+            </div>
+            
+          </mat-card-header>
+        </mat-card>
+        <div class="kpi-total-pilotado">
+            <app-kpi-porcentaje-card></app-kpi-porcentaje-card>
+        </div>
+      </div>
+      <div class="kpis-level1-inspections"> 
+        <div class="kpis-level1-partes1">
+            <app-table-card></app-table-card>
+        </div>
+
+        <div class="kpis-level1-partes2">
+            <p>Desarrollar KPI Ganancias parque + porcentaje aumento salario base</p>
+        </div>
+
+        
+          
+      </div>
+      <div class="tablaInspecciones">
+        <p>Desarrollar KPI Gráfico de barras mostrando de 0 a 10 avance de aerogeneradores inspeccionados a lo largo de las inspecciones.</p>
+      </div>
+      
+
+    </div>
+  </div> 
+</main>

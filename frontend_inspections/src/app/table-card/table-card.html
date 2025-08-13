@@ -23,9 +23,9 @@
             </thead>
 
             <tbody class="body-table">
-                <tr class="tr-table" (click)="viewDetailWindFarm()" *ngFor="let item of almacenDatosWindFarm; let i = index">
+                <tr class="tr-table"  *ngFor="let item of almacenDatosWindFarm; let i = index">
                     <td class="col-num">{{i + 1}}</td>
-                    <td class="col-name-pe">{{item.name}}</td>
+                    <td class="col-name-pe" (click)="viewDetailWindFarm(item.id)">{{item.name}}</td>
                     <td class="col-porcentage">
                         <button class="button-delete" mat-fab color="primary" (click)="openDialogToDelete(item.id, item.name)"> 
                             <mat-icon>delete</mat-icon>

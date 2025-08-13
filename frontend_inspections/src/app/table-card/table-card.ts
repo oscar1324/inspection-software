@@ -65,8 +65,20 @@ export class TableCard implements OnInit, OnChanges{
     }
   }
 
-  nextNavigation(): void {
-    this.router.navigate(['/ficha-tecnica-windfarm', 16]);
+  nextNavigation(id: number): void {
+    
+    const windFarmSeleccionado = this.almacenDatosWindFarm.find( //Busca por campo y enuentra todos los datos cuyo id sea x
+      (parque) => parque.id === id
+    );
+    console.log("ID -> ", id);
+    
+    if(windFarmSeleccionado){
+      this.router.navigate(['/ficha-tecnica-windfarm', id], {
+      state: {data: windFarmSeleccionado}
+      });
+    } else {
+      console.error('No ha podido encontrar el parque eólico seleccionado');
+    }
   }
 
   crearMapa(): void {
@@ -106,9 +118,9 @@ export class TableCard implements OnInit, OnChanges{
 
 
 
-  viewDetailWindFarm(): void {
+  viewDetailWindFarm(id: number): void {
     console.log("Redirecciona a otra vista");
-    this.nextNavigation();
+    this.nextNavigation(id);
   }
   
 

@@ -6,15 +6,15 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 
-import { InspectionsService } from '../services/InspectionsService';
-import { Inspection } from '../models/inspection.model';
-import { WindFarm } from '../models/windfarm.model';
-import { TotalCountWTGPiloted } from '../models/total-wtg-pilotados.model';
+import { InspectionsService } from '../../services/InspectionsService';
+import { Inspection } from '../../models/inspection.model';
+import { WindFarm } from '../../models/windfarm.model';
+import { TotalCountWTGPiloted } from '../../models/total-wtg-pilotados.model';
 import { MatCard } from "@angular/material/card";
 import { MatCardHeader, MatCardTitle, MatCardSubtitle } from "@angular/material/card";
 import { MatCardContent } from "@angular/material/card";
-import { KpiPorcentajeCard } from '../kpi-porcentaje-card/kpi-porcentaje-card';
-import { TableCard } from '../table-card/table-card';
+import { KpiPorcentajeCard } from '../../kpi-porcentaje-card/kpi-porcentaje-card';
+import { TableCard } from '../../table-card/table-card';
 
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);

@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TechnicalDataWindfarm } from './pages/technical-data-windfarm/technical-data-windfarm';
-import { Dashboard } from './dashboard/dashboard';
+import { Dashboard } from './pages/dashboard/dashboard';
 
 export const routes: Routes = [
     {path : '',  redirectTo: 'dashBoard-campaña-2025',pathMatch: 'full'},
