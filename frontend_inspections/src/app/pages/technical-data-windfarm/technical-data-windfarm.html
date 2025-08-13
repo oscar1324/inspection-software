@@ -20,8 +20,6 @@
               <div class="caja-datos-tecnicos">
                   
                 <div class="profile-izq">
-
-
                   <div class="caja-detalle">
                     <h5>Zona/Departamento:</h5>
                     <p class="dato-detalle">{{location}}  </p>
@@ -49,6 +47,16 @@
                   </div>
 
                 </div>
+                <div class="profile-der">
+                    <div class="caja-detalle">
+                        <h5>Fecha inicial de inspección:</h5>
+                        <p class="dato-detalle">{{fecha_inicial}}  </p>
+                    </div>
+                    <div class="caja-detalle">
+                        <h5>Fecha final de inspección:</h5>
+                        <p class="dato-detalle">{{fecha_final}}  </p>
+                    </div>
+                </div>
      
               </div>
 
@@ -57,23 +65,23 @@
           </mat-card-header>
         </mat-card>
         <div class="kpi-total-pilotado">
-            <app-kpi-porcentaje-card></app-kpi-porcentaje-card>
+            <app-kpi-porcentaje-card
+            ></app-kpi-porcentaje-card>
         </div>
       </div>
       <div class="kpis-level1-inspections"> 
         <div class="kpis-level1-partes1">
-            <app-table-card></app-table-card>
-        </div>
-
-        <div class="kpis-level1-partes2">
-            <p>Desarrollar KPI Ganancias parque + porcentaje aumento salario base</p>
-        </div>
-
-        
-          
+            <app-table-card
+            [title]='"Inspecciones diaras"'
+            [opcion]="3"
+            ></app-table-card>
+        </div> 
       </div>
       <div class="tablaInspecciones">
         <p>Desarrollar KPI Gráfico de barras mostrando de 0 a 10 avance de aerogeneradores inspeccionados a lo largo de las inspecciones.</p>
+        <div class="">
+            <p>Desarrollar KPI Ganancias parque + porcentaje aumento salario base</p>
+        </div>
       </div>
       
 

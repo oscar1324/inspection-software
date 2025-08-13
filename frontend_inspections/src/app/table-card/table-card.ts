@@ -11,7 +11,7 @@ import { NewWindFarmDialog } from '../dialogs/new-wind-farm-dialog/new-wind-farm
 import { DeleteWindFarmDialog } from '../dialogs/delete-wind-farm-dialog/delete-wind-farm-dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-
+import { NewRegisterInspectionDialog } from '../dialogs/new-register-inspection-dialog/new-register-inspection-dialog';
 
 
 @Component({
@@ -101,6 +101,13 @@ export class TableCard implements OnInit, OnChanges{
 
   openDialog(): void {
     this.dialog.open(NewWindFarmDialog, {
+      width: '700px',
+      panelClass: 'dialogo-personalizado'
+    })
+  }
+
+  openDialogNewRegister(): void {
+    this.dialog.open(NewRegisterInspectionDialog, {
       width: '700px',
       panelClass: 'dialogo-personalizado'
     })

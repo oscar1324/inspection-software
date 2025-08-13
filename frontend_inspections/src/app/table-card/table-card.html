@@ -5,17 +5,23 @@
             <div class="box-titulo-boton-izq">
                 <mat-card-title class="titulo-table"> {{title}}</mat-card-title>
             </div>
-            <div class="box-titulo-boton-der">
-                <button *ngIf="mostrar == true" class="button-plus" mat-fab color="primary" (click)="openDialog()"> 
+            <div *ngIf="mostrar == true" class="box-titulo-boton-der">
+                <button  class="button-plus" mat-fab color="primary" (click)="openDialog()"> 
                     <mat-icon>add</mat-icon>
                 </button>
+            </div>
+            <div *ngIf="opcion == 3" class="box-titulo-boton-der-tecnhinal-data">
+                <button mat-raised-button  class="button-nuevo-registro-tecnhinal-data" color="primary" (click)="openDialogNewRegister()"> 
+                    Nuevo registro
+                </button>
+
             </div>
         </div>
         
     </mat-card-header>
 
     <mat-card-content>
-        <table *ngIf="opcion == 1">
+        <table *ngIf="opcion == 1"> 
             <thead class="thead-table">
                 <tr class="tr-encabezado">
                    <td style="color: #3C4045 ;">ww</td>
@@ -44,8 +50,7 @@
                     <th class="td-ranking">Fecha</th>
                     <th class="td-ranking">Parque Eólico</th>
                 </tr>
-                
-                
+ 
             </thead>
 
             <tbody class="body-table">
@@ -59,6 +64,19 @@
                     <td class="col-name">{{getWindFarm(item.wind_farm_id)}}</td>
                 </tr>
             </tbody>
+        </table>
+
+        <table *ngIf="opcion == 3">
+            <thead class="thead-table">
+                <tr class="tr-encabezado-tecnhical-data">
+                    <th class="td-ranking-tecnhical-data">AAGG</th>
+                    <th class="td-ranking-tecnhical-data">Pilotados</th>
+                    <th class="td-ranking-tecnhical-data">Compañero</th>
+                    <th class="td-ranking-tecnhical-data">Extra neto</th>
+                    <th class="td-ranking-tecnhical-data">Total generado</th>
+                    <th class="td-ranking-tecnhical-data">Fecha</th>
+                </tr>
+            </thead>
         </table>
     </mat-card-content>
 </mat-card>

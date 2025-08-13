@@ -38,6 +38,10 @@ export class TechnicalDataWindfarm implements OnInit {
   client: string = '';
   total_aagg: number = 0;
   type_blade: string = '';
+
+  fecha_inicial: string = 'No comenzado';
+  fecha_final: string = 'No finalizado';
+
   datosRecibidos: any;
 
   constructor(private router: Router){

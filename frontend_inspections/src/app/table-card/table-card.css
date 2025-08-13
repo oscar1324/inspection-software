@@ -1,7 +1,7 @@
 .table-card{
     background-color: #3C4045 ;
     color: #FFFFFF;
-    
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -11,6 +11,7 @@
     
     
 }
+
 
 
 .cajaTitulo{
@@ -61,10 +62,8 @@ tr{
     justify-content: center;
     align-items: center;
     width: 98%;
-    
     border-bottom: 1px solid  #505050;
     cursor: pointer;
-    
     
 }
 
@@ -77,16 +76,13 @@ tr:last-child {
 
 
 .tr-table{
-    
     transition: background-color 0.2s ease; 
-    
-    
+
 }
 .tr-table2{
     
     transition: background-color 0.2s ease; 
     padding: 1%;
-    
 }
 
 .tr-table:hover {
@@ -103,7 +99,7 @@ tr:last-child {
 }
 
 .box-titulo-boton-izq {
- width: 60%;
+ width: 69%;
  padding-left: 15%;
 
 }
@@ -116,13 +112,12 @@ tr:last-child {
  width: 16%;
  padding-right: 14%;
  
- 
 }
 
 
 .button-plus {
     
-    width: 50%;
+    width: 60%;
     height: 100%;
     font-size: 5px;
     border-radius: 20%;
@@ -189,6 +184,7 @@ button {
 /** Estilos tabla ranking ganacias*/
 .tr-encabezado{
     
+
     margin-bottom: 1%;
 }
 
@@ -199,11 +195,10 @@ button {
     justify-content: start;
     width: 100%;
     padding-left: 10%;
-    
-   
-   
 
 }
+
+
 
 .td-ranking:not(:first-child) {
     margin-left: 13.5%;
@@ -213,6 +208,33 @@ button {
 
 .td-ranking {
     font-weight: 600;
+}
+
+/**ESTILOS TABLA TECNICA WINDFARM*/
+.tr-encabezado-tecnhical-data{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    width: 100%;
+
+}
+
+.td-ranking-tecnhical-data:not(:first-child) {
+    margin-left: 12.5%;
+
+}
+
+.box-titulo-boton-der-tecnhinal-data{
+
+    padding-left: 30px;
+}
+
+.button-nuevo-registro-tecnhinal-data {
+   
+    
+    padding: 15px;
+    background-color: #4CAF50 !important;
+    color: white !important;
 }
 
 

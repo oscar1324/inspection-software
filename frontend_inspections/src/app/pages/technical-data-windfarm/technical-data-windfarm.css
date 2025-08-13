@@ -89,6 +89,7 @@
 .profile-der {
     width: 100%;
     margin-right: 35px;
+    
 }
 
 .dato-detalle{
@@ -151,7 +152,13 @@
 }
 
 .kpis-level1-partes1 {
-  width: 70%;
+  width: 100%;
+  
+}
+
+.prueba{
+    height: 400px;
+    width: 400px;
 }
 
 .kpis-level1-partes2{
