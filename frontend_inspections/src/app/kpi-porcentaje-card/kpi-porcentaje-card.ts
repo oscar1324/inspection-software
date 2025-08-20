@@ -1,4 +1,4 @@
-import { Component,Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component,Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { BaseChartDirective } from 'ng2-charts';
@@ -18,18 +18,19 @@ import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
     
     ],
 })
-export class KpiPorcentajeCard  implements OnInit, OnChanges{
+export class KpiPorcentajeCard  implements OnChanges{
 
   @Input() title: string = 'KPI Gráfico';
-  @Input() valueActual: number = 0;
-  @Input() max:number = 0;
+  @Input() valueActual!: number ;
+  @Input() max!:number;
   @Input() unit: string = '%';
-  @Input() num1: number = 0;
-  @Input() num2: number = 0;
+  @Input() num1!: number;
+  @Input() num2!: number;
 
-  porcentaje: number = 0;
-  porcentajeRedondeado: number = 0;
-  porcentajeRestante: number = 0;
+  porcentaje!: number;
+  porcentajeRedondeado!: number;
+  porcentajeRestante!: number;
+  stateDataFromDad: boolean = false;
   
   
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
@@ -63,6 +64,14 @@ export class KpiPorcentajeCard  implements OnInit, OnChanges{
 
   // Se dibuja gráfico al inicio
   ngOnInit(): void {
+      console.warn("--- AL INICIAR COMPONENTE ESTOS SON LOS DATOS ---");
+      console.warn("--- Aerogeneradores pilotados: ", this.num1);
+      console.warn("--- Aerogeneradores totales inspeccionados: ", this.num2);
+      setTimeout(() => {
+      console.warn("--- Aerogeneradores pilotados: ", this.num1);
+      console.warn("--- Aerogeneradores totales inspeccionados: ", this.num2);
+    }, 3000);
+      console.warn("-------------------------------------------------");
       this.updateChartData();
   }
 
@@ -70,6 +79,10 @@ export class KpiPorcentajeCard  implements OnInit, OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['valueActual'] || changes['max'] || changes['num1'] || changes['num2']) {
       this.updateChartData();
+      
+      const newValorNum1 = this.num1;
+      const newValorNum2 = this.num2;
+      console.warn("CAMBIA ESTADO VALOR  -> newValor1: ", newValorNum1 , " / newValor2: ", newValorNum2);
     }
       
   }

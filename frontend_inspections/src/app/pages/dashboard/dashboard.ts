@@ -1,10 +1,11 @@
 
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule, CurrencyPipe } from '@angular/common'; 
 import { FormsModule } from '@angular/forms'; 
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { forkJoin, Observable } from 'rxjs'; // ✅ Importa forkJoin y Observable
 
 import { InspectionsService } from '../../services/InspectionsService';
 import { Inspection } from '../../models/inspection.model';
@@ -21,6 +22,7 @@ Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard',
+  standalone: true,
   imports: [ CommonModule, MatButtonModule, MatCard, MatCardHeader, KpiPorcentajeCard, TableCard],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
@@ -29,37 +31,43 @@ export class Dashboard implements OnInit {
   protected title = 'Dashboard de Inspecciones Eólicas campaña 2025';
   inspections: Inspection[] = [];
   windFarms: WindFarm[] = [];
-  totalCountWTGPiloted: number = 0;
-  totalCountWTGInspections: number = 0;
+  totalCountWTGPiloted!: number;
+  totalCountWTGInspections!: number;
   loading:boolean = false;
   error: string | null = null;
+  stateDataLoad: boolean = false;
 
   constructor(
-    private inspectionService: InspectionsService, 
-    private cdr: ChangeDetectorRef,
-    private router: Router
-    ){}
+    private inspectionService: InspectionsService,
+    private changeDetector: ChangeDetectorRef
+  ){}
 
 
   ngOnInit(): void {
-      this.loadInspection();
-      this.loadTotalCountWTGPiloted();
-      this.loadTotalCountWTGInspections();
-      this.loadWindFarm();
+    this.loading = true;
+    this.loadAllRequestHTTP();
+
   }
   
+  loadAllRequestHTTP(): void {
 
-  loadInspection(): void {
-    this.loading = true;
-    this.error= null;
-    
-    this.inspectionService.getAllInspections().subscribe({
-      next: (data: Inspection[]) => {
-        this.inspections = data;
+    forkJoin({
+      totalPiloted: this.inspectionService.getTotalWTGPiloted(),
+      totalInspections: this.inspectionService.getTotalWTGInspections(),
+      windFarmsObject: this.inspectionService.getAllWindFarm(),
+      inspectionObject: this.inspectionService.getAllInspections()
+    }).subscribe({
 
+      next: (results) => {
+
+        this.totalCountWTGPiloted = results.totalPiloted.totalCount_wtg_piloted_by_me;
+        this.totalCountWTGInspections = results.totalInspections.totalCount_wtg_inspections;
+        this.windFarms = results.windFarmsObject;
+        this.inspections = results.inspectionObject;
+          
         this.inspections.sort((a,b) => {
           const comparacionAero = b.number_wind_turbines_generators - a.number_wind_turbines_generators;
-          
+            
           if(comparacionAero !== 0){
             return comparacionAero;
           }
@@ -68,75 +76,27 @@ export class Dashboard implements OnInit {
           const fecha2 = new Date(b.date);
 
           return fecha2.getTime() - fecha1.getTime();
-
           
         });
 
         this.loading = false;
-        console.log('Datos de inspecciones recibidos: ', this.inspections);
+        this.stateDataLoad = true;
+        this.changeDetector.detectChanges();
+
       },
+
       error: (err) => {
-        this.error = 'Error al cargar las inspecciones: ' + (err.mess || err.statusText)
-        this.loading = false;
-        console.error('Se ha producido un error: ' , err);
+          console.error("¡Se ha producido un error en la obtención de datos totales pilotados-inspeccionados! ->", err);
       },
+
       complete: () => {
-        console.warn(' -> Petición de inspecciones completada.');
+          console.warn("¡Se han completado con exito la obtención de datos pilotados-inspeccionados!");
+          
       }
     })
+
+
   }
 
-  loadTotalCountWTGPiloted(): void {
-    console.log("EJECUCIÓN DEL MÉTODO");
-    this.inspectionService.getTotalWTGPiloted().subscribe({
-      next: (data) => {
-        
-        this.totalCountWTGPiloted = data.totalCount_wtg_piloted_by_me;
-        console.log("Total Aerogeneradores inspeccionados durante campaña 2025 -> ", data.totalCount_wtg_piloted_by_me);
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        this.error = 'Error al cargar las conteo total inspecciones realizadas: ' + (err.mess || err.statusText)
-        console.error('Se ha producido un error: ' , err);
-      },
-      complete: () => {
-        console.warn('Petición de cantidad total de aerogeneradores inspeccionados completado.');
-      }
-    })
-  }
-
-  loadTotalCountWTGInspections(): void {
-    this.inspectionService.getTotalWTGInspections().subscribe({
-      next: (data) => {
-        this.totalCountWTGInspections = data.totalCount_wtg_inspections;
-        console.log('Aerogeneradores inspeccionados durante campaña 2025 ->', data.totalCount_wtg_inspections);
-         this.cdr.detectChanges();
-      },
-      error: (err) => {
-        this.error = 'Error al cargar las conteo total de aerogeneradores inspeccionados: ' + (err.mess || err.statusText)
-        console.error('Se ha producido un error: ' , err);
-      },
-      complete: () => {
-        console.warn('Petición de cantidad total de aerogeneradores inspeccionados durante campaña 2025');
-      }
-    })
-  }
-
-  loadWindFarm(): void {
-    console.log("SE EJECUTAAAAAAAAAAAAAAAAAAA");
-    this.inspectionService.getAllWindFarm().subscribe({
-      
-      next: (data: WindFarm[]) => {
-        this.windFarms = data;
-      },
-      error: (err) => {
-        this.error = 'Error al cargar todos los parques eólicos: ' + (err.mess || err.status1)
-        console.error('Se ha producido un error: ' , err);
-      },
-      complete: () => {
-        console.warn(' -> Petición de listar todos los parques eólicos completada');
-      }
-    })
-  }
 }
 
