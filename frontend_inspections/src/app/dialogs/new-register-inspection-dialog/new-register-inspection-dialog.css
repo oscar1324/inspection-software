@@ -7,19 +7,10 @@
   background-color: transparent;
 }
 
-.full-screen-dialog .box-general {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  background-color: red; /* Aquí pones el color que desees */
-}
-
-
 .box-general{
     margin: 5%;
     width: 90% ;
     height: 100% ;
-    background-color: red;
     
     
 }
@@ -35,12 +26,20 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    padding-left: 15px;
-    
+ 
 }
 
-.input1{
-    width: 100%;
+.packs1-input1{
+    width: 40%;
+
+}
+
+.packs1-input1-2 {
+    width: 28%;
+}
+
+.packs1-input1-3 {
+    width: 30%;
 }
 
 .packs2{
@@ -53,6 +52,10 @@
     display: flex;
     flex-direction: row;
 
+}
+
+.packs3-input1 {
+    width: 100%;
 }
 
 

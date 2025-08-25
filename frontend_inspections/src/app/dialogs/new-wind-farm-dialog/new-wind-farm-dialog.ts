@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
+
 @Component({
   selector: 'app-new-wind-farm-dialog',
   imports: [
@@ -22,7 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatOption
 
   ],
   templateUrl: './new-wind-farm-dialog.html',

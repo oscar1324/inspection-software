@@ -5,22 +5,65 @@
     <div class="cuerpo">
 
         <div class="packs1">
-            <p> Maquetar cuerpo del formulario</p>
+            <mat-form-field class="packs1-input1" appearance="outline">
+                <mat-label> Inspección Eólica</mat-label>
+                <mat-select [(ngModel)]="type_inspection" name="opciones">
+                    
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="packs1-input1-2" appearance="outline">
+                <mat-label>Fecha </mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="date">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="packs1-input1-3" appearance="outline">
+                <mat-label>Noche</mat-label>
+                <mat-select [(ngModel)]="over_night">
+                    <mat-option *ngFor="let indice of opciones_pernocta" [value]="indice.valor">
+                        {{indice.nombre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
 
         <div class="packs2">
+            <mat-form-field class="packs1-input1" appearance="outline">
+                <mat-label> Aerogeneradores realizados</mat-label>
+                <input matInput type="number" [(ngModel)]="number_wind_turbines_generators">
+            </mat-form-field>
+            <mat-form-field class="packs1-input1" appearance="outline">
+                <mat-label> Pilotados</mat-label>
+                <input matInput type="number" [(ngModel)]="piloted_by_me">
+            </mat-form-field>
+            <mat-form-field class="" appearance="outline">
+                <mat-label>Compañero</mat-label>
+                <mat-select [(ngModel)]="team_mate">
+                    <mat-option *ngFor="let indice of opciones_team_mate" [value]="indice.valor">
+                        {{indice.nombre}}
+                    </mat-option>
+                </mat-select>
+
+            </mat-form-field>
+
 
         </div>
 
         <div class="packs3">
-
+            <mat-form-field class="packs3-input1" appearance="outline">
+                <mat-label>Comentario (máximo 30 caracteres)</mat-label>
+                <textarea matInput maxlength="30" #comment placeholder="Escribe tu comentario aquí..."></textarea>
+                <mat-hint align="end">{{comment.value.length}}</mat-hint>
+            </mat-form-field>
         </div>
 
 
     </div>
     <div class="footer">
-        <button mat-button > Enviar</button>
-        <button mat-button > Cancelar</button>
+        <button mat-button (click)="sendNewRegister()"> Enviar</button>
+        <button mat-button (click)="closeDialog()"> Cancelar</button>
 
     </div>
 </div>
