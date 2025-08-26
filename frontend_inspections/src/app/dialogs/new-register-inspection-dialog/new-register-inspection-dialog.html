@@ -54,7 +54,7 @@
         <div class="packs3">
             <mat-form-field class="packs3-input1" appearance="outline">
                 <mat-label>Comentario (máximo 30 caracteres)</mat-label>
-                <textarea matInput maxlength="30" #comment placeholder="Escribe tu comentario aquí..."></textarea>
+                <textarea [(ngModel)]="comment_value" matInput maxlength="30" #comment placeholder="Escribe tu comentario aquí..."></textarea>
                 <mat-hint align="end">{{comment.value.length}}</mat-hint>
             </mat-form-field>
         </div>

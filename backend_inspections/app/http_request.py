@@ -37,7 +37,9 @@ def get_all_inspection():
             "payment_wind_turbine_generators": float(indice[9]),
             "gross_total_income": float(indice[10]),
             "net_total_income": float(indice[11]),
-            "wind_farm_id": indice[13]
+            "comment": indice[12],
+            "wind_farm_id": indice[13],
+            "photovoltaic_plant_id": indice[14]
         })
 
 

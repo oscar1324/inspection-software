@@ -16,3 +16,5 @@ class Inspection(BaseModel):
     gross_total_income: float
     net_total_income: float
     wind_farm_id: int
+    comment: str
+    photovoltaic_plant_id: int

@@ -13,6 +13,9 @@ export class Inspection {
     gross_total_income: number;
     net_total_income: number;
     wind_farm_id: number;
+    comment: string;
+    photovoltaic_plant_id: number;
+
 
     constructor(data: any){
         this.id = data.id;
@@ -28,15 +31,9 @@ export class Inspection {
         this.gross_total_income = data.gross_total_income;
         this.net_total_income = data.net_total_income;
         this.wind_farm_id = data.wind_farm_id;
-
+        this.comment = data.comment;
+        this.photovoltaic_plant_id = data.photovoltaic_plant_id
     }
 
 
-    /**
-     * This function sum all wind farm turbines piloted by Oscar
-     * @returns Total count of the wind farms turbines piloted by Oscar
-     */
-    getPilotedByMeTotal(): number {
-        return this.piloted_by_me;
-    }
 }
