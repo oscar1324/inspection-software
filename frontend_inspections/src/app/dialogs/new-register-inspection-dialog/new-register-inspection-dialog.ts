@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, Inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms'; // <-- ¡Necesario para [(ngModel)]!
@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatOption } from '@angular/material/autocomplete';
 import { Inspection } from '../../models/inspection.model';
+import { InspectionsService } from '../../services/InspectionsService';
+
 
 
 
@@ -31,11 +33,17 @@ import { Inspection } from '../../models/inspection.model';
 })
 export class NewRegisterInspectionDialog {
 
-    constructor(
-      public dialogRef: MatDialogRef<NewRegisterInspectionDialog>
-    ) {
-  
-    }
+  id_obtenido: number = 0;
+
+  constructor(
+    public dialogRef: MatDialogRef<NewRegisterInspectionDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: {id:number}, // Para que peuda recibir datos del componente que lo abrio
+    private inspectionService: InspectionsService,
+    private _snackbar: MatSnackBar
+  ) {
+    this.id_obtenido = data.id;
+    console.error("ID QUE LEGA: " , this.id_obtenido);
+  }
 
   opciones_type_inspection = [
     {valor: 'Inspección eólica', nombre: 'Inspección eólica'},
@@ -82,17 +90,19 @@ export class NewRegisterInspectionDialog {
     } 
 
     let fecha = this.obtener_fecha(this.date);
+    const formattedDate = this.date.toISOString().split('T')[0];
     let total_aagg_accounted = this.calcular_wind_turbine_generator_accounted(this.number_wind_turbines_generators);
     let total_precio_bruto_aagg_contabilizados = this.calcular_precio_bruto_aagg(total_aagg_accounted);
     let total_gross = this.calcular_gross_total_income(this.availability, this.over_night, total_precio_bruto_aagg_contabilizados);
     let total_net = this.calcular_net_total_income(total_gross);
 
+    const formatoFecha = this.date.toISOString().split('T')[0];
 
     //2- CREAR OBJETO JSON
     const objeto_json_new_inspection: Inspection = {
       id: 0,
       type_inspection: 'Inspección eólica',
-      date: fecha,
+      date: this.obtener_fecha(this.date),
       availability: this.availability,
       over_night: this.over_night,
       number_wind_turbines_generators: this.number_wind_turbines_generators,
@@ -103,14 +113,31 @@ export class NewRegisterInspectionDialog {
       gross_total_income: total_gross,  
       net_total_income: total_net,  
       comment: this.comment_value,
-      wind_farm_id: 0, // Desarrollar más tarde
+      wind_farm_id: this.id_obtenido, 
       photovoltaic_plant_id: 2 
     }
 
     console.log(objeto_json_new_inspection);
 
-
     //3- ENVIAR HTTP
+    this.inspectionService.insertNewDialyRegister(objeto_json_new_inspection).subscribe({
+      next: (response) => {
+        this.dialogRef.close();
+        this._snackbar.open('¡Inspección registrada con exito!', 'Cerrar', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
+      },
+      error: (error) => {
+        console.error('Error en intento de registrar inspección: ' , error)
+        this._snackbar.open('¡No se ha podido registrar la isnpección!', 'Cerrar', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
+      }
+    })
 
 
   }
@@ -120,24 +147,28 @@ export class NewRegisterInspectionDialog {
   }
 
   obtener_fecha(date: Date): string {
-    let dia = date.getDate();
-    let mes = date.getMonth() + 1;
-    let year = date.getFullYear();
-    let fecha =  `${dia}-${mes}-${year}`;
+    const dia = date.getDate().toString().padStart(2,'0');
+    const mes = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    const fecha =  `${year}-${mes}-${dia}`;
 
 
-    return fecha;
+    return  fecha;
   }
 
   // Realiza el calculo de los aerogeneradores que se pagan
   calcular_wind_turbine_generator_accounted(num_total_inspeccionados: number): number {
+    let aagg_contabilizados: number = 0;
 
-    let aagg_contabilizados = num_total_inspeccionados - 3;
+    if(num_total_inspeccionados > 3) {
+      aagg_contabilizados = num_total_inspeccionados - 3;
+    }
 
     return aagg_contabilizados;
   }
 
   calcular_precio_bruto_aagg(aagg_contabilizados: number): number {
+    
     let precio_bruto_contabilizados = aagg_contabilizados * 25;
 
     return precio_bruto_contabilizados;

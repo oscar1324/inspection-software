@@ -58,8 +58,8 @@ def execute_insert_daily_inspection(inspections: Inspection):
                 type_inspection, date,
                 availability, over_night, number_wind_turbines_generators,
                 wind_turbine_generator_accounted, piloted_by_me, team_mate,
-                payment_wind_turbine_generators, gross_total_income, net_total_income, wind_farm_id
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                payment_wind_turbine_generators, gross_total_income, net_total_income, comment, wind_farm_id, photovoltaic_plant_id
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
     values = (
         inspections.type_inspection,
@@ -73,7 +73,9 @@ def execute_insert_daily_inspection(inspections: Inspection):
         inspections.payment_wind_turbine_generators,
         inspections.gross_total_income,
         inspections.net_total_income, 
-        inspections.wind_farm_id
+        inspections.comment,
+        inspections.wind_farm_id,
+        inspections.photovoltaic_plant_id
     )
 
     try:

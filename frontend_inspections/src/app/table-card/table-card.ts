@@ -36,6 +36,10 @@ export class TableCard implements OnInit, OnChanges{
 
   @Input() mostrar: boolean = false;
   @Input() opcion: number = 0;
+  @Input() idObtenido: number = 0;
+
+  id_obtenido: number = 0;
+  arrayInspeccionporID: Inspection[] =  [];
 
   windFarmMap: { [id:number]: string} = {};
 
@@ -47,6 +51,8 @@ export class TableCard implements OnInit, OnChanges{
   ngOnInit(): void {
 
     this.crearMapa();
+
+    // TODO - AL INICIARSE PETICION HTTP INTRODUCIENDO IDOBTENIDO y guardando datos por parque eolico
 
     
   }
@@ -74,7 +80,7 @@ export class TableCard implements OnInit, OnChanges{
     
     if(windFarmSeleccionado){
       this.router.navigate(['/ficha-tecnica-windfarm', id], {
-      state: {data: windFarmSeleccionado}
+      state: {data: windFarmSeleccionado, id}
       });
     } else {
       console.error('No ha podido encontrar el parque eólico seleccionado');
@@ -109,7 +115,10 @@ export class TableCard implements OnInit, OnChanges{
   openDialogNewRegister(): void {
     this.dialog.open(NewRegisterInspectionDialog, {
       width: '700px',
-      panelClass: 'dialogo-personalizado'
+      panelClass: 'dialogo-personalizado',
+      data: {
+        id: this.idObtenido
+      }
     })
   }
 
@@ -128,6 +137,8 @@ export class TableCard implements OnInit, OnChanges{
   viewDetailWindFarm(id: number): void {
     console.log("Redirecciona a otra vista");
     this.nextNavigation(id);
+    this.id_obtenido = id;
+    console.error('ID OBTENIDO ES: ', this.id_obtenido);
   }
   
 

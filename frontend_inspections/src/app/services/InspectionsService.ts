@@ -38,5 +38,10 @@ export class InspectionsService {
     return this.http.get<WindFarm[]>(`${this.apiUrl}/getAll_WindFarms`)
   }
 
+  insertNewDialyRegister(formData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/add_inspections`, formData)
+  }
+
+
   
 }

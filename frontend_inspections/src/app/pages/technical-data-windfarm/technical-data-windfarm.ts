@@ -43,6 +43,7 @@ export class TechnicalDataWindfarm implements OnInit {
   fecha_final: string = 'No finalizado';
 
   datosRecibidos: any;
+  idObtenidoNavegacion: number = 0;
 
   constructor(private router: Router){
     // Accedemos al objeto state del historial de navegación
@@ -65,7 +66,7 @@ export class TechnicalDataWindfarm implements OnInit {
     this.client = this.datosRecibidos.client;
     this.type_blade = this.datosRecibidos.type_blade;
 
-    console.log('NOMBRE : ' , this.name);
+    this.idObtenidoNavegacion = this.datosRecibidos.id;
   }
 
 }

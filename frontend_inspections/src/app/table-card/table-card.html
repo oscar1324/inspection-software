@@ -77,6 +77,18 @@
                     <th class="td-ranking-tecnhical-data">Fecha</th>
                 </tr>
             </thead>
+
+            <tbody class="body-table">
+                <!-- TODO Obtener datos inspección por petición Id y guardar en arrayInspeccionporID -->
+                <tr class="tr-table2" *ngFor="let item of arrayInspeccionporID | slice:0:7; let i = index"> 
+                    <td class="col-num">{{i+1}}</td>
+                    <td class="col-name">{{item.number_wind_turbines_generators}}</td>
+                    <td class="col-name">{{item.net_total_income | number:'1.0-0'}} €</td>
+                    <td class="col-name">{{item.net_total_income + 65 | number:'1.0-0'}} €</td>
+                    <td class="col-name">{{item.date}}</td>
+                    <td class="col-name">{{getWindFarm(item.wind_farm_id)}}</td>
+                </tr>
+            </tbody>
         </table>
     </mat-card-content>
 </mat-card>
