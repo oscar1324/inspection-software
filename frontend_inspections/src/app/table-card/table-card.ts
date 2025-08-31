@@ -32,6 +32,8 @@ export class TableCard implements OnInit, OnChanges{
   // Almacenar el array de datos que le pasemos
   @Input() almacenDatosWindFarm: WindFarm[] = [];
   @Input() almacenDatosInspecciones: Inspection[] = [];
+  @Input() almacenDatosInspeccionesById: Inspection[] = [];
+
   @Input() title: String = "Titulo";
 
   @Input() mostrar: boolean = false;

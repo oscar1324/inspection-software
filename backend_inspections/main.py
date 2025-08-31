@@ -21,16 +21,40 @@ def execute_select_of_all():
     conn.close()
 
 # The function returns the information the row filtered by the the wind farm name
-def execute_find_by_wind_farm(conn, wind_farm_name):
+def execute_find_by_wind_farm_id(wind_farm_id):
+    conn = connect_to_db()
     cursor = conn.cursor()
-    query = "SELECT * FROM inspections where wind_farm =  %s"
-    cursor.execute(query, (wind_farm_name,))
+    query = "SELECT * FROM inspections where wind_farm_id =  %s"
 
-    row = cursor.fetchone()
-    print(row)
+    cursor.execute(query, (wind_farm_id,))
+    rows = cursor.fetchall()
 
+    
     cursor.close()
     conn.close()
+    
+    results = []
+    for indice in rows:
+        
+        results.append({
+            "id": indice[0],
+            "type_inspection": indice[1],
+            "date": indice[2],
+            "availability": indice[3],
+            "over_night": indice[4],
+            "number_wind_turbines_generators": indice[5],
+            "wind_turbine_generator_accounted": indice[6],
+            "piloted_by_me": indice[7],
+            "team_mate": indice[8],
+            "payment_wind_turbine_generators": float(indice[9]),
+            "gross_total_income": float(indice[10]),
+            "net_total_income": float(indice[11]),
+            "comment": indice[12],
+            "wind_farm_id": indice[13],
+            "photovoltaic_plant_id": indice[14]
+        })
+
+    return results
 
 # The function returns the information of the row filtered by the date
 def execute_find_by_date(conn, date):
@@ -155,6 +179,11 @@ app.add_middleware(
 @app.get("/inspections")
 def read_inspections():
     return get_all_inspection()
+
+@app.get("/inspection_id/{wind_farm_id}")
+def get_one_inspection(wind_farm_id: int):
+
+    return execute_find_by_wind_farm_id(wind_farm_id)
 
 @app.post("/add_inspections")
 def create_new_register(data: Inspection):

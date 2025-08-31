@@ -44,8 +44,12 @@ export class TechnicalDataWindfarm implements OnInit {
 
   datosRecibidos: any;
   idObtenidoNavegacion: number = 0;
+  almacenInspectionById: Inspection[] = [];
 
-  constructor(private router: Router){
+  constructor(
+    private router: Router,
+    private inspection: InspectionsService
+  ){
     // Accedemos al objeto state del historial de navegación
     const navigation = this.router.getCurrentNavigation();
     this.datosRecibidos = navigation?.extras.state?.['data'];
@@ -55,8 +59,25 @@ export class TechnicalDataWindfarm implements OnInit {
     console.log("Datos recibidos por navegación -> ", this.datosRecibidos);
 
     this.asignarDatosNavegacion();
+    this.getDataInspection();
     
   }
+
+  getDataInspection(): void {
+    console.log('ID A ENVIAR -> ', this.idObtenidoNavegacion);
+    this.inspection.getInspectionById(this.idObtenidoNavegacion).subscribe({
+      next: (data: Inspection[]) => {
+        this.almacenInspectionById = data;
+        console.log('DATOS RECIBIDOS DEL BACKEND -> ', this.almacenInspectionById);
+        // Tiene que venir un array de arrays con 4 objetos
+      },
+      error: (err) => {
+        console.error('Se ha producido un error en la obtención de inspection por id -> ' , err);
+      }
+    })
+  }
+
+
 
   asignarDatosNavegacion(): void {
     this.name = this.datosRecibidos.name;

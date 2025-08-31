@@ -85,6 +85,8 @@ tr:last-child {
     padding: 1%;
 }
 
+
+
 .tr-table:hover {
   background-color: #4a4d52; /* Color de fondo al pasar el ratón por encima */
 }
@@ -216,13 +218,19 @@ button {
     flex-direction: row;
     justify-content: start;
     width: 100%;
+    margin-left: 9%;
 
 }
 
 .td-ranking-tecnhical-data:not(:first-child) {
-    margin-left: 12.5%;
-
+    margin-left: 10%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
+
 
 .box-titulo-boton-der-tecnhinal-data{
 
@@ -236,6 +244,38 @@ button {
     background-color: #4CAF50 !important;
     color: white !important;
 }
+
+
+/** ESTILOS TABLA 3*/
+
+.tr-table3{
+    transition: background-color 0.2s ease; 
+    padding: 1%;
+    
+}
+
+.col-num {
+    width: 2%;
+    font-weight: 600;
+}
+
+
+.col-name3 {
+
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+
+
+.col-name3:last-child {
+    background-color: red;
+    margin-left: 0px;
+}
+
 
 
 

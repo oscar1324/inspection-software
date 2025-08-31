@@ -42,6 +42,10 @@ export class InspectionsService {
     return this.http.post(`${this.apiUrl}/add_inspections`, formData)
   }
 
+  getInspectionById(wind_farm_id: number): Observable<Inspection[]> {
+    return this.http.get<Inspection[]>(`${this.apiUrl}/inspection_id/${wind_farm_id}`)
+  }
+
 
   
 }
