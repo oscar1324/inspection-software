@@ -128,6 +128,7 @@ export class NewRegisterInspectionDialog {
           horizontalPosition: 'center',
           verticalPosition: 'top'
         });
+        this.refrescar();
       },
       error: (error) => {
         console.error('Error en intento de registrar inspección: ' , error)
@@ -140,6 +141,14 @@ export class NewRegisterInspectionDialog {
     })
 
 
+  }
+
+    refrescar(): void {
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+    
   }
 
   closeDialog(): void {

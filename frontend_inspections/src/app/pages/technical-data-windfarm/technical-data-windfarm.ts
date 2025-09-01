@@ -14,6 +14,7 @@ import { MatCardHeader, MatCardTitle, MatCardSubtitle } from "@angular/material/
 import { MatCardContent } from "@angular/material/card";
 import { KpiPorcentajeCard } from '../../kpi-porcentaje-card/kpi-porcentaje-card';
 import { TableCard } from '../../table-card/table-card';
+
 @Component({
   selector: 'app-technical-data-windfarm',
   imports: [
@@ -24,7 +25,7 @@ import { TableCard } from '../../table-card/table-card';
     MatButtonModule,
     TableCard,
     KpiPorcentajeCard
-  ],
+],
   templateUrl: './technical-data-windfarm.html',
   styleUrl: './technical-data-windfarm.css'
 })
@@ -45,10 +46,13 @@ export class TechnicalDataWindfarm implements OnInit {
   datosRecibidos: any;
   idObtenidoNavegacion: number = 0;
   almacenInspectionById: Inspection[] = [];
+  stateDataLoad: boolean = false;
+  
 
   constructor(
     private router: Router,
-    private inspection: InspectionsService
+    private inspection: InspectionsService,
+    private changeDetector: ChangeDetectorRef
   ){
     // Accedemos al objeto state del historial de navegación
     const navigation = this.router.getCurrentNavigation();
@@ -68,6 +72,17 @@ export class TechnicalDataWindfarm implements OnInit {
     this.inspection.getInspectionById(this.idObtenidoNavegacion).subscribe({
       next: (data: Inspection[]) => {
         this.almacenInspectionById = data;
+
+        this.almacenInspectionById.sort((a,b) => {
+
+          const fecha1 = new Date(a.date);
+          const fecha2 = new Date(b.date);
+
+          return fecha1.getTime() - fecha2.getTime();
+        })
+
+        this.stateDataLoad = true;
+        this.changeDetector.detectChanges();
         console.log('DATOS RECIBIDOS DEL BACKEND -> ', this.almacenInspectionById);
         // Tiene que venir un array de arrays con 4 objetos
       },

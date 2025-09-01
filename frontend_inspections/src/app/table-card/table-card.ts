@@ -71,7 +71,16 @@ export class TableCard implements OnInit, OnChanges{
       console.log('El array de almacenDatosInspecciones ha cambiado:', changes['almacenDatosInspecciones'].currentValue);
         
     }
+
+    if(changes['almacenDatosInspeccionesById']) {
+      console.log('SE HA PRODUCIDO UN CAMBIO EN almacenDatosInspeccionesById:', changes['almacenDatosInspeccionesById'].currentValue);
+      this.almacenDatosInspeccionesById = this.almacenDatosInspeccionesById;
+    }
+
+
   }
+
+
 
   nextNavigation(id: number): void {
     

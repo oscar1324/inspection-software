@@ -81,7 +81,7 @@
 
             <tbody class="body-table">
                 <!-- TODO Obtener datos inspección por petición Id y guardar en arrayInspeccionporID -->
-                <tr class="tr-table3" *ngFor="let item of almacenDatosInspeccionesById | slice:0:7; let i = index"> 
+                <tr class="tr-table3" *ngFor="let item of almacenDatosInspeccionesById; let i = index"> 
                     <td class="col-num">{{i+1}}</td>
                     <td class="col-name3">{{item.number_wind_turbines_generators}}</td>
                     <td class="col-name3">{{item.piloted_by_me}}</td>
