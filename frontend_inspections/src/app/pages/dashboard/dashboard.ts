@@ -16,6 +16,7 @@ import { MatCardHeader, MatCardTitle, MatCardSubtitle } from "@angular/material/
 import { MatCardContent } from "@angular/material/card";
 import { KpiPorcentajeCard } from '../../kpi-porcentaje-card/kpi-porcentaje-card';
 import { TableCard } from '../../table-card/table-card';
+import { KpiExtraMonth } from '../../kpi-extra-month/kpi-extra-month';
 
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
@@ -23,7 +24,7 @@ Chart.register(...registerables);
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ CommonModule, MatButtonModule, MatCard, MatCardHeader, KpiPorcentajeCard, TableCard],
+  imports: [ CommonModule, MatButtonModule, MatCard, MatCardHeader, KpiPorcentajeCard, TableCard, KpiExtraMonth],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })

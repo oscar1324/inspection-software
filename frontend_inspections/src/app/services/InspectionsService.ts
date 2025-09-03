@@ -33,6 +33,10 @@ export class InspectionsService {
     return this.http.get<TotalCountWTGInspections>(`${this.apiUrl}/getTotalCount_WTG_Inspections`)
   }
 
+  getTotalNetExtraCountMonth(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/getTotalNetCountMonth`)
+  }
+
   // Petición para obtener toda la lista de parques eolicos
   getAllWindFarm(): Observable<WindFarm[]> {
     return this.http.get<WindFarm[]>(`${this.apiUrl}/getAll_WindFarms`)

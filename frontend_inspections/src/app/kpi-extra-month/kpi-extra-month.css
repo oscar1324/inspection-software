@@ -1,0 +1,68 @@
+.table-card{
+    background-color: #3C4045 ;
+    color: #FFFFFF;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+.table-card mat-card-title {
+    font-size: 17px;
+    
+    margin-bottom: 0px;
+    text-align: center;
+    width: 100%;
+}
+
+.cajaTitulo {
+    width: 92%;
+   display: flex;
+   justify-content: center;
+   align-content: center;
+}
+
+.cajaInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.dataStyle {
+
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.extra {
+    
+    width: 100%;
+    color: rgb(15, 156, 15);
+    font-size: 3em;
+    font-weight: 600;
+    border: 1px solid black;
+}
+
+.sueldo{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+}
+
+.dataPorcentage {
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

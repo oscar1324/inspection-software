@@ -175,6 +175,34 @@ def getTotalCountWTG():
         cursor.close()
         conn.close()
 
+# This function gets the total extra net count generates in the present month
+def getTotalNetCountGenerate():
+    
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    
+
+    query = """SELECT SUM(net_total_income)
+    FROM public.inspections
+    where date >= DATE_TRUNC('Month', CURRENT_DATE)
+    and date <= DATE_TRUNC('Month', CURRENT_DATE) + INTERVAL '1 Month';"""
+
+    try:
+        cursor.execute(query)
+        row = cursor.fetchone()
+        resultadoEntero = row[0]
+
+        print(f"RESULTADO OBTENIDO -> ", resultadoEntero)
+
+        cursor.close()
+        conn.close
+
+        return resultadoEntero
+
+    except Exception as e:
+        print(f"Error al ejecutar function -> getTotalNetCountGenerate:", e)
+        return 0
+    
 # ----------------------------------------------------------------------------------------------------------------
 
 # This function get all data about windfarm table

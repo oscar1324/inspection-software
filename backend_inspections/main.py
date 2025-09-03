@@ -1,6 +1,6 @@
 from app.db_connection import connect_to_db
 from fastapi import FastAPI
-from app.http_request import execute_insert_daily_inspection, get_all_inspection, execute_insert_windFarm, getTotalCountWTGPiloted, getTotalCountWTG, getAllWindFarm
+from app.http_request import execute_insert_daily_inspection, get_all_inspection, execute_insert_windFarm, getTotalCountWTGPiloted,getTotalNetCountGenerate , getTotalCountWTG, getAllWindFarm
 from app.models.modelInspectionDTO import Inspection
 from app.models.modelWindFarmDTO import WindFarm
 from app.models.modelWindFarmIDDTO import WindFarmID
@@ -159,6 +159,7 @@ def execute_delete_by_id_windfarm(windFarmID: WindFarmID):
 #getTotalCountWTG()
 #execute_delete_by_id_windfarm(conn)   
 
+
 app = FastAPI()
 
 # Define the allowed origins
@@ -194,6 +195,19 @@ def create_new_register(data: Inspection):
 def create_new_windFarm(data: WindFarm):
     execute_insert_windFarm(data)
     return {"message": "Nuevo parque eólico creado"}
+
+@app.get("/getTotalNetCountMonth")
+def getTotalKPINetCountMonth():
+    total = getTotalNetCountGenerate()
+    
+    try:
+        total = getTotalNetCountGenerate()
+        return {
+            "total_net_extra_count_month" : total
+        }
+    except Exception as e: 
+        print(f"Error in the endPoint -> /getTotalNetCountMonth  ---> {e}")
+        return {"message": "Error in the endPointError in the endPoint -> /getTotalNetCountMonth"}
 
 @app.get("/getTotalCount_WTG_piloted")
 def getTotalWTGPilotedByMe():
