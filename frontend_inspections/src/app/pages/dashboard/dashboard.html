@@ -102,15 +102,22 @@
             <div class="kpis-level2">
         <div class="kpis-level2-1">
           <app-kpi-extra-month
-          [titulo]="'Ganancias extras generadas este mes'"></app-kpi-extra-month>
+          [titulo]="'Ganancias extras generadas este mes'"
+          [dato]="datoGeneracionExtra"
+          [modalidad]="1"></app-kpi-extra-month>
         </div>
 
         <div class="kpis-level2-1">
-          <app-kpi-extra-month></app-kpi-extra-month>
+          <app-kpi-extra-month
+          [titulo]="'Salario generado generadas este mes'"
+          [dato]="datoGeneracionExtra"
+          [modalidad]="2"></app-kpi-extra-month>
         </div>
 
         <div class="kpis-level2-1">
-          <app-kpi-extra-month></app-kpi-extra-month>
+          <app-kpi-extra-month
+          [titulo]="'Aerogeneradores inspeccionados este mes'"
+          [modalidad]="3"></app-kpi-extra-month>
         </div>
       </div>
       <div class="kpis-level1"> 
@@ -119,7 +126,8 @@
           [title]="'Parques eólicos'"
           [almacenDatosWindFarm]="windFarms"
           [mostrar]="true"
-          [opcion]="1"></app-table-card>
+          [opcion]="1"
+          [ariaModal]="3"></app-table-card>
         </div>
 
         <div class="kpis-level1-partes2">

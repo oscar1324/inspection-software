@@ -37,6 +37,7 @@ export class Dashboard implements OnInit {
   loading:boolean = false;
   error: string | null = null;
   stateDataLoad: boolean = false;
+  datoGeneracionExtra: number = 0;
 
   constructor(
     private inspectionService: InspectionsService,
@@ -47,6 +48,16 @@ export class Dashboard implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this.loadAllRequestHTTP();
+
+      this.inspectionService.getTotalNetExtraCountMonth().subscribe( {
+      next: (result) => {
+        this.datoGeneracionExtra = result.total_net_extra_count_month;
+        this.changeDetector.detectChanges();
+      },
+      error: (err) => {
+        console.error("Se ha producido un error en la petición de obtención de ingresos extra netos por mes ->", err);
+      }
+      });
 
   }
   

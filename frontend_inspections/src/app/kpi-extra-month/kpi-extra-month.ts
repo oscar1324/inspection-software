@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatCardHeader, MatCardContent, MatCardModule } from '@angular/material/card';
 import { InspectionsService } from '../services/InspectionsService';
 import { DecimalPipe } from '@angular/common';
@@ -9,7 +10,7 @@ import { DecimalPipe } from '@angular/common';
   imports: [
     MatCardModule,
     DecimalPipe,
-    
+    CommonModule
 ],
   templateUrl: './kpi-extra-month.html',
   styleUrl: './kpi-extra-month.css'
@@ -17,7 +18,10 @@ import { DecimalPipe } from '@angular/common';
 export class KpiExtraMonth implements OnInit{
 
   @Input()titulo: string = "Titulo";
-  netoExtraGenerado: number = 0;
+  @Input()dato: number = 0;
+  @Input()modalidad: number = 0;
+
+
   porcentage: number = 0;
 
   constructor(
@@ -27,17 +31,19 @@ export class KpiExtraMonth implements OnInit{
   }
 
   ngOnInit(): void {
-      this.inspectionService.getTotalNetExtraCountMonth().subscribe( {
-      next: (result) => {
-        this.netoExtraGenerado = result.total_net_extra_count_month;
-        this.calculoPorcentage(this.netoExtraGenerado);
-        console.log("OBTENCIÓN DATOS BACK-END: ", this.netoExtraGenerado);
-      },
-      error: (err) => {
-        console.error("Se ha producido un error en la petición de obtención de ingresos extra netos por mes ->", err);
-      }
-      });
+    
+
+
   }
+
+    ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dato'] ) {
+      this.calculoPorcentage(this.dato);
+    }
+      
+  }
+
+  
 
   calculoPorcentage(netoExtraGenerado: number): void {
 

@@ -10,22 +10,45 @@
     </mat-card-header>
 
     <mat-card-content>
+        <div class="cajaInfo" >
+            <div class="dataStyle"  *ngIf="modalidad == 1">
+                <div>
+                    <p class="extra">{{dato}}€</p>
+                </div>
+                <div>
+                    <p class="porcentage">+{{porcentage | number:'1.0-0'}}%</p>
+                </div>
+                
+                
+            </div>
+        </div>
+    </mat-card-content>
+
+    <mat-card-content>
         <div class="cajaInfo">
-            <div class="dataStyle">
+            <div class="dataStyle" *ngIf="modalidad == 2">
                 <div>
-                    <p class="extra">{{netoExtraGenerado}}€</p>
+                    <p class="extra">{{dato + 1430}}€</p>
                 </div>
                 <div>
-                    <p class="sueldo">{{netoExtraGenerado + 1430}}€</p>
+                    <p class="porcentage">+{{porcentage | number:'1.0-0'}}%</p>
                 </div>
                 
                 
             </div>
-            <div class="dataPorcentage">
-                <p class="">{{porcentage | number:'1.0-0'}}%</p>
+        </div>
+    </mat-card-content>
+
+    <mat-card-content >
+        <div class="cajaInfo">
+            <div class="dataStyle" *ngIf="modalidad == 3">
+                <div>
+                    <p class="data-aagg">0</p>
+                </div>  
+                <div>
+                    <p class="">{{porcentage | number:'1.0-0'}}%</p>
+                </div>
             </div>
-            
-            
         </div>
     </mat-card-content>
 </mat-card>

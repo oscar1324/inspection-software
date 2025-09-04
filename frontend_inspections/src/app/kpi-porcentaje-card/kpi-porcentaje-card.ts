@@ -14,7 +14,8 @@ import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
   imports: [
     CommonModule, 
     MatCardModule,
-    BaseChartDirective
+    BaseChartDirective,
+    MatCardModule
     
     ],
 })

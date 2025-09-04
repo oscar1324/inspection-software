@@ -11,7 +11,9 @@ import { WindFarm } from './models/windfarm.model';
 import { TotalCountWTGPiloted } from './models/total-wtg-pilotados.model'
 import { MatCard } from "@angular/material/card";
 import { MatCardHeader, MatCardTitle, MatCardSubtitle } from "@angular/material/card";
+import { MatIconModule } from '@angular/material/icon';
 import { MatCardContent } from "@angular/material/card";
+
 import { KpiPorcentajeCard } from './kpi-porcentaje-card/kpi-porcentaje-card';
 import { TableCard } from './table-card/table-card';
 
@@ -21,7 +23,7 @@ Chart.register(...registerables);
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterOutlet, CommonModule, MatButtonModule],
+  imports: [RouterOutlet, RouterOutlet, CommonModule, MatButtonModule, MatIconModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
