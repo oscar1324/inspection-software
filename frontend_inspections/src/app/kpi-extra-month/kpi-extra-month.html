@@ -2,9 +2,14 @@
 <mat-card class="table-card">
     <mat-card-header class="cajaTitulo">
         <div class="box-titulo-boton">
-            <div class="box-titulo">
+            <div class="box-titulo" *ngIf="modalidad == 1 || modalidad == 2">
+                <mat-card-title class="titulo-table"> {{titulo + " " + month}}</mat-card-title>
+            </div>
+            <div class="box-titulo" *ngIf="modalidad == 3">
                 <mat-card-title class="titulo-table"> {{titulo}}</mat-card-title>
             </div>
+
+            
         </div>
         
     </mat-card-header>
@@ -43,10 +48,10 @@
         <div class="cajaInfo">
             <div class="dataStyle" *ngIf="modalidad == 3">
                 <div>
-                    <p class="data-aagg">0</p>
+                    <p class="extra">0</p>
                 </div>  
                 <div>
-                    <p class="">{{porcentage | number:'1.0-0'}}%</p>
+                    <p class="porcentage">{{porcentage | number:'1.0-0'}}%</p>
                 </div>
             </div>
         </div>

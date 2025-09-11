@@ -37,7 +37,9 @@ export class Dashboard implements OnInit {
   loading:boolean = false;
   error: string | null = null;
   stateDataLoad: boolean = false;
+
   datoGeneracionExtra: number = 0;
+  month: string = "month";
 
   constructor(
     private inspectionService: InspectionsService,
@@ -51,13 +53,32 @@ export class Dashboard implements OnInit {
 
       this.inspectionService.getTotalNetExtraCountMonth().subscribe( {
       next: (result) => {
+        
         this.datoGeneracionExtra = result.total_net_extra_count_month;
+        this.month = result.month;
+        this.traducir(this.month);
         this.changeDetector.detectChanges();
       },
       error: (err) => {
         console.error("Se ha producido un error en la petición de obtención de ingresos extra netos por mes ->", err);
       }
       });
+
+  }
+
+  traducir(mes_a_traducir: string): void {
+
+    if(mes_a_traducir == "September"){
+      this.month = "Septiembre"
+    } else if(mes_a_traducir == "October") {
+      this.month = "Octubre"
+    } else if(mes_a_traducir == "November") {
+      this.month = "Noviembre"
+    } else if(mes_a_traducir == "December") {
+      this.month = "Diciembre"
+    } else {
+      this.month = "Traducir mes"
+    }
 
   }
   

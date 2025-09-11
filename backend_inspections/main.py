@@ -198,12 +198,16 @@ def create_new_windFarm(data: WindFarm):
 
 @app.get("/getTotalNetCountMonth")
 def getTotalKPINetCountMonth():
-    total = getTotalNetCountGenerate()
+    row = getTotalNetCountGenerate()
     
     try:
-        total = getTotalNetCountGenerate()
+        row = getTotalNetCountGenerate()
+        mes = row[0]
+        total_count = row[1]
+        
         return {
-            "total_net_extra_count_month" : total
+            "month" : mes,
+            "total_net_extra_count_month" : total_count
         }
     except Exception as e: 
         print(f"Error in the endPoint -> /getTotalNetCountMonth  ---> {e}")

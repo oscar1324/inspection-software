@@ -20,6 +20,7 @@ export class KpiExtraMonth implements OnInit{
   @Input()titulo: string = "Titulo";
   @Input()dato: number = 0;
   @Input()modalidad: number = 0;
+  @Input()month: string = "month";
 
 
   porcentage: number = 0;

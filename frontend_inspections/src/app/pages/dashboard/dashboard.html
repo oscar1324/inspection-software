@@ -102,14 +102,16 @@
             <div class="kpis-level2">
         <div class="kpis-level2-1">
           <app-kpi-extra-month
-          [titulo]="'Ganancias extras generadas este mes'"
+          [titulo]="'Ingresos extra'"
+          [month]="month"
           [dato]="datoGeneracionExtra"
           [modalidad]="1"></app-kpi-extra-month>
         </div>
 
         <div class="kpis-level2-1">
           <app-kpi-extra-month
-          [titulo]="'Salario generado generadas este mes'"
+          [titulo]="'Salario total'"
+          [month]="month"
           [dato]="datoGeneracionExtra"
           [modalidad]="2"></app-kpi-extra-month>
         </div>

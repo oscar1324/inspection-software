@@ -182,22 +182,22 @@ def getTotalNetCountGenerate():
     cursor = conn.cursor()
     
 
-    query = """SELECT SUM(net_total_income)
-    FROM public.inspections
-    where date >= DATE_TRUNC('Month', CURRENT_DATE)
-    and date <= DATE_TRUNC('Month', CURRENT_DATE) + INTERVAL '1 Month';"""
+    query = """SELECT 
+            TO_CHAR(date, 'Month') as mes,
+            SUM(net_total_income) as cantidad_total
+        FROM public.inspections
+        where date >= DATE_TRUNC('Month', CURRENT_DATE)
+        and date <= DATE_TRUNC('Month', CURRENT_DATE) + INTERVAL '1 Month'
+        GROUP BY to_char(DATE, 'Month');"""
 
     try:
         cursor.execute(query)
         row = cursor.fetchone()
-        resultadoEntero = row[0]
-
-        print(f"RESULTADO OBTENIDO -> ", resultadoEntero)
 
         cursor.close()
         conn.close
 
-        return resultadoEntero
+        return row
 
     except Exception as e:
         print(f"Error al ejecutar function -> getTotalNetCountGenerate:", e)
