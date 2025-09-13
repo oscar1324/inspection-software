@@ -184,7 +184,8 @@ def getTotalNetCountGenerate():
 
     query = """SELECT 
             TO_CHAR(date, 'Month') as mes,
-            SUM(net_total_income) as cantidad_total
+            SUM(net_total_income) as cantidad_total,
+            SUM(number_wind_turbines_generators)
         FROM public.inspections
         where date >= DATE_TRUNC('Month', CURRENT_DATE)
         and date <= DATE_TRUNC('Month', CURRENT_DATE) + INTERVAL '1 Month'

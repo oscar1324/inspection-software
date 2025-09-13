@@ -104,14 +104,16 @@
           <app-kpi-extra-month
           [titulo]="'Ingresos extra'"
           [month]="month"
+          [total_calculo_porcentage]="1430"
           [dato]="datoGeneracionExtra"
           [modalidad]="1"></app-kpi-extra-month>
         </div>
 
         <div class="kpis-level2-1">
           <app-kpi-extra-month
-          [titulo]="'Salario total'"
+          [titulo]="'Generación total'"
           [month]="month"
+          [total_calculo_porcentage]="1430"
           [dato]="datoGeneracionExtra"
           [modalidad]="2"></app-kpi-extra-month>
         </div>
@@ -119,6 +121,8 @@
         <div class="kpis-level2-1">
           <app-kpi-extra-month
           [titulo]="'Aerogeneradores inspeccionados este mes'"
+          [dato]="total_aagg_month"
+          [total_calculo_porcentage]="totalCountWTGInspections"
           [modalidad]="3"></app-kpi-extra-month>
         </div>
       </div>

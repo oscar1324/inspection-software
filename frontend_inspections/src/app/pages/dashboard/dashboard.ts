@@ -40,6 +40,7 @@ export class Dashboard implements OnInit {
 
   datoGeneracionExtra: number = 0;
   month: string = "month";
+  total_aagg_month: number = 0;
 
   constructor(
     private inspectionService: InspectionsService,
@@ -57,6 +58,8 @@ export class Dashboard implements OnInit {
         this.datoGeneracionExtra = result.total_net_extra_count_month;
         this.month = result.month;
         this.traducir(this.month);
+        this.total_aagg_month = result.total_aagg_month;
+        console.log("COMPROBACION -> ", this.month + " * " + this.total_aagg_month);
         this.changeDetector.detectChanges();
       },
       error: (err) => {

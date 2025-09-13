@@ -44,6 +44,7 @@ export class TableCard implements OnInit, OnChanges{
   arrayInspeccionporID: Inspection[] =  [];
 
   windFarmMap: { [id:number]: string} = {};
+  country: string = "";
 
   constructor(
     public dialog: MatDialog,
@@ -64,7 +65,7 @@ export class TableCard implements OnInit, OnChanges{
     if(changes['almacenDatosWindFarm'] ) {
       console.log('El array de almacenDatosWindFarm ha cambiado:', changes['almacenDatosWindFarm'].currentValue);
       this.crearMapa();
-
+      this.almacenDatosWindFarm = this.almacenDatosWindFarm;
     }
 
     if(changes['almacenDatosInspecciones'] ) {
@@ -83,12 +84,14 @@ export class TableCard implements OnInit, OnChanges{
 
 
   nextNavigation(id: number): void {
-    
+    console.log(this.almacenDatosWindFarm);
     const windFarmSeleccionado = this.almacenDatosWindFarm.find( //Busca por campo y enuentra todos los datos cuyo id sea x
-      (parque) => parque.id === id
+      (parque) => parque.id === id 
+
     );
-    console.log("ID -> ", id);
-    
+
+
+
     if(windFarmSeleccionado){
       this.router.navigate(['/ficha-tecnica-windfarm', id], {
       state: {data: windFarmSeleccionado, id}
@@ -106,9 +109,7 @@ export class TableCard implements OnInit, OnChanges{
         this.windFarmMap[parque.id] = parque.name;
         
       })
-
     }
-      
   }
 
   getWindFarm(id:number): string {
@@ -124,6 +125,17 @@ export class TableCard implements OnInit, OnChanges{
   }
 
   openDialogNewRegister(): void {
+    console.error("ABRIENDO OPEN DIALOG");
+    console.error(this.almacenDatosWindFarm);
+    console.log("SE RECORRE FOR " , this.almacenDatosWindFarm.length);
+    for(const parque of this.almacenDatosWindFarm) {
+      console.log("SE RECORRE FOR");
+      if(parque.id === this.idObtenido){
+        console.log(parque.country);
+      }
+    }
+    
+    console.error(this.almacenDatosWindFarm[4]);
     this.dialog.open(NewRegisterInspectionDialog, {
       width: '700px',
       panelClass: 'dialogo-personalizado',

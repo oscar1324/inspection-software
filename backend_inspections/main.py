@@ -204,10 +204,12 @@ def getTotalKPINetCountMonth():
         row = getTotalNetCountGenerate()
         mes = row[0]
         total_count = row[1]
+        total_aagg = row[2]
         
         return {
             "month" : mes,
-            "total_net_extra_count_month" : total_count
+            "total_net_extra_count_month" : total_count,
+            "total_aagg_month" : total_aagg
         }
     except Exception as e: 
         print(f"Error in the endPoint -> /getTotalNetCountMonth  ---> {e}")

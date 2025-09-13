@@ -17,10 +17,11 @@ import { DecimalPipe } from '@angular/common';
 })
 export class KpiExtraMonth implements OnInit{
 
-  @Input()titulo: string = "Titulo";
-  @Input()dato: number = 0;
-  @Input()modalidad: number = 0;
-  @Input()month: string = "month";
+  @Input() titulo: string = "Titulo";
+  @Input() dato: number = 0;
+  @Input() modalidad: number = 0;
+  @Input() month: string = "month";
+  @Input() total_calculo_porcentage: number = 0;
 
 
   porcentage: number = 0;
@@ -39,20 +40,17 @@ export class KpiExtraMonth implements OnInit{
 
     ngOnChanges(changes: SimpleChanges): void {
     if (changes['dato'] ) {
-      this.calculoPorcentage(this.dato);
+      this.calculoPorcentage(this.dato, this.total_calculo_porcentage);
     }
       
   }
 
   
 
-  calculoPorcentage(netoExtraGenerado: number): void {
+  calculoPorcentage(cantidad: number, total_calculo_porcentage: number): void {
 
-    const sueldo_base = 1430;
+    this.porcentage = (cantidad / total_calculo_porcentage) * 100;
 
-    this.porcentage = (netoExtraGenerado / sueldo_base) * 100;
-
-    
 
   }
   

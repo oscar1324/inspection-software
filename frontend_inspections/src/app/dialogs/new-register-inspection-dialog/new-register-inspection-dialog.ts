@@ -34,15 +34,19 @@ import { InspectionsService } from '../../services/InspectionsService';
 export class NewRegisterInspectionDialog {
 
   id_obtenido: number = 0;
+  country_obtenido: string = "";
+
 
   constructor(
     public dialogRef: MatDialogRef<NewRegisterInspectionDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: {id:number}, // Para que peuda recibir datos del componente que lo abrio
+    @Inject(MAT_DIALOG_DATA) public data: {id:number, country:string, dataArray: any[]}, // Para que peuda recibir datos del componente que lo abrio
     private inspectionService: InspectionsService,
     private _snackbar: MatSnackBar
   ) {
     this.id_obtenido = data.id;
+    this.country_obtenido = data.country;
     console.error("ID QUE LEGA: " , this.id_obtenido);
+
   }
 
   opciones_type_inspection = [
@@ -57,7 +61,7 @@ export class NewRegisterInspectionDialog {
   ]
 
   opciones_pernocta = [
-    {valor: '25', nombre : 'Sí'},
+    {valor: '40', nombre : 'Sí'},
     {valor: '0', nombre: 'No'}
   ]
 
@@ -87,7 +91,10 @@ export class NewRegisterInspectionDialog {
     if(this.comment_value === 'Viaje ida'){
       this.availability = 40;
       console.log('Disponibilidad ' , this.availability , '€')
-    } 
+    } else if (this.comment_value == "Viaje ida internacional") {
+      this.availability = 70;
+      console.log('Disponibilidad ' , this.availability , '€')
+    }
 
     let fecha = this.obtener_fecha(this.date);
     const formattedDate = this.date.toISOString().split('T')[0];
