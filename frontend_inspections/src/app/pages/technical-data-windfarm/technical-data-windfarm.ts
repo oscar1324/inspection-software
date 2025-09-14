@@ -14,6 +14,7 @@ import { MatCardHeader, MatCardTitle, MatCardSubtitle } from "@angular/material/
 import { MatCardContent } from "@angular/material/card";
 import { KpiPorcentajeCard } from '../../kpi-porcentaje-card/kpi-porcentaje-card';
 import { TableCard } from '../../table-card/table-card';
+import { KpiExtraMonth } from '../../kpi-extra-month/kpi-extra-month';
 
 @Component({
   selector: 'app-technical-data-windfarm',
@@ -24,7 +25,8 @@ import { TableCard } from '../../table-card/table-card';
     MatCardContent,
     MatButtonModule,
     TableCard,
-    KpiPorcentajeCard
+    KpiPorcentajeCard,
+    KpiExtraMonth
 ],
   templateUrl: './technical-data-windfarm.html',
   styleUrl: './technical-data-windfarm.css'
@@ -47,6 +49,10 @@ export class TechnicalDataWindfarm implements OnInit {
   idObtenidoNavegacion: number = 0;
   almacenInspectionById: Inspection[] = [];
   stateDataLoad: boolean = false;
+
+  cantidadExtraGeneradaEnParque: number = 0;
+  cantidadTotalGeneradaEnParque: number = 0;
+  cantidadDiasRequeridosEnParque: number = 0;
   
 
   constructor(
@@ -81,6 +87,8 @@ export class TechnicalDataWindfarm implements OnInit {
           return fecha1.getTime() - fecha2.getTime();
         })
 
+        this.almacenarIngresosVariable(this.almacenInspectionById);
+
         this.stateDataLoad = true;
         this.changeDetector.detectChanges();
         console.log('DATOS RECIBIDOS DEL BACKEND -> ', this.almacenInspectionById);
@@ -103,6 +111,16 @@ export class TechnicalDataWindfarm implements OnInit {
     this.type_blade = this.datosRecibidos.type_blade;
 
     this.idObtenidoNavegacion = this.datosRecibidos.id;
+  }
+
+  almacenarIngresosVariable(array: Inspection[]): void {
+    console.error("Se recorre almacenarIngresosVariable");
+    for(const inspeccionRegistrada of array){
+      this.cantidadDiasRequeridosEnParque++;
+      this.cantidadExtraGeneradaEnParque = this.cantidadExtraGeneradaEnParque  + inspeccionRegistrada.net_total_income;
+      this.cantidadTotalGeneradaEnParque = this.cantidadTotalGeneradaEnParque + inspeccionRegistrada.net_total_income + 65;
+     
+    }
   }
 
 }

@@ -69,6 +69,33 @@
             ></app-kpi-porcentaje-card>
         </div>
       </div>
+      <div class="kpis-level1-inspections">
+        <div class="kpis-styles-month">
+          <app-kpi-extra-month
+          [modalidad]="1"
+          [titulo]="'Generación extra'"
+          [month]="'nada'"
+          [dato]="cantidadExtraGeneradaEnParque"
+          [total_calculo_porcentage]="1430"></app-kpi-extra-month>
+        </div>
+        <div class="kpis-styles-month">
+          <app-kpi-extra-month
+          [modalidad]="1"
+          [titulo]="'Generación total'"
+          [month]="'nada'"
+          [dato]="cantidadTotalGeneradaEnParque"
+          [total_calculo_porcentage]="1430"></app-kpi-extra-month>
+        </div>
+        <div class="kpis-styles-month">
+          <app-kpi-extra-month
+          [modalidad]="1"
+          [titulo]="'Días requeridos'"
+          [month]="'nada'"
+          [dato]="cantidadDiasRequeridosEnParque"
+          [modalidad]="4"
+          [total_calculo_porcentage]="1430"></app-kpi-extra-month>
+        </div>
+      </div>
       <div class="kpis-level1-inspections"> 
         <div class="kpis-level1-partes1">
             <app-table-card

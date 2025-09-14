@@ -147,8 +147,17 @@
     margin: 1%;
     display: flex;
     flex-direction: row;
-    
-    
+}
+
+.kpis-styles-month{
+    width: 100%;
+    height: 100%;
+}
+
+.kpis-styles-month:not(:first-child){
+    width: 100%;
+    height: 100%;
+    margin-left: 2%;
 }
 
 .kpis-level1-partes1 {
