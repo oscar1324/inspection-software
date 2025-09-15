@@ -66,6 +66,11 @@
         </mat-card>
         <div class="kpi-total-pilotado">
             <app-kpi-porcentaje-card
+            [title]="'Aerogeneradores inspeccionados'"
+            [valueActual]="cantidadAerogeneradoresinspeccionadosEnParque"
+            [max]="total_aagg"
+            [num1]="cantidadAerogeneradoresinspeccionadosEnParque"
+            [num2]="total_aagg"
             ></app-kpi-porcentaje-card>
         </div>
       </div>

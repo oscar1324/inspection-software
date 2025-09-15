@@ -211,7 +211,7 @@ def getAllWindFarm():
     conn = connect_to_db()
     cursor = conn.cursor()
 
-    query = "SELECT * FROM public.wind_farm"
+    query = "SELECT * FROM public.wind_farm order by id asc"
 
     try:
         cursor.execute(query)

@@ -53,6 +53,7 @@ export class TechnicalDataWindfarm implements OnInit {
   cantidadExtraGeneradaEnParque: number = 0;
   cantidadTotalGeneradaEnParque: number = 0;
   cantidadDiasRequeridosEnParque: number = 0;
+  cantidadAerogeneradoresinspeccionadosEnParque: number = 0;
   
 
   constructor(
@@ -109,16 +110,17 @@ export class TechnicalDataWindfarm implements OnInit {
     this.country = this.datosRecibidos.country;
     this.client = this.datosRecibidos.client;
     this.type_blade = this.datosRecibidos.type_blade;
-
+    this.total_aagg = this.datosRecibidos.total_aagg
     this.idObtenidoNavegacion = this.datosRecibidos.id;
   }
 
   almacenarIngresosVariable(array: Inspection[]): void {
-    console.error("Se recorre almacenarIngresosVariable");
+    
     for(const inspeccionRegistrada of array){
       this.cantidadDiasRequeridosEnParque++;
       this.cantidadExtraGeneradaEnParque = this.cantidadExtraGeneradaEnParque  + inspeccionRegistrada.net_total_income;
       this.cantidadTotalGeneradaEnParque = this.cantidadTotalGeneradaEnParque + inspeccionRegistrada.net_total_income + 65;
+      this.cantidadAerogeneradoresinspeccionadosEnParque = this.cantidadAerogeneradoresinspeccionadosEnParque + inspeccionRegistrada.number_wind_turbines_generators;
      
     }
   }

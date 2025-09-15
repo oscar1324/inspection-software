@@ -100,6 +100,7 @@ export class Dashboard implements OnInit {
         this.totalCountWTGInspections = results.totalInspections.totalCount_wtg_inspections;
         this.windFarms = results.windFarmsObject;
         this.inspections = results.inspectionObject;
+
           
         this.inspections.sort((a,b) => {
           const comparacionAero = b.number_wind_turbines_generators - a.number_wind_turbines_generators;
