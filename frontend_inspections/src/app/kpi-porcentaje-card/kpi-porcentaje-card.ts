@@ -36,7 +36,7 @@ export class KpiPorcentajeCard  implements OnChanges{
   
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  //1. Opciones generales del gráfico
+  //1. Configuración general del gráfico
   public doughnutOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: true,

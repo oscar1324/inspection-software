@@ -50,6 +50,10 @@ export class InspectionsService {
     return this.http.get<Inspection[]>(`${this.apiUrl}/inspection_id/${wind_farm_id}`)
   }
 
+  getMonthsAndAAGGInspected(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/get_months_and_aagg_inspections`)
+  }
+
 
   
 }

@@ -204,6 +204,44 @@ def getTotalNetCountGenerate():
         print(f"Error al ejecutar function -> getTotalNetCountGenerate:", e)
         return 0
     
+
+def getAaggInspectiosforMonths():
+    conn = connect_to_db()
+    cursor = conn.cursor()
+
+    results = []
+
+    query = """SELECT 
+            TO_CHAR(date,'mm-yyyy') as mes,
+            SUM(number_wind_turbines_generators) as aagg 
+        FROM public.inspections
+        GROUP BY TO_CHAR(date, 'mm-yyyy')
+        ORDER BY min(date);"""
+    
+    try:
+    
+        cursor.execute(query)
+        rows = cursor.fetchall()
+
+        for indice in rows: 
+            results.append({
+                "mes": indice[0],
+                "aagg_inspeccionados": indice[1]
+            })
+    
+        return results
+    
+    except Exception as e:
+        print(f"Error during the ejecution getAaggInspectiosforMonths -> {e}")
+        return {
+            "message" : "Error durante endPoint  ---> /get_months_and_aagg_inspections"
+        }
+    finally:
+        cursor.close()
+        conn.close()
+    
+
+    
 # ----------------------------------------------------------------------------------------------------------------
 
 # This function get all data about windfarm table

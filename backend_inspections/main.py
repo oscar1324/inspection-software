@@ -1,6 +1,6 @@
 from app.db_connection import connect_to_db
 from fastapi import FastAPI
-from app.http_request import execute_insert_daily_inspection, get_all_inspection, execute_insert_windFarm, getTotalCountWTGPiloted,getTotalNetCountGenerate , getTotalCountWTG, getAllWindFarm
+from app.http_request import execute_insert_daily_inspection, get_all_inspection, execute_insert_windFarm, getTotalCountWTGPiloted,getTotalNetCountGenerate , getTotalCountWTG, getAllWindFarm, getAaggInspectiosforMonths
 from app.models.modelInspectionDTO import Inspection
 from app.models.modelWindFarmDTO import WindFarm
 from app.models.modelWindFarmIDDTO import WindFarmID
@@ -145,7 +145,8 @@ def execute_delete_by_id_windfarm(windFarmID: WindFarmID):
     finally:
         cursor.close()
         conn.close()
-    
+
+
 
 #execute_select_of_all()
     #execute_find_by_wind_farm(conn, "PE São Cristóvão ")
@@ -157,7 +158,9 @@ def execute_delete_by_id_windfarm(windFarmID: WindFarmID):
 #execute_delete_by_id(conn)
 #getTotalCountWTGPiloted()
 #getTotalCountWTG()
-#execute_delete_by_id_windfarm(conn)   
+#execute_delete_by_id_windfarm(conn) 
+
+  
 
 
 app = FastAPI()
@@ -243,6 +246,10 @@ def getTotalWTGInspectionss():
 @app.get("/getAll_WindFarms")
 def get_all_windFarm():
     return getAllWindFarm()
+
+@app.get("/get_months_and_aagg_inspections")
+def get_aagg_inspections_each_months():
+    return getAaggInspectiosforMonths()
 
 @app.post("/deleteBy_id")
 def deleteWindFarmID(data: WindFarmID):

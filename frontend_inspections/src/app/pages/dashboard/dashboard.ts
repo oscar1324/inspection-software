@@ -17,6 +17,7 @@ import { MatCardContent } from "@angular/material/card";
 import { KpiPorcentajeCard } from '../../kpi-porcentaje-card/kpi-porcentaje-card';
 import { TableCard } from '../../table-card/table-card';
 import { KpiExtraMonth } from '../../kpi-extra-month/kpi-extra-month';
+import { KpiAaggDoneMonth } from '../../kpi-aagg-done-month/kpi-aagg-done-month';
 
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
@@ -24,7 +25,7 @@ Chart.register(...registerables);
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ CommonModule, MatButtonModule, MatCard, MatCardHeader, KpiPorcentajeCard, TableCard, KpiExtraMonth],
+  imports: [ CommonModule, MatButtonModule, MatCard, MatCardHeader, KpiPorcentajeCard, KpiAaggDoneMonth, TableCard, KpiExtraMonth],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
@@ -32,6 +33,7 @@ export class Dashboard implements OnInit {
   protected title = 'Dashboard de Inspecciones Eólicas campaña 2025';
   inspections: Inspection[] = [];
   windFarms: WindFarm[] = [];
+  inspectionsEachMonth: any [] = [];
   totalCountWTGPiloted!: number;
   totalCountWTGInspections!: number;
   loading:boolean = false;
@@ -91,7 +93,8 @@ export class Dashboard implements OnInit {
       totalPiloted: this.inspectionService.getTotalWTGPiloted(),
       totalInspections: this.inspectionService.getTotalWTGInspections(),
       windFarmsObject: this.inspectionService.getAllWindFarm(),
-      inspectionObject: this.inspectionService.getAllInspections()
+      inspectionObject: this.inspectionService.getAllInspections(),
+      inspectionsEachMonth: this.inspectionService.getMonthsAndAAGGInspected()
     }).subscribe({
 
       next: (results) => {
@@ -100,6 +103,11 @@ export class Dashboard implements OnInit {
         this.totalCountWTGInspections = results.totalInspections.totalCount_wtg_inspections;
         this.windFarms = results.windFarmsObject;
         this.inspections = results.inspectionObject;
+        this.inspectionsEachMonth = results.inspectionsEachMonth;
+
+        for(const indice of this.inspectionsEachMonth) {
+          console.log(indice);
+        }
 
           
         this.inspections.sort((a,b) => {
