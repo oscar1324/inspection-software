@@ -1,6 +1,12 @@
 
+.titulogeneral {
+    font-size: 50px;
+    
+}
+
 .titulo{
     color: #1A1B1F ;
+    
 }
 .contanier {
     max-width: 100%;
@@ -137,6 +143,22 @@
 
 .kpis-level1-partes:not(:first-child) {
   margin-left: 2%; /* Aplica margin-left a todos los .elemento-hijo que NO sean el primer hijo */
+}
+
+.kpi-grafico {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+}
+.kpi-grafico-1 {
+    width: 50%;
+    height: 100%;
+}
+
+.kpi-grafico-1.kpis-level2-1:not(:first-child){
+    width: 50%;
+    height: 100%;
 }
 
 /** Estilos de kpis-level2*/

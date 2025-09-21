@@ -115,8 +115,11 @@ export class TechnicalDataWindfarm implements OnInit {
   }
 
   almacenarIngresosVariable(array: Inspection[]): void {
+    const contador = 0;
     
+    // Recorre bucle para almacenar todos los ingresos extra y añadirle los ingresos generados por días de inspección trabajados
     for(const inspeccionRegistrada of array){
+
       this.cantidadDiasRequeridosEnParque++;
       this.cantidadExtraGeneradaEnParque = this.cantidadExtraGeneradaEnParque  + inspeccionRegistrada.net_total_income;
       this.cantidadTotalGeneradaEnParque = this.cantidadTotalGeneradaEnParque + inspeccionRegistrada.net_total_income + 65;

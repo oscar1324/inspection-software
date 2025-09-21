@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input , OnChanges, SimpleChanges} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { Chart, registerables } from 'chart.js';
@@ -11,24 +11,38 @@ Chart.register(...registerables);
   templateUrl: './kpi-aagg-done-month.html',
   styleUrl: './kpi-aagg-done-month.css'
 })
-export class KpiAaggDoneMonth implements OnInit, AfterViewInit {
+export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
+
   @ViewChild('myBarGraphic') myBarGraphic!: ElementRef<HTMLCanvasElement>;
+  @Input() title: string = "Titulo";
+  @Input() months: any [] = [];
+  @Input() aaggs:any[] = [];
+
+
   private chartInstancia: any;
 
   ngOnInit(): void {}
 
+  
+  ngOnChanges(changes: SimpleChanges): void {
+
+  
+  }
+
   ngAfterViewInit(): void {
     this.createBarGraphic();
+    
   }
 
   createBarGraphic(): void {
+    
     const canvas = this.myBarGraphic.nativeElement;
     this.chartInstancia = new Chart(canvas, {
       type: 'bar',
       data: {
-        labels: ['03-03-2010','04-03-2010','04-03-2010', '03-05-2010','04-08-2010','04-10-2010'],
+        labels: this.months,
         datasets: [{
-          data: [15,2,9,13,20,34],
+          data: this.aaggs,
           label: 'Ejemplo',
           backgroundColor: '#21b5da',
           borderWidth: 1,
@@ -43,7 +57,7 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit {
           x: { grid: { display: false } },
           y: {
             min: 0,
-            max: 60,
+            max: 70,
             ticks: {
               stepSize: 10,
               callback: (value: string | number) => value + ' AAGG'

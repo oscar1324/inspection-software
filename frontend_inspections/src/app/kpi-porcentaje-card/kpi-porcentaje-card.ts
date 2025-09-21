@@ -32,10 +32,12 @@ export class KpiPorcentajeCard  implements OnChanges{
   porcentajeRedondeado!: number;
   porcentajeRestante!: number;
   stateDataFromDad: boolean = false;
-  
+  colorGrafico: string = '#21b5daff';
   
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
+
+  
   //1. Configuración general del gráfico
   public doughnutOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -51,8 +53,8 @@ export class KpiPorcentajeCard  implements OnChanges{
     labels: [],
     datasets: [{
       data: [],
-      backgroundColor: ['#21b5daff', '#6b6d6eff'], //#17B37B - #3C4045
-      hoverBackgroundColor: ['#21b5daff','#6b6d6eff'],
+      backgroundColor: [ this.colorGrafico, '#6b6d6eff'], //#17B37B - #3C4045
+      hoverBackgroundColor: ['#21b5daff','#618597ff'],
       borderWidth: 0,
       rotation: -90,
       circumference: 180
@@ -65,15 +67,9 @@ export class KpiPorcentajeCard  implements OnChanges{
 
   // Se dibuja gráfico al inicio
   ngOnInit(): void {
-      console.warn("--- AL INICIAR COMPONENTE ESTOS SON LOS DATOS ---");
-      console.warn("--- Aerogeneradores pilotados: ", this.num1);
-      console.warn("--- Aerogeneradores totales inspeccionados: ", this.num2);
-      setTimeout(() => {
-      console.warn("--- Aerogeneradores pilotados: ", this.num1);
-      console.warn("--- Aerogeneradores totales inspeccionados: ", this.num2);
-    }, 3000);
-      console.warn("-------------------------------------------------");
-      this.updateChartData();
+    this.updateChartData();
+    
+
   }
 
   // Se redibuja el gráfico cada vez que un valor cambia 
@@ -85,27 +81,39 @@ export class KpiPorcentajeCard  implements OnChanges{
       const newValorNum2 = this.num2;
       console.warn("CAMBIA ESTADO VALOR  -> newValor1: ", newValorNum1 , " / newValor2: ", newValorNum2);
     }
+
+    if (changes['porcentajeRedondeado']) {
+      console.error("VALOR DE PORCENTAGE CAMBIA -> ", this.porcentajeRedondeado);
+
+      if(this.porcentaje == 100) {
+        console.error("Se ha completado el parquee");
+      }
+    }
       
   }
 
   private updateChartData(): void {
-    
 
     // 1. Crear los porcentajes
     if(this.max > 0){
+
       this.porcentaje = (this.valueActual / this.max) * 100;
       this.porcentajeRestante = 100 - this.porcentaje;
-
+      
       this.porcentajeRedondeado = Math.round(this.porcentaje);
     } else {
       this.porcentaje = 0;
       this.porcentajeRestante = 100;
     }
     
-
+  
     // 2. Asignar porcentajes al gráfico
     this.doughnutData.labels = [];
     this.doughnutData.datasets[0].data = [this.porcentaje, this.porcentajeRestante];
+    console.log("PORCENTAJE----- : " , this.doughnutData.datasets[0].data[0]);
+    if(this.doughnutData.datasets[0].data[0] == 100) {
+      this.doughnutData.datasets[0].backgroundColor = "#17B37B";
+    }
 
     // 3. Redibujar gráfico si ya esta renderizado
     if(this.chart){
@@ -113,4 +121,5 @@ export class KpiPorcentajeCard  implements OnChanges{
     }
 
   }
+
 }

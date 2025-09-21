@@ -75,7 +75,19 @@ canvas {
     margin-top: 10px;
 }
 
+.porcentage-green {
+    color: #17B37B;
+    font-size: 25px;
+    margin-top: 10px;
+}
+
 .numericos{
+    margin-top: 0px;
+    font-size: 15px;
+}
+
+.numericos-green {
+    color: #17B37B;
     margin-top: 0px;
     font-size: 15px;
 }

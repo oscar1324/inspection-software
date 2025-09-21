@@ -91,7 +91,7 @@ export class NewRegisterInspectionDialog {
     if(this.comment_value === 'Viaje ida'){
       this.availability = 40;
       console.log('Disponibilidad ' , this.availability , '€')
-    } else if (this.comment_value == "Viaje ida internacional") {
+    } else if (this.comment_value == "Disponibilidad Semanal Internacional") {
       this.availability = 70;
       console.log('Disponibilidad ' , this.availability , '€')
     }

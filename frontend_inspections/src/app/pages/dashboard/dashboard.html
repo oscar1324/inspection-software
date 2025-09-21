@@ -2,7 +2,7 @@
 <main class="main">
   <div class="content">
     <div class="contanier">
-      <h1> 
+      <h1 class="titulogeneral"> 
           Campaña de inspecciones eólicas 2025
       </h1>
 
@@ -126,8 +126,21 @@
           [modalidad]="3"></app-kpi-extra-month>
         </div>
       </div>
-      <div class="kpis-level1"> <!-- TODO CAMBIAR ESTILOS SI ES NECESARIO-->
-        <app-kpi-aagg-done-month></app-kpi-aagg-done-month>
+      <div class="kpi-grafico"> <!-- TODO CAMBIAR ESTILOS SI ES NECESARIO-->
+        <div class="kpi-grafico-1">
+          <app-kpi-aagg-done-month
+          [title]="'Aerogeneradores Inspeccionados por Mes'"
+          *ngIf="semaforoVerde == true" [months]="monthsToKPIGraphic"
+          [aaggs]="aaggToKPIGraphic"></app-kpi-aagg-done-month>
+        </div>
+        
+        <div class="kpi-grafico-1">
+          <app-kpi-aagg-done-month
+          [title]="'Generación extra por Mes'"
+          *ngIf="semaforoVerde == true" [months]="monthsToKPIGraphic"
+          [aaggs]="aaggToKPIGraphic"></app-kpi-aagg-done-month>
+        </div>
+
       </div>
       <div class="kpis-level1"> 
         <div class="kpis-level1-partes">

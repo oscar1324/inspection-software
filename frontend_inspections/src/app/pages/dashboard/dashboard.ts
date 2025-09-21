@@ -33,7 +33,12 @@ export class Dashboard implements OnInit {
   protected title = 'Dashboard de Inspecciones Eólicas campaña 2025';
   inspections: Inspection[] = [];
   windFarms: WindFarm[] = [];
+
   inspectionsEachMonth: any [] = [];
+  monthsToKPIGraphic: any [] = [];
+  aaggToKPIGraphic: any [] = [];
+  semaforoVerde: boolean = false;
+
   totalCountWTGPiloted!: number;
   totalCountWTGInspections!: number;
   loading:boolean = false;
@@ -106,8 +111,16 @@ export class Dashboard implements OnInit {
         this.inspectionsEachMonth = results.inspectionsEachMonth;
 
         for(const indice of this.inspectionsEachMonth) {
-          console.log(indice);
+
+
+          this.monthsToKPIGraphic.push(indice[0]);
+          this.aaggToKPIGraphic.push(indice[1]);
         }
+
+        if(this.monthsToKPIGraphic.length > 0 && this.aaggToKPIGraphic.length > 0){
+          this.semaforoVerde = true;
+        }
+        console.log('LONGUITUD -> ', this.monthsToKPIGraphic.length , ' - ', this.aaggToKPIGraphic.length);
 
           
         this.inspections.sort((a,b) => {

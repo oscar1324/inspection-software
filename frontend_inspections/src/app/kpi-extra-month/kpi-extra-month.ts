@@ -35,24 +35,17 @@ export class KpiExtraMonth implements OnInit{
   ngOnInit(): void {
     
 
-
   }
 
-    ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes['dato'] ) {
       this.calculoPorcentage(this.dato, this.total_calculo_porcentage);
     }
       
   }
 
-  
-
   calculoPorcentage(cantidad: number, total_calculo_porcentage: number): void {
-
     this.porcentage = (cantidad / total_calculo_porcentage) * 100;
 
-
   }
-  
-
 }
