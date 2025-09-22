@@ -83,7 +83,9 @@ tr:last-child {
     padding: 1%;
 }
 
-
+.tr-table2:hover {
+  background-color: #4a4d52; 
+}
 
 .tr-table:hover {
   background-color: #4a4d52; /* Color de fondo al pasar el ratón por encima */
@@ -249,6 +251,10 @@ button {
     transition: background-color 0.2s ease; 
     padding: 1%;
     
+}
+
+.tr-table3:hover {
+  background-color: #4a4d52; 
 }
 
 .col-num {

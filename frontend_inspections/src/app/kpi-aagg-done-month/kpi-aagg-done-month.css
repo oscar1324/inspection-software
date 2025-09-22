@@ -1,32 +1,32 @@
-    .chart-card {
-      max-width: 96%;
-      margin-top: 2%;
-      margin-left: 2%;
-      margin-bottom: 2%;
-      padding: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      background-color: #3C4045;
-    }
+.chart-card {
+  max-width: 96%;
+  margin-top: 2%;
+  margin-left: 2%;
+  margin-bottom: 2%;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #3C4045;
+}
 
-    .header {
-      display: flex;
-      justify-content: center;
-      align-content: center;
-    }
+.header {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
     
-    .chart-container {
-      margin-top: 2%;
-      position: relative;
-      height: 300px;
-      width: 100%;
-    }
-    .bar-chart-canvas {
-      width: 100% !important;
-      height: 100% !important;
-    }
-    mat-card-title {
-      font-weight: 600;
-      color: #FFFFFF;
-      font-size: 17px;
-    }
+.chart-container {
+  margin-top: 2%;
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+.bar-chart-canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+mat-card-title {
+  font-weight: 600;
+  color: #FFFFFF;
+  font-size: 17px;
+}

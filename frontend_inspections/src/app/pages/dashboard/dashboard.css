@@ -69,12 +69,18 @@
     
 }
 
+
+
 /** Estilos de los datos personales del piloto de drones **/
 .caja-datos-tecnicos {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     
+}
+
+.card:hover {
+    background-color: #4a4d52; 
 }
 
 .profile-izq {
