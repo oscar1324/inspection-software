@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input , OnChan
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { Chart, registerables } from 'chart.js';
+import { InspectionsService } from '../services/InspectionsService';
 
 Chart.register(...registerables);
 
@@ -18,20 +19,31 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
   @Input() months: any [] = [];
   @Input() aaggs:any[] = [];
 
+  months1: any [] = [];
+  aaggs1:any[] = [];
 
   private chartInstancia: any;
 
-  ngOnInit(): void {}
+  constructor(
+    private inspectionService: InspectionsService
+  ) {
+
+  }
+
+  ngOnInit(): void {
+    
+  }
 
   
   ngOnChanges(changes: SimpleChanges): void {
 
-  
+    
   }
 
   ngAfterViewInit(): void {
+
     this.createBarGraphic();
-    
+    this.chartInstancia.update();
   }
 
   createBarGraphic(): void {
@@ -43,11 +55,12 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
         labels: this.months,
         datasets: [{
           data: this.aaggs,
-          label: 'Ejemplo',
-          backgroundColor: '#21b5da',
-          borderWidth: 1,
-          hoverBackgroundColor: '#3777c0',
-          borderRadius: 5
+          label: 'Inspeccionados',
+          backgroundColor: '#21b5daff',
+          borderWidth: 2,
+          hoverBackgroundColor: '#0077b6',
+          borderRadius: 5,
+          barThickness: 65
         }]
       },
       options: {

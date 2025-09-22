@@ -129,15 +129,18 @@
       <div class="kpi-grafico"> <!-- TODO CAMBIAR ESTILOS SI ES NECESARIO-->
         <div class="kpi-grafico-1">
           <app-kpi-aagg-done-month
-          [title]="'Aerogeneradores Inspeccionados por Mes'"
-          *ngIf="semaforoVerde == true" [months]="monthsToKPIGraphic"
-          [aaggs]="aaggToKPIGraphic"></app-kpi-aagg-done-month>
+          [title]="'Aerogeneradores inspeccionados por mes'"
+          *ngIf="semaforoVerde == true" 
+          [months]="monthsToKPIGraphic"
+          [aaggs]="aaggToKPIGraphic"
+          ></app-kpi-aagg-done-month>
         </div>
         
         <div class="kpi-grafico-1">
           <app-kpi-aagg-done-month
-          [title]="'Generación extra por Mes'"
-          *ngIf="semaforoVerde == true" [months]="monthsToKPIGraphic"
+          [title]="'Generación extra por mes'"
+          *ngIf="semaforoVerde == true" 
+          [months]="monthsToKPIGraphic"
           [aaggs]="aaggToKPIGraphic"></app-kpi-aagg-done-month>
         </div>
 

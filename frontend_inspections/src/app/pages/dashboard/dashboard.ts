@@ -112,16 +112,13 @@ export class Dashboard implements OnInit {
 
         for(const indice of this.inspectionsEachMonth) {
 
-
-          this.monthsToKPIGraphic.push(indice[0]);
-          this.aaggToKPIGraphic.push(indice[1]);
+          this.monthsToKPIGraphic.push(indice.mes);
+          this.aaggToKPIGraphic.push(indice.aagg_inspeccionados);
         }
 
         if(this.monthsToKPIGraphic.length > 0 && this.aaggToKPIGraphic.length > 0){
           this.semaforoVerde = true;
         }
-        console.log('LONGUITUD -> ', this.monthsToKPIGraphic.length , ' - ', this.aaggToKPIGraphic.length);
-
           
         this.inspections.sort((a,b) => {
           const comparacionAero = b.number_wind_turbines_generators - a.number_wind_turbines_generators;
