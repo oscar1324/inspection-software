@@ -4,6 +4,8 @@ import { MatCardModule } from '@angular/material/card';
 import { Chart, registerables } from 'chart.js';
 import { InspectionsService } from '../services/InspectionsService';
 
+
+
 Chart.register(...registerables);
 
 @Component({
@@ -18,9 +20,6 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
   @Input() title: string = "Titulo";
   @Input() months: any [] = [];
   @Input() aaggs:any[] = [];
-
-  months1: any [] = [];
-  aaggs1:any[] = [];
 
   private chartInstancia: any;
 
@@ -47,27 +46,48 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
   }
 
   createBarGraphic(): void {
+
+    const total = this.aaggs.reduce((acumulador, valor) => acumulador + valor, 0);
+    const media = Math.round(total / this.aaggs.length);
+    const lineaMedia =  new Array( this.aaggs.length + 1).fill(media)
+
+    console.log('Total -> ', total, ' - dividido entre -> ', this.aaggs.length, ' - Media -> ', media);
     
     const canvas = this.myBarGraphic.nativeElement;
     this.chartInstancia = new Chart(canvas, {
       type: 'bar',
       data: {
-        labels: this.months,
-        datasets: [{
-          data: this.aaggs,
+        labels: [...this.months, ''],
+        datasets: [
+          {
+          data: [...this.aaggs, null],
           label: 'Inspeccionados',
           backgroundColor: '#21b5daff',
           borderWidth: 2,
           hoverBackgroundColor: '#0077b6',
           borderRadius: 5,
-          barThickness: 65
-        }]
+          barThickness: 65,
+          order: 1
+          },
+          {
+            type: 'line',
+            label: 'Media',
+            data: lineaMedia,
+            borderColor: 'red',
+            borderWidth: 2,
+            pointRadius: 1,
+            borderDash: [5,5],
+            order:2
+      
+          }
+        ]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-          x: { grid: { display: false } },
+          x: { grid: { display: false }
+          },
           y: {
             min: 0,
             max: 70,
@@ -90,7 +110,7 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
                 return label;
               }
             }
-          }
+          },
         }
       }
     });

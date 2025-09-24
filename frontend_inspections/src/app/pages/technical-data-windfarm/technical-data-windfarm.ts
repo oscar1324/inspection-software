@@ -21,8 +21,6 @@ import { KpiExtraMonth } from '../../kpi-extra-month/kpi-extra-month';
   imports: [
     MatCard,
     MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
     MatButtonModule,
     TableCard,
     KpiPorcentajeCard,
