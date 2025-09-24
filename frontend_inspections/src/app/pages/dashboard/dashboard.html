@@ -130,18 +130,26 @@
         <div class="kpi-grafico-1">
           <app-kpi-aagg-done-month
           [title]="'Aerogeneradores inspeccionados por mes'"
+          [etiqueta]="' AAGG'"
           *ngIf="semaforoVerde == true" 
-          [months]="monthsToKPIGraphic"
-          [aaggs]="aaggToKPIGraphic"
+          [ejeX]="monthsToKPIGraphic"
+          [ejeY]="aaggToKPIGraphic"
+          [minValue]="0"
+          [maxValue]="70"
+          [stepSize]="10"
           ></app-kpi-aagg-done-month>
         </div>
         
         <div class="kpi-grafico-1">
           <app-kpi-aagg-done-month
           [title]="'Generación extra por mes'"
+          [etiqueta]="' €'"
           *ngIf="semaforoVerde == true" 
-          [months]="monthsToKPIGraphic"
-          [aaggs]="aaggToKPIGraphic"></app-kpi-aagg-done-month>
+          [ejeX]="monthsToKPIGraphic"
+          [ejeY]="[240,354,480,580,1650]"
+          [minValue]="0"
+          [maxValue]="1800"
+          [stepSize]="200"></app-kpi-aagg-done-month>
         </div>
 
       </div>
@@ -163,9 +171,14 @@
             [opcion]="2">
           </app-table-card>
         </div>
-
-        
-          
+      </div>
+      <div class="">
+        <app-kpi-aagg-done-month
+        [title]="'Salarios 2025'"
+        [etiqueta]="' €'"
+        [minValue]="500"
+        [maxValue]="2500"
+        [stepSize]="250"></app-kpi-aagg-done-month>
       </div>
 
       

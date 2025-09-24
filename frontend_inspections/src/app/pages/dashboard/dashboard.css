@@ -156,6 +156,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 0;
+    width: 100%;
 }
 .kpi-grafico-1 {
     width: 50%;

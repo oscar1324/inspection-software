@@ -18,10 +18,14 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
 
   @ViewChild('myBarGraphic') myBarGraphic!: ElementRef<HTMLCanvasElement>;
   @Input() title: string = "Titulo";
-  @Input() months: any [] = [];
-  @Input() aaggs:any[] = [];
+  @Input() ejeX: any [] = [];
+  @Input() ejeY:any[] = [];
+  @Input() etiqueta: string = "---";
 
   private chartInstancia: any;
+  @Input() minValue = 0;
+  @Input() maxValue = 0;
+  @Input() stepSize = 0;
 
   constructor(
     private inspectionService: InspectionsService
@@ -47,53 +51,67 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
 
   createBarGraphic(): void {
 
-    const total = this.aaggs.reduce((acumulador, valor) => acumulador + valor, 0);
-    const media = Math.round(total / this.aaggs.length);
-    const lineaMedia =  new Array( this.aaggs.length + 1).fill(media)
+    if(this.title == 'Salarios 2025') {
 
-    console.log('Total -> ', total, ' - dividido entre -> ', this.aaggs.length, ' - Media -> ', media);
+      this.ejeX =  ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre'];
+      this.ejeY = [1433,1433,1433,1509,1771,1902,2466,2008];
+    }
+
+    const total = this.ejeY.reduce((acumulador, valor) => acumulador + valor, 0);
+    const media = Math.round(total / this.ejeY.length);
+    const lineaMedia =  new Array( this.ejeY.length + 1).fill(media)
+
+    console.log('Total -> ', total, ' - dividido entre -> ', this.ejeY.length, ' - Media -> ', media);
     
     const canvas = this.myBarGraphic.nativeElement;
     this.chartInstancia = new Chart(canvas, {
       type: 'bar',
       data: {
-        labels: [...this.months, ''],
+        labels: [...this.ejeX, ''],
         datasets: [
           {
-          data: [...this.aaggs, null],
-          label: 'Inspeccionados',
+          data: [...this.ejeY, null],
           backgroundColor: '#21b5daff',
           borderWidth: 2,
           hoverBackgroundColor: '#0077b6',
           borderRadius: 5,
           barThickness: 65,
-          order: 1
+          order: 2
           },
+
           {
-            type: 'line',
-            label: 'Media',
-            data: lineaMedia,
-            borderColor: 'red',
-            borderWidth: 2,
-            pointRadius: 1,
-            borderDash: [5,5],
-            order:2
-      
-          }
+          type: 'line',
+          data: [...this.ejeY, null],
+          borderColor: 'red',
+          borderWidth: 2,
+          pointRadius: 4,
+          order:1
+          },
         ]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-          x: { grid: { display: false }
+          x: { 
+            grid: { display: false, },
+            ticks: {
+              font: {
+                size: 13,
+              },
+            }
+            
           },
           y: {
-            min: 0,
-            max: 70,
+            
+            min: this.minValue,
+            max: this.maxValue,
             ticks: {
-              stepSize: 10,
-              callback: (value: string | number) => value + ' AAGG'
+              stepSize: this.stepSize,
+              font: {
+                size: 14,
+              },
+              callback: (value: string | number) =>  + value + this.etiqueta
             }
           }
         },
@@ -105,7 +123,7 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
                 let label = context.dataset.label || '';
                 if (label) { label += ': '; }
                 if (context.parsed.y !== null) {
-                  label += new Intl.NumberFormat('es-ES').format(context.parsed.y) + ' aerogeneradores';
+                  label += new Intl.NumberFormat('es-ES').format(context.parsed.y) + this.etiqueta;
                 }
                 return label;
               }
