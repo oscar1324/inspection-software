@@ -37,6 +37,7 @@ export class Dashboard implements OnInit {
   inspectionsEachMonth: any [] = [];
   monthsToKPIGraphic: any [] = [];
   aaggToKPIGraphic: any [] = [];
+  totalNetToKPIGraphic: any[] = [];
   semaforoVerde: boolean = false;
 
   totalCountWTGPiloted!: number;
@@ -99,7 +100,8 @@ export class Dashboard implements OnInit {
       totalInspections: this.inspectionService.getTotalWTGInspections(),
       windFarmsObject: this.inspectionService.getAllWindFarm(),
       inspectionObject: this.inspectionService.getAllInspections(),
-      inspectionsEachMonth: this.inspectionService.getMonthsAndAAGGInspected()
+      inspectionsEachMonth: this.inspectionService.getMonthsAndAAGGInspected(),
+      totalNetEachMonth: this.inspectionService.getTotalNetExtraCountMonth()
     }).subscribe({
 
       next: (results) => {
@@ -114,9 +116,10 @@ export class Dashboard implements OnInit {
 
           this.monthsToKPIGraphic.push(indice.mes);
           this.aaggToKPIGraphic.push(indice.aagg_inspeccionados);
+          this.totalNetToKPIGraphic.push(Math.round(indice.total_net));
         }
 
-        if(this.monthsToKPIGraphic.length > 0 && this.aaggToKPIGraphic.length > 0){
+        if(this.monthsToKPIGraphic.length > 0 && this.aaggToKPIGraphic.length > 0 && this.totalNetToKPIGraphic.length > 0){
           this.semaforoVerde = true;
         }
           

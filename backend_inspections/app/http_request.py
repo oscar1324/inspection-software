@@ -212,8 +212,9 @@ def getAaggInspectiosforMonths():
     results = []
 
     query = """SELECT 
-            TO_CHAR(date,'mm-yyyy') as mes,
-            SUM(number_wind_turbines_generators) as aagg 
+        TO_CHAR(date,'mm-yyyy') as mes,
+        SUM(number_wind_turbines_generators) as aagg,
+        SUM(net_total_income) as ingresos
         FROM public.inspections
         GROUP BY TO_CHAR(date, 'mm-yyyy')
         ORDER BY min(date);"""
@@ -226,7 +227,8 @@ def getAaggInspectiosforMonths():
         for indice in rows: 
             results.append({
                 "mes": indice[0],
-                "aagg_inspeccionados": indice[1]
+                "aagg_inspeccionados": indice[1],
+                "total_net": indice[2]
             })
     
         return results

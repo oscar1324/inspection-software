@@ -147,7 +147,6 @@ def execute_delete_by_id_windfarm(windFarmID: WindFarmID):
         conn.close()
 
 
-
 #execute_select_of_all()
     #execute_find_by_wind_farm(conn, "PE São Cristóvão ")
     #execute_find_by_date(conn, "2025-05-21 ")
@@ -159,7 +158,6 @@ def execute_delete_by_id_windfarm(windFarmID: WindFarmID):
 #getTotalCountWTGPiloted()
 #getTotalCountWTG()
 #execute_delete_by_id_windfarm(conn) 
-
   
 
 

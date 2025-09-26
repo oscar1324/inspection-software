@@ -84,9 +84,18 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
           data: [...this.ejeY, null],
           borderColor: 'red',
           borderWidth: 2,
-          pointRadius: 4,
+          pointRadius: 3,
           order:1
           },
+          {
+            type: 'line',
+            data: lineaMedia,
+            borderColor: 'grey',
+            borderWidth: 2,
+            pointRadius: 2,
+            borderDash: [5,5],
+            order:3
+          }
         ]
       },
       options: {
