@@ -133,6 +133,17 @@
     flex-direction: row;
 }
 
+.kpis-siguienteNivel {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.kpi-item {
+    margin: 0;
+    padding: 0;
+}
+
 .kpis-level1-partes{
     width: 25%;
     height: 100%;

@@ -21,6 +21,8 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
   @Input() ejeX: any [] = [];
   @Input() ejeY:any[] = [];
   @Input() etiqueta: string = "---";
+  @Input() modalidad: number = 0;
+  @Input() estilo : number = 0;
 
   private chartInstancia: any;
   @Input() minValue = 0;
@@ -64,12 +66,16 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
     console.log('Total -> ', total, ' - dividido entre -> ', this.ejeY.length, ' - Media -> ', media);
     
     const canvas = this.myBarGraphic.nativeElement;
-    this.chartInstancia = new Chart(canvas, {
+
+    if(this.modalidad == 1){
+      this.chartInstancia = new Chart(canvas, {
       type: 'bar',
       data: {
         labels: [...this.ejeX, ''],
         datasets: [
+          
           {
+          label: 'Cantidad aerogeneradores',
           data: [...this.ejeY, null],
           backgroundColor: '#21b5daff',
           borderWidth: 2,
@@ -78,16 +84,8 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
           barThickness: 65,
           order: 2
           },
-
           {
-          type: 'line',
-          data: [...this.ejeY, null],
-          borderColor: 'red',
-          borderWidth: 2,
-          pointRadius: 3,
-          order:1
-          },
-          {
+            label: 'Media',
             type: 'line',
             data: lineaMedia,
             borderColor: 'grey',
@@ -125,7 +123,7 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
           }
         },
         plugins: {
-          legend: { display: false },
+          legend: { display: true },
           tooltip: {
             callbacks: {
               label: (context: any) => {
@@ -141,5 +139,89 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
         }
       }
     });
+    } else if(this.modalidad == 2) {
+      this.chartInstancia = new Chart(canvas, {
+      type: 'bar',
+      data: {
+        labels: [...this.ejeX, ''],
+        datasets: [
+          
+          {
+          label: 'Cantidad',
+          data: [...this.ejeY, null],
+          backgroundColor: '#21b5daff',
+          borderWidth: 2,
+          hoverBackgroundColor: '#0077b6',
+          borderRadius: 5,
+          barThickness: 65,
+          order: 2
+          },
+
+          {
+          label: 'Tendencia',
+          type: 'line',
+          data: [...this.ejeY, null],
+          borderColor: 'red',
+          borderWidth: 2,
+          pointRadius: 3,
+          order:1
+          },
+          {
+            label: 'Media',
+            type: 'line',
+            data: lineaMedia,
+            borderColor: 'grey',
+            borderWidth: 2,
+            pointRadius: 2,
+            borderDash: [5,5],
+            order:3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: { 
+            grid: { display: false, },
+            ticks: {
+              font: {
+                size: 13,
+              },
+            }
+            
+          },
+          y: {
+            
+            min: this.minValue,
+            max: this.maxValue,
+            ticks: {
+              stepSize: this.stepSize,
+              font: {
+                size: 14,
+              },
+              callback: (value: string | number) =>  + value + this.etiqueta
+            }
+          }
+        },
+        plugins: {
+          legend: { display: true },
+          tooltip: {
+            callbacks: {
+              label: (context: any) => {
+                let label = context.dataset.label || '';
+                if (label) { label += ': '; }
+                if (context.parsed.y !== null) {
+                  label += new Intl.NumberFormat('es-ES').format(context.parsed.y) + this.etiqueta;
+                }
+                return label;
+              }
+            }
+          },
+        }
+      }
+    });
+    }
+
   }
 }

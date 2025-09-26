@@ -1,4 +1,4 @@
-    <mat-card class="chart-card">
+    <mat-card [ngClass]="estilo === 1 ? 'chart-card-for-two' : 'chart-card-for-one'">
       <mat-card-header class="header">
         <mat-card-title class="title">{{title}}</mat-card-title>
       </mat-card-header>

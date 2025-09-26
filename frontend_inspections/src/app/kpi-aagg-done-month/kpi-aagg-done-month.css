@@ -1,8 +1,20 @@
-.chart-card {
-  max-width: 96%;
-  margin-top: 2%;
+.chart-card-for-two {
+  max-width: 100%;
+    margin-top: 2%;
   margin-left: 2%;
+  margin-right: 2%;
   margin-bottom: 2%;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #3C4045;
+}
+
+.chart-card-for-one {
+  max-width: 100%;
+  margin-top: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
