@@ -37,6 +37,8 @@ export class Dashboard implements OnInit {
   inspectionsEachMonth: any [] = [];
   monthsToKPIGraphic: any [] = [];
   aaggToKPIGraphic: any [] = [];
+  totalFacturacionAaggs: any [] = [];
+  totalNighPlusAvailability: any[] = [];
   totalNetToKPIGraphic: any[] = [];
   semaforoVerde: boolean = false;
 
@@ -111,13 +113,20 @@ export class Dashboard implements OnInit {
         this.windFarms = results.windFarmsObject;
         this.inspections = results.inspectionObject;
         this.inspectionsEachMonth = results.inspectionsEachMonth;
+        console.warn('inspectionsEachMonth',this.inspectionsEachMonth);
+
 
         for(const indice of this.inspectionsEachMonth) {
 
           this.monthsToKPIGraphic.push(indice.mes);
           this.aaggToKPIGraphic.push(indice.aagg_inspeccionados);
+          this.totalFacturacionAaggs.push(indice.facturacion_aaggs);
+          this.totalNighPlusAvailability.push(indice.total_nigth_plus_availability);
           this.totalNetToKPIGraphic.push(Math.round(indice.total_net));
         }
+        
+        console.warn(this.inspectionsEachMonth);
+
 
         if(this.monthsToKPIGraphic.length > 0 && this.aaggToKPIGraphic.length > 0 && this.totalNetToKPIGraphic.length > 0){
           this.semaforoVerde = true;

@@ -150,7 +150,8 @@
           *ngIf="semaforoVerde == true" 
           [modalidad]="2"
           [ejeX]="monthsToKPIGraphic"
-          [ejeY]="totalNetToKPIGraphic"
+          [ejeY]="totalFacturacionAaggs"
+          [ejeYplusY]="totalNighPlusAvailability"
           [minValue]="0"
           [maxValue]="1800"
           [stepSize]="200"></app-kpi-aagg-done-month>
@@ -178,16 +179,15 @@
       </div>
       <div class="kpis-siguienteNivel">
         <div class="kpi-item">
-          <app-kpi-aagg-done-month
-          [estilo]="2"
-        [modalidad]="2"
-        [title]="'Salarios 2025'"
-        [etiqueta]="' €'"
-        [minValue]="1000"
-        [maxValue]="2500"
-        [stepSize]="250"></app-kpi-aagg-done-month>
+            <app-kpi-aagg-done-month
+            [estilo]="2"
+          [modalidad]="3"
+          [title]="'Salarios'"
+          [etiqueta]="' €'"
+          [minValue]="1250"
+          [maxValue]="2750"
+          [stepSize]="250"></app-kpi-aagg-done-month>
         </div>
-        
       </div>
 
       
