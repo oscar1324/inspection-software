@@ -54,6 +54,10 @@ export class InspectionsService {
     return this.http.get<any>(`${this.apiUrl}/get_months_and_aagg_inspections`)
   }
 
+  getTotalNetGeneratedEachDay(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/get_total_net_generated_each_day`)
+  }
+
 
   
 }

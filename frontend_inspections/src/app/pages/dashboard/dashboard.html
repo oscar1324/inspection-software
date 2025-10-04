@@ -179,8 +179,23 @@
       </div>
       <div class="kpis-siguienteNivel">
         <div class="kpi-item">
-            <app-kpi-aagg-done-month
-            [estilo]="2"
+          <app-kpi-aagg-done-month
+          *ngIf="semaforoVerde == true" 
+          [estilo]="2"
+          [modalidad]="4"
+          [title]="'Dinero generado cada jornada de inspección'"
+          [ejeY]="ejeY"
+          [ejeX]="ejeX"
+          [etiqueta]="' €'"
+          [minValue]="0"
+          [maxValue]="300"
+          [stepSize]="50"></app-kpi-aagg-done-month>
+        </div>
+      </div>
+      <div class="kpis-siguienteNivel">
+        <div class="kpi-item">
+          <app-kpi-aagg-done-month
+          [estilo]="2"
           [modalidad]="3"
           [title]="'Salarios'"
           [etiqueta]="' €'"

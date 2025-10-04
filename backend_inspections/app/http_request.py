@@ -204,6 +204,28 @@ def getTotalNetCountGenerate():
         print(f"Error al ejecutar function -> getTotalNetCountGenerate:", e)
         return 0
     
+def getAllNetTotalGeneratedEachDay():
+    conn = connect_to_db()
+    cursor = conn.cursor()
+
+    results = []
+
+    query = """SELECT (net_total_income + 65) as dinero_generado_total, date FROM public.inspections
+        ORDER BY date asc"""
+    
+    
+    try:
+        cursor.execute(query)
+        rows = cursor.fetchall()
+
+        for fila in rows:
+            results.append({
+                "total_net_generated" : fila[0],
+                "date" : fila[1],
+            })
+        return results
+    except Exception as ex:
+        return print('Error durante ejecución sql obtencion getAllNetTotalGeneratedandMonths: ', ex)
 
 def getAaggInspectiosforMonths():
     conn = connect_to_db()

@@ -66,15 +66,12 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
 
   createBarGraphic(): void {
     let neto_indice: number = 0;
-    console.warn('ANTES ejeYNeto' , this.ejeYNeto);
+
     if(this.ejeY.length > 0 && this.ejeYplusY.length) {
-      console.warn("¡SE CUMPLE CONDICION!");
+
       this.ejeYNeto = this.ejeY.map( value => Math.round(value * 0.8));
       this.ejeYplusY = this.ejeYplusY.map(value => Math.round(value * 0.8));
-
-
     }
-  console.warn('ejeYNeto' , this.ejeYNeto);
 
     if(this.title == 'Salarios') {
 
@@ -99,7 +96,6 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
       const total = this.ejeY.reduce((acumulador, valor) => acumulador + valor, 0);
       const media = Math.round(total / this.ejeY.length);
       const lineaMedia =  new Array( this.ejeY.length + 1).fill(media)
-      console.warn('linea media modalidad 1' ,lineaMedia);
 
       this.chartInstancia = new Chart(canvas, {
       type: 'bar',
@@ -174,11 +170,9 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
     } else if(this.modalidad == 2) {
 
       const total = (this.ejeYNeto.reduce((acumulador, valor) => acumulador + valor, 0)) + (this.ejeYplusY.reduce((acumulador, valor) => acumulador + valor, 0));
-      console.warn('total', total);
       const media = Math.round(total / this.ejeY.length);
-      console.warn('media',media);
       const lineaMedia =  new Array( this.ejeYNeto.length + 1).fill(media);
-      console.warn('lineaMedia',lineaMedia);
+
 
       const tendenciaTotal = this.ejeYNeto.map((value, i) => value + this.ejeYplusY[i]);
 
@@ -347,6 +341,8 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
         plugins: {
           legend: { display: true },
           tooltip: {
+            mode: 'index',
+            intersect: false,
             callbacks: {
               label: (context: any) => {
                 let label = context.dataset.label || '';
@@ -361,7 +357,73 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
         }
       }
     });
-    }
+    } else if(this.modalidad == 4) {
+      console.warn('aviso');
+      console.warn(this.ejeY);
+      this.chartInstancia = new Chart(canvas, {
+      type: 'bar',
+      data: {
+        labels: [...this.ejeX, ''],
+        datasets: [
+          
 
+          {
+          label: 'Dinero generado',
+          type: 'line',
+          data: [...this.ejeY, null],
+          borderColor: 'red',
+          borderWidth: 2,
+          pointRadius: 0,
+          order:1
+          }
+
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: { 
+            grid: { display: false, },
+            ticks: {
+              font: {
+                size: 13,
+              },
+            }
+            
+          },
+          y: {
+            
+            min: this.minValue,
+            max: this.maxValue,
+            ticks: {
+              stepSize: this.stepSize,
+              font: {
+                size: 14,
+              },
+              callback: (value: string | number) =>  + value + this.etiqueta
+            }
+          }
+        },
+        plugins: {
+          legend: { display: true },
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+            callbacks: {
+              label: (context: any) => {
+                let label = context.dataset.label || '';
+                if (label) { label += ': '; }
+                if (context.parsed.y !== null) {
+                  label += new Intl.NumberFormat('es-ES').format(context.parsed.y) + this.etiqueta;
+                }
+                return label;
+              }
+            }
+          },
+        }
+      }
+      });
+    }
   }
 }

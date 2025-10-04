@@ -40,6 +40,9 @@ export class Dashboard implements OnInit {
   totalFacturacionAaggs: any [] = [];
   totalNighPlusAvailability: any[] = [];
   totalNetToKPIGraphic: any[] = [];
+  totalNetGeneratedEachDay: any[] = [];
+  ejeY: any[] = [];
+  ejeX: any[] = [];
   semaforoVerde: boolean = false;
 
   totalCountWTGPiloted!: number;
@@ -103,7 +106,8 @@ export class Dashboard implements OnInit {
       windFarmsObject: this.inspectionService.getAllWindFarm(),
       inspectionObject: this.inspectionService.getAllInspections(),
       inspectionsEachMonth: this.inspectionService.getMonthsAndAAGGInspected(),
-      totalNetEachMonth: this.inspectionService.getTotalNetExtraCountMonth()
+      totalNetEachMonth: this.inspectionService.getTotalNetExtraCountMonth(),
+      totalNetGeneratedEachDay: this.inspectionService.getTotalNetGeneratedEachDay()
     }).subscribe({
 
       next: (results) => {
@@ -113,6 +117,7 @@ export class Dashboard implements OnInit {
         this.windFarms = results.windFarmsObject;
         this.inspections = results.inspectionObject;
         this.inspectionsEachMonth = results.inspectionsEachMonth;
+        this.totalNetGeneratedEachDay = results.totalNetGeneratedEachDay;
         console.warn('inspectionsEachMonth',this.inspectionsEachMonth);
 
 
@@ -124,11 +129,17 @@ export class Dashboard implements OnInit {
           this.totalNighPlusAvailability.push(indice.total_nigth_plus_availability);
           this.totalNetToKPIGraphic.push(Math.round(indice.total_net));
         }
+
+        for(const indice of this.totalNetGeneratedEachDay) {
+          this.ejeY.push(Math.round(indice.total_net_generated))
+          this.ejeX.push(indice.date)
+        }
         
-        console.warn(this.inspectionsEachMonth);
+        console.warn(this.ejeY);
+        console.warn(this.ejeX);
 
 
-        if(this.monthsToKPIGraphic.length > 0 && this.aaggToKPIGraphic.length > 0 && this.totalNetToKPIGraphic.length > 0){
+        if(this.ejeX.length > 0 && this.ejeY.length && this.monthsToKPIGraphic.length > 0 && this.aaggToKPIGraphic.length > 0 && this.totalNetToKPIGraphic.length > 0){
           this.semaforoVerde = true;
         }
           
