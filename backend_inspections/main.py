@@ -1,6 +1,6 @@
 from app.db_connection import connect_to_db
 from fastapi import FastAPI
-from app.http_request import execute_insert_daily_inspection, get_all_inspection, execute_insert_windFarm, getTotalCountWTGPiloted,getTotalNetCountGenerate , getTotalCountWTG, getAllWindFarm, getAaggInspectiosforMonths, getAllNetTotalGeneratedEachDay
+from app.http_request import execute_insert_daily_inspection, get_all_inspection, execute_insert_windFarm, getTotalCountWTGPiloted,getTotalNetCountGenerate , getTotalCountWTG, getAllWindFarm, getAaggInspectiosforMonths, getAllAaggsTotalGeneratedEachDay
 from app.models.modelInspectionDTO import Inspection
 from app.models.modelWindFarmDTO import WindFarm
 from app.models.modelWindFarmIDDTO import WindFarmID
@@ -249,9 +249,9 @@ def get_all_windFarm():
 def get_aagg_inspections_each_months():
     return getAaggInspectiosforMonths()
 
-@app.get("/get_total_net_generated_each_day")
-def getAllNetTotalGeneratedandMonthsFather():
-    return getAllNetTotalGeneratedEachDay()
+@app.get("/get_total_Aaggs_generated_each_day")
+def getAllAaggsTotalGeneratedandMonthsFather():
+    return getAllAaggsTotalGeneratedEachDay()
 
 @app.post("/deleteBy_id")
 def deleteWindFarmID(data: WindFarmID):

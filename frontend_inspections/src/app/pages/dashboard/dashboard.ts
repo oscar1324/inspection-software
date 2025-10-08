@@ -40,7 +40,7 @@ export class Dashboard implements OnInit {
   totalFacturacionAaggs: any [] = [];
   totalNighPlusAvailability: any[] = [];
   totalNetToKPIGraphic: any[] = [];
-  totalNetGeneratedEachDay: any[] = [];
+  totalAaggsGeneratedEachDay: any[] = [];
   ejeY: any[] = [];
   ejeX: any[] = [];
   semaforoVerde: boolean = false;
@@ -107,7 +107,7 @@ export class Dashboard implements OnInit {
       inspectionObject: this.inspectionService.getAllInspections(),
       inspectionsEachMonth: this.inspectionService.getMonthsAndAAGGInspected(),
       totalNetEachMonth: this.inspectionService.getTotalNetExtraCountMonth(),
-      totalNetGeneratedEachDay: this.inspectionService.getTotalNetGeneratedEachDay()
+      totalAaggsGeneratedEachDay: this.inspectionService.getTotalAaggsGeneratedEachDay()
     }).subscribe({
 
       next: (results) => {
@@ -117,7 +117,7 @@ export class Dashboard implements OnInit {
         this.windFarms = results.windFarmsObject;
         this.inspections = results.inspectionObject;
         this.inspectionsEachMonth = results.inspectionsEachMonth;
-        this.totalNetGeneratedEachDay = results.totalNetGeneratedEachDay;
+        this.totalAaggsGeneratedEachDay = results.totalAaggsGeneratedEachDay;
         console.warn('inspectionsEachMonth',this.inspectionsEachMonth);
 
 
@@ -130,8 +130,8 @@ export class Dashboard implements OnInit {
           this.totalNetToKPIGraphic.push(Math.round(indice.total_net));
         }
 
-        for(const indice of this.totalNetGeneratedEachDay) {
-          this.ejeY.push(Math.round(indice.total_net_generated))
+        for(const indice of this.totalAaggsGeneratedEachDay) {
+          this.ejeY.push(Math.round(indice.number_wind_turbines_generators))
           this.ejeX.push(indice.date)
         }
         

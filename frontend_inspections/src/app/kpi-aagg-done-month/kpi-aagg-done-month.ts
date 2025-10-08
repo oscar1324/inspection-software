@@ -368,11 +368,11 @@ export class KpiAaggDoneMonth implements OnInit, AfterViewInit, OnChanges {
           
 
           {
-          label: 'Dinero generado',
+          label: 'AAGG inspeccionados',
           type: 'line',
           data: [...this.ejeY, null],
-          borderColor: 'red',
-          borderWidth: 2,
+          borderColor: '#0077b6',
+          borderWidth: 3,
           pointRadius: 0,
           order:1
           }
