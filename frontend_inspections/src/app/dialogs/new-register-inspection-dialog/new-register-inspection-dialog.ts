@@ -35,7 +35,7 @@ export class NewRegisterInspectionDialog {
 
   id_obtenido: number = 0;
   country_obtenido: string = "";
-
+  private audioPlayer: HTMLAudioElement;
 
   constructor(
     public dialogRef: MatDialogRef<NewRegisterInspectionDialog>,
@@ -46,6 +46,10 @@ export class NewRegisterInspectionDialog {
     this.id_obtenido = data.id;
     this.country_obtenido = data.country;
     console.error("ID QUE LEGA: " , this.id_obtenido);
+    
+    this.audioPlayer = new Audio();
+    this.audioPlayer.src= "assets/audio/correcto.mp3";
+    this.audioPlayer.load();
 
   }
 
@@ -79,6 +83,12 @@ export class NewRegisterInspectionDialog {
   comment_value: string = "";
   wind_farm_id!: number;
   photovoltaic_plant_id: number = 3;
+
+  reproduceAudio(): void {
+    this.audioPlayer.play().catch( error => {
+      console.error("Error al reproducir el audio: " , error);
+    })
+  }
 
 
   sendNewRegister(): void {
@@ -130,11 +140,12 @@ export class NewRegisterInspectionDialog {
     this.inspectionService.insertNewDialyRegister(objeto_json_new_inspection).subscribe({
       next: (response) => {
         this.dialogRef.close();
+        this.reproduceAudio();
         this._snackbar.open('¡Inspección registrada con exito!', 'Cerrar', {
           duration: 3000,
           horizontalPosition: 'center',
           verticalPosition: 'top'
-        });
+        },);
         this.refrescar();
       },
       error: (error) => {
@@ -144,6 +155,9 @@ export class NewRegisterInspectionDialog {
           horizontalPosition: 'center',
           verticalPosition: 'top'
         });
+      },
+      complete: () => {
+        
       }
     })
 

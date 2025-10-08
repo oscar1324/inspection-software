@@ -32,6 +32,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class NewWindFarmDialog {
 
+  private audioPlayer: HTMLAudioElement;
   mostrar: boolean = false; 
   opcionesCountry = [
     {valor: 'España', nombre: 'España'},
@@ -65,12 +66,22 @@ export class NewWindFarmDialog {
     private windFarmService: WindFarmService,
     private _snackBar: MatSnackBar
   ) {
-
+    // 1- Crear instancia de objeto
+    this.audioPlayer = new Audio();
+    // 2- Cargar el audio para evitar latencias cuando se inicialice objeto
+    this.audioPlayer.src = "assets/audio/correcto.mp3"; 
+    this.audioPlayer.load();
   }
 
   // This function close the Dialog
   closeDialog(): void {
     this.dialogRef.close();
+  }
+
+  reproducirAudio(): void {
+    this.audioPlayer.play().catch( error => {
+      console.error('Se ha producido un error en el sonido de insección de parque eólico', error);
+    })
   }
 
   mostrarSnackBar(mensaje: string, duracion: number = 2000): void {
@@ -96,7 +107,7 @@ export class NewWindFarmDialog {
       next: (response) => {
         console.log('PARQUE EÓLICO CREADO CON ÉXITO:', response);
         this.dialogRef.close(true);
-        
+        this.reproducirAudio();
         this._snackBar.open('Parque eólico creado con éxito', 'Cerrar', {
           duration: 3000,
           horizontalPosition: 'center',
