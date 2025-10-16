@@ -82,6 +82,8 @@ tr:last-child {
     padding: 1%;
 }
 
+
+
 .tr-table2:hover {
   background-color: #4a4d52; 
 }
@@ -168,6 +170,28 @@ button {
 .col-num {
     width: 10%;
     font-weight: 600;
+    
+}
+
+.col-num-tr-table2 {
+    width: 10%;
+    font-weight: 600;
+
+}
+
+.tr-table2:first-child{
+    color: #d4b506 ;
+    font-weight: 600;
+}
+
+.tr-table2:nth-child(2){
+    color: #d4b506 ;
+    font-weight: 600;
+}
+
+.tr-table2:nth-child(3){
+    color: #d4b506 ;
+    font-weight: 600;
 }
 
 .col-name-pe{
@@ -247,6 +271,8 @@ button {
 }
 
 
+
+
 .box-titulo-boton-der-tecnhinal-data{
 
     padding-left: 30px;
@@ -277,7 +303,7 @@ button {
     width: 2%;
     font-weight: 600;
     padding-right: 5%;
-
+    
 }
 
 
