@@ -32,6 +32,16 @@
                 <tr class="tr-table"  *ngFor="let item of almacenDatosWindFarm; let i = index">
                     <td class="col-num">{{i + 1}}</td>
                     <td class="col-name-pe" (click)="viewDetailWindFarm(item.id)">{{item.name}}</td>
+                    <td>
+                        
+                        <span [ngClass]="{
+                            'fi-es': item.country === 'España',
+                            'fi-pl': item.country === 'Polonia',
+                            'fi-pt': item.country === 'Portugal',
+                            'fi-fr': item.country === 'Francia',
+                            
+                        }" class="fi"></span>
+                    </td>
                     <td class="col-porcentage">
                         <button class="button-delete" mat-fab color="primary" (click)="openDialogToDelete(item.id, item.name)"> 
                             <mat-icon>delete</mat-icon>

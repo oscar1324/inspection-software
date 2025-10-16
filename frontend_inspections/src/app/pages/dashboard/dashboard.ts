@@ -82,6 +82,7 @@ export class Dashboard implements OnInit {
 
   }
 
+
   traducir(mes_a_traducir: string): void {
 
     if(mes_a_traducir == "September"){

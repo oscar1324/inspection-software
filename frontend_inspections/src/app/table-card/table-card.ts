@@ -84,7 +84,7 @@ export class TableCard implements OnInit, OnChanges{
 
 
   nextNavigation(id: number): void {
-    console.log(this.almacenDatosWindFarm);
+    console.warn('******************** ', this.almacenDatosWindFarm);
     const windFarmSeleccionado = this.almacenDatosWindFarm.find( //Busca por campo y enuentra todos los datos cuyo id sea x
       (parque) => parque.id === id 
 

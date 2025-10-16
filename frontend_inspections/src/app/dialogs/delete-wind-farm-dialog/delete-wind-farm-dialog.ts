@@ -21,6 +21,8 @@ import { WindFarmService } from '../../services/WindFarmService';
 })
 export class DeleteWindFarmDialog {
 
+  private audioPlayer: HTMLAudioElement;
+
   id: number = -1;
   name: string = "";
 
@@ -34,8 +36,16 @@ export class DeleteWindFarmDialog {
   ){
     this.id = data.id;
     this.name = data.nameWindFarm;
+    this.audioPlayer = new Audio();
+    this.audioPlayer.src = "assets/audio/correcto.mp3";
+    this.audioPlayer.load();
   }
 
+  reproducirAudio(): void {
+    this.audioPlayer.play().catch( error => {
+      console.error('Error en reproducción de audio en delete -> ' , error);
+    })
+  }
   closeDialog(): void {
     this.dialogRef.close();
   }
@@ -51,7 +61,7 @@ export class DeleteWindFarmDialog {
       next: (response) => {
         console.log('Se ha borrado exitosamente el parque eolico con ID', this.id);
         this.dialogRef.close();
-        
+        this.reproducirAudio();
         this._snackbar.open('Parque eólico eliminado con exito', 'Cerrar', {
           duration: 3000,
           horizontalPosition: 'center',

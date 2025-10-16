@@ -65,7 +65,7 @@ export class NewRegisterInspectionDialog {
   ]
 
   opciones_pernocta = [
-    {valor: '40', nombre : 'Sí'},
+    {valor: '25', nombre : 'Sí'},
     {valor: '0', nombre: 'No'}
   ]
 

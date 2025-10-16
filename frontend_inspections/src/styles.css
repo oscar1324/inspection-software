@@ -6,3 +6,34 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.fi {
+    background-image: none !important;
+    padding-right: 0.3em;
+    
+}
+
+.fi:before {
+    content: "";
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 25px;
+    background-size: contain;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+
+.fi-es::before {
+    background-image: url("assets/flags/es.svg");
+}
+
+.fi-fr::before {
+    background-image: url("assets/flags/fr.svg");
+}
+
+.fi-pl::before {
+    background-image: url("assets/flags/pl.svg");
+}
+.fi-pt::before {
+    background-image: url("assets/flags/pt.svg");
+}

@@ -53,6 +53,8 @@ export class TechnicalDataWindfarm implements OnInit {
   cantidadDiasRequeridosEnParque: number = 0;
   cantidadAerogeneradoresinspeccionadosEnParque: number = 0;
   
+  private windFarmName!: string;
+  imagePath: string = 'assets/images/not-photo.png';
 
   constructor(
     private router: Router,
@@ -66,10 +68,17 @@ export class TechnicalDataWindfarm implements OnInit {
 
   ngOnInit(): void {
     console.log("Datos recibidos por navegación -> ", this.datosRecibidos);
-
+    
     this.asignarDatosNavegacion();
     this.getDataInspection();
     
+  }
+
+  setWindFarmImage():void {
+    console.warn('Nombre del parque eólico ---> ' , this.name);
+
+    //1- Normalizar nombre de imagen carpeta para evitar errores y comprobar en console.log resultado
+    //2- Ruta esperada
   }
 
   getDataInspection(): void {
@@ -110,6 +119,7 @@ export class TechnicalDataWindfarm implements OnInit {
     this.type_blade = this.datosRecibidos.type_blade;
     this.total_aagg = this.datosRecibidos.total_aagg
     this.idObtenidoNavegacion = this.datosRecibidos.id;
+    this.setWindFarmImage();
   }
 
   almacenarIngresosVariable(array: Inspection[]): void {
