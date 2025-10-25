@@ -18,6 +18,7 @@ import { KpiPorcentajeCard } from '../../kpi-porcentaje-card/kpi-porcentaje-card
 import { TableCard } from '../../table-card/table-card';
 import { KpiExtraMonth } from '../../kpi-extra-month/kpi-extra-month';
 import { KpiAaggDoneMonth } from '../../kpi-aagg-done-month/kpi-aagg-done-month';
+import { PilotDroneProfile } from '../../pilot-drone-profile/pilot-drone-profile';
 
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
@@ -25,7 +26,7 @@ Chart.register(...registerables);
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ CommonModule, MatButtonModule, MatCard, MatCardHeader, KpiPorcentajeCard, KpiAaggDoneMonth, TableCard, KpiExtraMonth],
+  imports: [ CommonModule,MatCard, MatCardHeader, MatButtonModule, KpiPorcentajeCard, KpiAaggDoneMonth, TableCard, KpiExtraMonth, PilotDroneProfile],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })

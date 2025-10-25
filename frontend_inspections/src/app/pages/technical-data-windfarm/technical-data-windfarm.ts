@@ -74,8 +74,6 @@ export class TechnicalDataWindfarm implements OnInit {
     'PE Boussac' : 'pe-boussac.JPG',
     'PE Croix' : 'pe-croix.jpg',
     'PE Viñas' : 'pe-viñas.JPG',
-    '' : '',
-    '' : '',
   }
 
   constructor(

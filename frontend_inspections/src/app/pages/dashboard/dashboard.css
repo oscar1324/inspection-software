@@ -19,36 +19,10 @@
 
 }
 
-.card{
+
+.profile-card { /*---*/
     width: 75%;
-    background-color: #3C4045;
-}
-
-.pilot-card-header-content {
-    display: flex;
-    flex-direction: row;
-    
-}
-
-.image-profile{
-    width: 280px;
-    height: 300px;
-    border-radius: 5%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-}
-
-.pilot-image-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.pilot-profile {
-    width: 45%;
-    margin-bottom: 2px;
-    margin-left: 50px;
-    color: #F5F5F5 ;
+    height: 78%;
     
 }
 
@@ -63,69 +37,12 @@
 .personalData {
     display: flex;
     flex-direction: row;
-    margin: 0;
-    padding: 1% ;
+    margin: 1%;
     justify-self: stretch;
-    
 }
 
 
 
-/** Estilos de los datos personales del piloto de drones **/
-.caja-datos-tecnicos {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-}
-
-.card:hover {
-    background-color: #4a4d52; 
-}
-
-.profile-izq {
-    align-items: baseline;
-}
-.profile-der {
-    margin-right: 35px;
-}
-
-.caja-detalle{
-    display: flex;
-    flex-direction: column;
-}
-
-.caja-detalle h5{
-    margin-top: 0px;
-    margin-bottom: 0px;
-    font-weight: 5000;
-    color: rgb(122, 122, 122);
-}
-
-.caja-detalle p {
-    margin-top: 0px;
-    margin-bottom: 10px;
-}
-
-/** Estilos de la lista de drones pilotados**/
-.lista-item{
-    display: flex;
-    flex-direction: column;
-    padding-left: 15px;
-    margin-left: 0;
-    list-style: 0;
-
-}
-
-.fi {
-    background-color: red;
-    width: 30px;
-    height: 30px;
-}
-.item{
-    
-    font-size: 15px;
-}
 
 /** Estilos de kpis-level1*/
 .kpis-level1 {

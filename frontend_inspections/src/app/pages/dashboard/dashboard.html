@@ -8,85 +8,10 @@
 
       <div class="personalData">
         
-        <mat-card class="card">
-          <mat-card-header class="pilot-card-header-content">
-            <div class="pilot-image-container">
-              
-              <img class="image-profile" mat-card-image src="assets/images/perfil2.JPG"/>
+        <div class="profile-card">
+          <app-pilot-drone-profile></app-pilot-drone-profile>
+        </div>
 
-            </div>
-            <div class="pilot-profile">
-               <h2>Piloto de drone</h2>
-              <div class="caja-datos-tecnicos">
-                  
-                <div class="profile-izq">
-                  <div class="caja-detalle">
-                    <h5>Nombre:</h5>
-                    <p class="dato-detalle">Óscar </p>
-                  </div>
-
-                  <div class="caja-detalle">
-                    <h5>Apellidos:</h5>
-                    <p class="dato-detalle">Izquierdo Sanchón </p>
-                  </div>
-                  <div class="caja-detalle">
-                    <h5>Edad:</h5>
-                    <p class="dato-detalle">26 </p>
-                  </div>
-                                 
-
-                  <div class="caja-detalle">
-                    <h5>Empresa:</h5>
-                    <p class="dato-detalle"> Arborea Intellbird S.L</p>
-                  </div>
-
-                  <div class="caja-detalle">
-                    <h5>Provincia:</h5>
-                    <p class="dato-detalle"> Salamanca</p>
-                  </div>
-                  
-
-                  <div class="caja-detalle">
-                    <h5>Fecha de incorporación:</h5>
-                    <p class="dato-detalle"> 12/09/2022</p>
-                  </div>
-
-                </div>
-
-                <div class="profile-der">
-                  
-                  <div class="caja-detalle">
-                    <h5>Especialización:</h5>
-                    <p class="dato-detalle"> Revisiones industriales</p>
-                  </div>
-                  <div class="caja-detalle">
-                    <h5>Licencia:</h5>
-                    <p class="dato-detalle"> A1/A3</p>
-                  </div>
-
-                  <div class="caja-detalle">
-                    <h5>Categoria:</h5>
-                    <p class="dato-detalle"> Abierta</p>
-                  </div>
-
-
-                  <div class="caja-detalle">
-                    <h5>Aeronaves pilotadas:</h5>
-                    <ul class="lista-item">
-                      <li class="item">TFG-08</li>
-                      <li class="item">TFG-09</li>
-                      <li class="item">DJI 1 Mavic</li>
-                      <li class="item">DJI 2 Enterprise</li>
-                      <li class="item">DJI 3 Mini Pro</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-            
-          </mat-card-header>
-        </mat-card>
         <div class="kpi-total-pilotado">
           <app-kpi-porcentaje-card 
             *ngIf="stateDataLoad"
