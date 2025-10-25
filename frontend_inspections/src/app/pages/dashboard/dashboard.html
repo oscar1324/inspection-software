@@ -12,7 +12,7 @@
           <mat-card-header class="pilot-card-header-content">
             <div class="pilot-image-container">
               
-              <img class="image-profile" mat-card-image src="assets/images/fotoPerfilPiloto.jpg"/>
+              <img class="image-profile" mat-card-image src="assets/images/perfil2.JPG"/>
 
             </div>
             <div class="pilot-profile">
@@ -175,21 +175,6 @@
             [almacenDatosWindFarm]="windFarms"
             [opcion]="2">
           </app-table-card>
-        </div>
-      </div>
-      <div class="kpis-siguienteNivel">
-        <div class="kpi-item">
-          <app-kpi-aagg-done-month
-          *ngIf="semaforoVerde == true" 
-          [estilo]="2"
-          [modalidad]="4"
-          [title]="'Aerogeneradores inspeccionados'"
-          [ejeY]="ejeY"
-          [ejeX]="ejeX"
-          [etiqueta]="' AAGG'"
-          [minValue]="0"
-          [maxValue]="15"
-          [stepSize]="1"></app-kpi-aagg-done-month>
         </div>
       </div>
       <div class="kpis-siguienteNivel">

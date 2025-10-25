@@ -181,17 +181,20 @@ button {
 
 .tr-table2:first-child{
     color: #d4b506 ;
-    font-weight: 600;
+    background-color: #33363a;
+    font-weight: 450;
 }
 
 .tr-table2:nth-child(2){
     color: #d4b506 ;
-    font-weight: 600;
+    font-weight: 450;
+    background-color: #33363a;
 }
 
 .tr-table2:nth-child(3){
     color: #d4b506 ;
-    font-weight: 600;
+    font-weight: 450;
+    background-color: #33363a;
 }
 
 .col-name-pe{

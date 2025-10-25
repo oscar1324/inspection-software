@@ -56,6 +56,28 @@ export class TechnicalDataWindfarm implements OnInit {
   private windFarmName!: string;
   imagePath: string = 'assets/images/not-photo.png';
 
+
+  claveValorImagenes: Record<string ,string> = {
+    'PE Candeeiros' : 'pe-candeeiros.jpg',
+    'PE São Cristóvão ' : 'pe-são-cristóvão.jpg',
+    'PE Pampilhosa' : 'pe-pampilhosa.jpg',
+    'PE Munera I' : 'pe-muneraI.jpg',
+    'PV Fotovoltaico' : 'pv-fotovoltaico.jpg',
+    'PE Alvão' : 'pe-alvão.jpg',
+    'PE Bon Vent de Vilalba' : 'pe-bon-vent-de-vilalba.jpg',
+    'PE Alto do Monçao' : 'pe-alto-monçao.jpg',
+    'PE Catefica' : 'pe-catefica.jpg',
+    'PE Campanario' : 'pe-campanario.jpg',
+    'PE Korytnica II' : 'pe-korytnica-II.jpg',
+    'PE Zopowy' : 'pe-zopowy.jpg',
+    'PE Chambonchard' : 'pe-chambonchard.jpg',
+    'PE Boussac' : 'pe-boussac.JPG',
+    'PE Croix' : 'pe-croix.jpg',
+    'PE Viñas' : 'pe-viñas.JPG',
+    '' : '',
+    '' : '',
+  }
+
   constructor(
     private router: Router,
     private inspection: InspectionsService,
@@ -74,12 +96,13 @@ export class TechnicalDataWindfarm implements OnInit {
     
   }
 
-  setWindFarmImage():void {
-    console.warn('Nombre del parque eólico ---> ' , this.name);
-
-    //1- Normalizar nombre de imagen carpeta para evitar errores y comprobar en console.log resultado
-    //2- Ruta esperada
+  getWindFarmImage():string {
+    const imagen = this.claveValorImagenes[this.name] || 'not-photo.png';
+    const path = `assets/images/${imagen}`;
+    return path;
   }
+
+
 
   getDataInspection(): void {
     console.log('ID A ENVIAR -> ', this.idObtenidoNavegacion);
@@ -119,7 +142,7 @@ export class TechnicalDataWindfarm implements OnInit {
     this.type_blade = this.datosRecibidos.type_blade;
     this.total_aagg = this.datosRecibidos.total_aagg
     this.idObtenidoNavegacion = this.datosRecibidos.id;
-    this.setWindFarmImage();
+    this.getWindFarmImage();
   }
 
   almacenarIngresosVariable(array: Inspection[]): void {
