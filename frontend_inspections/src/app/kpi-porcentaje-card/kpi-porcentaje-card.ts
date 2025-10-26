@@ -1,3 +1,4 @@
+
 import { Component,Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -23,11 +24,10 @@ export class KpiPorcentajeCard  implements OnChanges{
 
   @Input() title: string = 'KPI Gráfico';
   @Input() valueActual!: number ;
-  @Input() max!:number;
-  @Input() unit: string = '%';
-  @Input() num1!: number;
-  @Input() num2!: number;
+  @Input() num1!: number; // Total aerogeneradores pilotados
+  @Input() num2!: number; // total aerogeneradores inspeccionados
 
+  unit: string = '%';
   porcentaje!: number;
   porcentajeRedondeado!: number;
   porcentajeRestante!: number;
@@ -36,8 +36,6 @@ export class KpiPorcentajeCard  implements OnChanges{
   
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-
-  
   //1. Configuración general del gráfico
   public doughnutOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -53,9 +51,9 @@ export class KpiPorcentajeCard  implements OnChanges{
     labels: [],
     datasets: [{
       data: [],
-      backgroundColor: [ this.colorGrafico, '#6b6d6eff'], //#17B37B - #3C4045
+      backgroundColor: [ this.colorGrafico, '#6b6d6eff'],
       hoverBackgroundColor: ['#21b5daff','#618597ff'],
-      borderWidth: 0,
+      borderWidth: 0.5,
       rotation: -90,
       circumference: 180
 
@@ -74,7 +72,7 @@ export class KpiPorcentajeCard  implements OnChanges{
 
   // Se redibuja el gráfico cada vez que un valor cambia 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['valueActual'] || changes['max'] || changes['num1'] || changes['num2']) {
+    if (changes['valueActual']|| changes['num1'] || changes['num2']) {
       this.updateChartData();
       
       const newValorNum1 = this.num1;
@@ -95,17 +93,15 @@ export class KpiPorcentajeCard  implements OnChanges{
   private updateChartData(): void {
 
     // 1. Crear los porcentajes
-    if(this.max > 0){
-
-      this.porcentaje = (this.valueActual / this.max) * 100;
+    if(this.num2 > 0){
+      this.porcentaje = (this.valueActual / this.num2) * 100;
       this.porcentajeRestante = 100 - this.porcentaje;
-      
       this.porcentajeRedondeado = Math.round(this.porcentaje);
+
     } else {
       this.porcentaje = 0;
       this.porcentajeRestante = 100;
     }
-    
   
     // 2. Asignar porcentajes al gráfico
     this.doughnutData.labels = [];
