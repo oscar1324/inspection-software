@@ -18,18 +18,19 @@
 
 }
 
+
 .pilot-image-container { /*---*/
+
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .pilot-profile { /*---*/
-    width: 45%;
+    width: 100%;
     margin-bottom: 2px;
-    margin-left: 50px;
     color: #F5F5F5 ;
-    
 }
 
 .tituloPiloto {
@@ -37,6 +38,9 @@
     margin-bottom: 2%;
 }
 
+.caja-titulo-piloto {
+    margin-left: 3%;
+}
 
 /** Estilos de los datos personales del piloto de drones **/
 .caja-datos-tecnicos {
@@ -52,9 +56,12 @@
 
 .profile-izq {
     align-items: baseline;
+    color: white;
 }
 .profile-der {
     margin-right: 35px;
+    margin-left: 35px;
+    color: white;
 }
 
 .caja-detalle{
@@ -81,7 +88,6 @@
     padding-left: 15px;
     margin-left: 0;
     list-style: 0;
-
 }
 
 .fi {
